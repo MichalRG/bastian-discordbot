@@ -1,6 +1,15 @@
-# General Information:
+# General Information - podstawowe informacje:
 
-## Config - konfiguracja
+## Runnign bot - odpalanie bota
+### English
+To run this bot you have to install packages from requiremnets.txt (python 3.10 it's recommended). Then you have to set up your DISCORD TOKEN in env veraiables then you can run main.py and check the bot capabilities.
+### Polish
+By uruchomić bota zainstaluj paczki z requriements.txt (zalecana wersja pythona to 3.10). Następnie ustaw w zmiennych środowiskowych DISCORD TOKEN, umożliwi to korzystanie z API. Po konfiguracji odapl main.py i sprawdź możliwości bota.
+
+## Config - configuration -konfiguracja
+### English
+The order in config.json for guilds has meaning!!!
+### Polish
 Kolejnośc parametrów w config.json dla legit guilds ma znaczenie!!!
 
 # DEV Section
