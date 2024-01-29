@@ -1,0 +1,75 @@
+{
+  "ADMIN_IDS": [
+    "688301052033761282"
+  ],
+  "devmode": {
+    "process": true
+  },
+  "welcome": {
+    "process": true,
+    "come_in": {
+      "process": true
+    },
+    "games": {
+      "process": true,
+      "eye": {
+        "process": true
+      }
+    }
+  },
+  "actions": {
+    "rupella": {
+      "process": true,
+      "roles": [
+        "Test-1",
+        "Wstęp na zaplecze \"Gardła Gustava\""
+      ]
+    }
+  },
+  "games": {
+    "eye": {
+      "process": true,
+      "roles": [
+        "Test-1",
+        "Wstęp na zaplecze \"Gardła Gustava\""
+      ],
+      "players": {
+        "Gerald Berchtold": {
+          "process": true,
+          "many_games": true
+        },
+        "Liebwin Müller": {
+          "process": true,
+          "many_games": true
+        },
+        "Guerino Wessely": {
+          "process": true,
+          "many_games": true
+        },
+        "Amalberga Auerswald": {
+          "process": true,
+          "many_games": true
+        },
+        "Thrognik Rockson": {
+          "process": true,
+          "many_games": true
+        }
+      }
+    }
+  },
+  "permissions": {
+    "awanturnicy": false,
+    "test": true
+  },
+  "legit": {
+    "guilds": [
+      "AWANTURNICY: Widmo nad Versmold",
+      "Test-Server"
+    ],
+    "channels": [
+      "👋 | witaj-pośród-awanturników",
+      "kanał-drugi-⚓",
+      "📦zaplecze-gardła-gustava"
+    ]
+  }
+}
