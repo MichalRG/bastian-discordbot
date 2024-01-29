@@ -3,6 +3,15 @@
 ## Config - konfiguracja
 Kolejnośc parametrów w config.json dla legit guilds ma znaczenie!!!
 
+## Limitations
+- For most actions, such as sending messages, the rate limit is around 5 requests per 5 seconds per channel.
+- For joining and leaving servers, the limit is around 1,000 per 24 hours.
+- When creating or updating global slash commands, changes can take up to an hour to propagate due to Discord's caching. This isn't a rate limit per se, but it does limit how often you can effectively update these commands.
+- The rate limit for sending messages is typically 5 messages per 20 seconds per user per guild, and 5 messages per 5 seconds per channel.
+- If you exceed a rate limit, Discord's API will respond with a 429 status code (Too Many Requests). The response will include a Retry-After header indicating how long to wait before making another request.
+
+* If system will go into sleep mode/ snooze mode/ watch mode it will stop bot in the background and it will reset when u resume your system.
+
 # DEV Section
 ## Synhronizing bots
 1. Shared Backend or Database

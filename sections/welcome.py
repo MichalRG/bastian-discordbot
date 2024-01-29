@@ -24,7 +24,7 @@ class Welcome:
         if self.config.get_process_permissions_for_section("welcome.come_in"):
             welcome_messages = self.translate_service.translate("WELCOME.SAY_HELLO")
 
-            chosen_message = random.choice(welcome_messages)
+            chosen_message = welcome_messages
 
             await channel.send(f"**Bastian:**\n{chosen_message}",
                                file=discord.File("./imgs/bastianWelcome.png", description="Bastian"))

@@ -943,7 +943,7 @@ class EyeGame(commands.Cog):
         self.guerino_dices += 1
 
         draw_guerino = self.translation.translate('GAMES.EYE.GUERINO.DRAW', [{"dices": str(self.guerino_dices)}])
-        await ctx.respond(f"**Głos z Eteru:**\n{random.choice(draw_guerino)}\n{self.GENERAL_COMMANDS}")
+        await ctx.respond(f"**Głos z Eteru:**\n{draw_guerino}\n{self.GENERAL_COMMANDS}")
 
         self.__save_draw_log({
             "id_game": self.id_guerino_game,
