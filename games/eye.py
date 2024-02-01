@@ -322,7 +322,7 @@ class EyeGame(commands.Cog):
                 await self.__display_wrong_thresold_message(
                     ctx=ctx,
                     name="liebwin",
-                    lower_limit=1,
+                    lower_limit=2,
                     upper_limit=9,
                     bid=number
                 )
