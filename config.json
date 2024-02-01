@@ -22,7 +22,8 @@
       "process": true,
       "roles": [
         "Test-1",
-        "Wstęp na zaplecze \"Gardła Gustava\""
+        "Wstęp na zaplecze \"Gardła Gustava\"",
+        "SUPER DUPER"
       ]
     }
   },
@@ -31,7 +32,8 @@
       "process": true,
       "roles": [
         "Test-1",
-        "Wstęp na zaplecze \"Gardła Gustava\""
+        "Wstęp na zaplecze \"Gardła Gustava\"",
+        "SUPER DUPER"
       ],
       "players": {
         "Gerald Berchtold": {
@@ -59,17 +61,20 @@
   },
   "permissions": {
     "awanturnicy": false,
-    "test": true
+    "test": false,
+    "testcior-2": true
   },
   "legit": {
     "guilds": [
       "AWANTURNICY: Widmo nad Versmold",
-      "Test-Server"
+      "Test-Server",
+      "Testcior-2"
     ],
     "channels": [
       "👋 | witaj-pośród-awanturników",
       "kanał-drugi-⚓",
-      "📦zaplecze-gardła-gustava"
+      "📦zaplecze-gardła-gustava",
+      "🐀┇stary-świat"
     ]
   }
 }

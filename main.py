@@ -44,6 +44,8 @@ def __get_guilds_and_text_channels(current_client_guilds):
     AWANTURNICY = None
     TEST_text_channels = []
     TEST = None
+    TESCIOR_2_text_channels = []
+    TESCIOR_2 = None
 
     for guild in current_client_guilds:
         if guild.name in legit_guilds:
@@ -53,8 +55,11 @@ def __get_guilds_and_text_channels(current_client_guilds):
             elif guild.name == legit_guilds[1]:
                 TEST_text_channels = guild.text_channels
                 TEST = guild
+            elif guild.name == legit_guilds[2]:
+                TESCIOR_2_text_channels = guild.text_channels
+                TESCIOR_2 = guild
 
-    return AWANTURNICY_text_channels, AWANTURNICY, TEST_text_channels, TEST
+    return AWANTURNICY_text_channels, AWANTURNICY, TEST_text_channels, TEST, TESCIOR_2_text_channels, TESCIOR_2
 
 
 def __get_allowed_channels(text_channels_to_check, guild) -> List:
@@ -75,13 +80,15 @@ def __set_allowed_channels():
 
     current_client_guilds = client.guilds
 
-    AWANTURNICY_text_channels, AWANTURNICY, TEST_text_channels, TEST = \
+    AWANTURNICY_text_channels, AWANTURNICY, TEST_text_channels, TEST, TEST_2_text_channels, TEST_2 = \
         __get_guilds_and_text_channels(current_client_guilds)
 
     if permissions_access_guild.get('awanturnicy'):
         channels_allowed_to_use = __get_allowed_channels(AWANTURNICY_text_channels, AWANTURNICY)
-    elif permissions_access_guild.get('test'):
+    if permissions_access_guild.get('test'):
         channels_allowed_to_use = __get_allowed_channels(TEST_text_channels, TEST)
+    if permissions_access_guild.get('testcior-2'):
+        channels_allowed_to_use = __get_allowed_channels(TEST_2_text_channels, TEST_2)
 
     if channels_allowed_to_use == []:
         exit('[Self exit]: No privileges')
@@ -140,7 +147,7 @@ async def on_ready():
         client.devmode_initialized = True
         client.add_cog(DevTestCommands())
 
-    await client.sync_commands()  # Sync commands
+    await client.sync_commands(guild_ids=['1198002006481178805'])  # Sync commands
 
 
 @client.event

@@ -443,7 +443,7 @@ class EyeGame(commands.Cog):
                     bid=number
                 )
 
-    @slash_command(name="oko-dobieram-thrognik", guild_ids=LEGIT_SERVERS,
+    @slash_command(name="dobieram-thrognik", guild_ids=LEGIT_SERVERS,
                    description="Dobierz kość w grze z Thrognikiem")
     async def player_draw_die_in_thrognik_game(self, ctx):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
@@ -465,7 +465,7 @@ class EyeGame(commands.Cog):
 
             await self.__perform_thrognik_action(ctx)
 
-    @slash_command(name="oko-rzucam-thrognik", guild_ids=LEGIT_SERVERS,
+    @slash_command(name="rzucam-thrognik", guild_ids=LEGIT_SERVERS,
                    description="Wykonaj rzut w grze z Thrognikiem")
     async def player_roll_dices_in_thrognik_game(self, ctx):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
@@ -551,7 +551,7 @@ class EyeGame(commands.Cog):
 
             await ctx.respond(f"**Thrognik:**\n{faiulre_thrognik_log}\n{self.GENERAL_COMMANDS}")
 
-    @slash_command(name="oko-dobieram-gerald", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Geraldem")
+    @slash_command(name="dobieram-gerald", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Geraldem")
     async def player_draw_die_in_gerald_game(self, ctx):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
             if self.is_not_gerald_busy or (not self.is_not_gerald_busy and self.gerald_enemy_id != ctx.author.id):
@@ -572,7 +572,7 @@ class EyeGame(commands.Cog):
 
             await self.__perform_gerald_action(ctx)
 
-    @slash_command(name="oko-rzucam-gerald", guild_ids=LEGIT_SERVERS,
+    @slash_command(name="rzucam-gerald", guild_ids=LEGIT_SERVERS,
                    description="Wykonaj rzut w grze z Geraldem")
     async def player_roll_dices_in_gerald_game(self, ctx):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
@@ -659,7 +659,7 @@ class EyeGame(commands.Cog):
 
             await ctx.respond(f"**Gerald:**\n{failure_gerald_log}\n{self.GENERAL_COMMANDS}")
 
-    @slash_command(name="oko-dobieram-amalberg", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Amalberg")
+    @slash_command(name="dobieram-amalberg", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Amalberg")
     async def player_draw_die_in_amalberg_game(self, ctx):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
             if self.is_not_amalberga_busy or (not self.is_not_amalberga_busy and self.amalberg_enemy_id != ctx.author.id):
@@ -680,7 +680,7 @@ class EyeGame(commands.Cog):
 
             await self.__perform_amalberg_action(ctx)
 
-    @slash_command(name="oko-rzucam-amalberg", guild_ids=LEGIT_SERVERS,
+    @slash_command(name="rzucam-amalberg", guild_ids=LEGIT_SERVERS,
                    description="Wykonaj rzut w grze z Amalberg")
     async def player_roll_dices_in_amalberg_game(self, ctx):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
@@ -767,7 +767,7 @@ class EyeGame(commands.Cog):
 
             await ctx.respond(f"**Amalberg:**\n{failure_amalberg_log}\n{self.GENERAL_COMMANDS}")
 
-    @slash_command(name="oko-dobieram-liebwin", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Liebwinem")
+    @slash_command(name="dobieram-liebwin", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Liebwinem")
     async def player_draw_die_in_liebwin_game(self, ctx):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
             if self.is_not_liebwin_busy or (not self.is_not_liebwin_busy and self.liebwin_enemy_id != ctx.author.id):
@@ -788,7 +788,7 @@ class EyeGame(commands.Cog):
 
             await self.__perform_liebwin_action(ctx)
 
-    @slash_command(name="oko-rzucam-liebwin", guild_ids=LEGIT_SERVERS,
+    @slash_command(name="rzucam-liebwin", guild_ids=LEGIT_SERVERS,
                    description="Wykonaj rzut w grze z Liebwinem")
     async def player_roll_dices_in_liebwin_game(self, ctx):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
@@ -875,7 +875,7 @@ class EyeGame(commands.Cog):
 
             await ctx.respond(f"**Liebwin:**\n{failure_liebwin_log}\n{self.GENERAL_COMMANDS}")
 
-    @slash_command(name="oko-dobieram-guerino", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Guerino")
+    @slash_command(name="dobieram-guerino", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Guerino")
     async def player_draw_die_in_guerino_game(self, ctx):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
             if self.is_not_guerino_busy or (not self.is_not_guerino_busy and self.guerino_enemy_id != ctx.author.id):
@@ -896,7 +896,7 @@ class EyeGame(commands.Cog):
 
             await self.__perform_guerino_action(ctx)
 
-    @slash_command(name="oko-rzucam-guerino", guild_ids=LEGIT_SERVERS,
+    @slash_command(name="rzucam-guerino", guild_ids=LEGIT_SERVERS,
                    description="Wykonaj rzut w grze z Guerino")
     async def player_roll_dices_in_guerino_game(self, ctx):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):

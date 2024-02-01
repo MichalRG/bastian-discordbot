@@ -1,5 +1,21 @@
 # General Information - podstawowe informacje:
 
+### Bot configuration - konfiugracja bota
+### English
+Currently not available
+### Polish
+1. Bot należy zaprosić na serwer najlepiej z 1197656938121527306 takim zestawem uprawnień
+2. Jeżeli chcemy by informacje na temat danej guildy (serwera) zostały pobrane należy dodać swoją gildie w jakiś nazewniczo jasny sposób w config.json, pod kluczem "permissions". Jeżeli to całkowicie nowa gilidia nazwa jest dowolna, ale przez obecny zjebany stan kodu po dodaniu wpisu należałoby:
+   1. W pliku main.py, w metodzie __set_allowed_channels dopisać w linijce 83 należy dodać variable dla naszej gildi jedno przechowujący kanąły tekstowe, drugi przechowujący instancje gildi.
+   2. Następnie w metodzie __get_guilds_and_text_channels należy dopisać 2 zmienne tak jak dla pozostałych serwerów, jedna przechowująca arrayke text channeli, druga dla obiektu gildii. Nastepnie dokładamy warunek  elif gdzie guild.name == legit_guild[X] <- gdzie za X musisz wpisac numer indeksu Twojej gildi z arrayki permissions (patrz generaly opis kroku 2).
+   3. Tak przypisane kanały tekstowe i obiekt gildi mają być zwracane z metody
+   4. Następnie w __set_allowed_channels ponownie w 86 linicje zaczyna sie if statement którym musi dopisa ckolejnego ifka czy jest permision dla naszej gildi, przekazujemy tam arrayke text channel i obiket gildi do __get_allowed_channels
+3. Gotowe teraz w config.json w legit key -> guilds key, do value dodajemy do arrayki dokładną nazwę naszej gildi
+4. Podobnie dodajemy kanały do których chcemy by nasz bot mogl miec dostęp
+5. Kolejno botowi nalezy przypisać dostęp do tych kanałów na samym serwerze (w gildi)
+6. Gotowe wszystko powinno działać
+7. * Jeżeli komendy nie pojawiają się u Twojego bota możę przy komendzie sync trzeba dodać id Twojej gildii
+
 ## Runnign bot - odpalanie bota
 ### English
 To run this bot you have to install packages from requiremnets.txt (python 3.10 it's recommended). Then you have to set up your DISCORD TOKEN in env veraiables then you can run main.py and check the bot capabilities.
@@ -22,6 +38,10 @@ Kolejnośc parametrów w config.json dla legit guilds ma znaczenie!!!
 * If system will go into sleep mode/ snooze mode/ watch mode it will stop bot in the background and it will reset when u resume your system.
 
 # DEV Section
+## TODO:
+1. Change names into ids
+2. Separate guilds and channels somehow currently it randomly choose one channel which use it's not desired action
+3. Sync - I solve the problem by adding new guild id but it didnt want to update it by itselfs.
 ## Synhronizing bots
 1. Shared Backend or Database
 If both bots have access to a shared backend service or database, Bot1 can update a shared resource, which Bot2 regularly checks. For example:
