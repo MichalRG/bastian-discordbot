@@ -39,9 +39,16 @@ Kolejnośc parametrów w config.json dla legit guilds ma znaczenie!!!
 
 # DEV Section
 ## TODO:
-1. Change names into ids
-2. Separate guilds and channels somehow currently it randomly choose one channel which use it's not desired action
-3. Sync - I solve the problem by adding new guild id but it didnt want to update it by itselfs.
+1. - [ ] Change names into ids
+2. - [ ] Separate guilds and channels somehow currently it randomly choose one channel which use it's not desired action
+3. - [ ] Sync - I solve the problem by adding new guild id but it didnt want to update it by itselfs.
+4. commands for admins:
+     - [x] to clean players who played with bot
+     - [x] get players who played with bot
+     - [x] to get logs
+     - [x] to clean log file
+     - [x] to stop bot
+5. - [ ] expiring game when player doesnt react/ respond
 ## Synhronizing bots
 1. Shared Backend or Database
 If both bots have access to a shared backend service or database, Bot1 can update a shared resource, which Bot2 regularly checks. For example:

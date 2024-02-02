@@ -9,12 +9,12 @@ from discord.commands import slash_command, Option
 
 from helpers.constants import LEGIT_SERVERS
 from services.config import Config
-from services.general_utils import write_to_game_logs, read_file_lines
+from services.general_utils import write_to_game_logs, read_file_lines, reset_localLogs_file
 from services.translation import Translation
 
 
 class EyeGame(commands.Cog):
-    def __init__(self, config, translation, roles, channels):
+    def __init__(self, config, translation, roles, channels, admins):
         self.config = config or Config()
         self.translation = translation or Translation()
         self.allowed_channels = channels  # TODO: Consider to not reply just use this channels or in this game just single channel
@@ -22,6 +22,8 @@ class EyeGame(commands.Cog):
         self.allowed_roles = roles
         self.GENERAL_COMMANDS = self.translation.translate("GAMES.EYE.GENERAL_COMMANDS")
         self.blacklisted_by_Rupella = None
+        self.admins = admins
+        self.bot_names = self.config.get_config_key("games.eye.bot_names")
 
         self.__define_player_statuses()
 
@@ -33,18 +35,21 @@ class EyeGame(commands.Cog):
         guerino = players.get("Guerino Wessely", {"process": False, "many_games": False})
         amalberg = players.get("Amalberga Auerswald", {"process": False, "many_games": False})
         thrognik = players.get("Thrognik Rockson", {"process": False, "many_games": False})
+        talan = players.get("Talan", {"process": False, "many_games": False})
 
         self.is_not_gerald_busy = gerald.get("process")
         self.is_not_liebwin_busy = liebwin.get("process")
         self.is_not_guerino_busy = guerino.get("process")
         self.is_not_amalberga_busy = amalberg.get("process")
         self.is_not_thrognik_busy = thrognik.get("process")
+        self.is_not_talan_busy = talan.get("process")
 
         self.is_gerald_eager_for_many_games = gerald.get("many_games")
         self.is_liebwin_eager_for_many_games = liebwin.get("many_games")
         self.is_guerino_eager_for_many_games = guerino.get("many_games")
         self.is_amalberg_eager_for_many_games = amalberg.get("many_games")
         self.is_thrognik_eager_for_many_games = thrognik.get("many_games")
+        self.is_talan_eager_for_many_games = talan.get("many_games")
 
     def __get_available_players(self) -> List:
         players = []
@@ -59,8 +64,77 @@ class EyeGame(commands.Cog):
             players.append("Guerino Wessely")
         if self.is_not_liebwin_busy:
             players.append("Liebwin Müller")
+        if self.is_not_talan_busy:
+            players.append("Talan")
 
         return players
+
+    @slash_command(name="reset-bots-status", guild_ids=LEGIT_SERVERS, description="[Admin command]: reset status of all players for all bots")
+    async def rest_stats(self, ctx, name: Option(str, "Enter a bot name")):
+        if ctx.author.id in self.admins:
+            if name == 'all':
+                for name in self.bot_names:
+                    reset_localLogs_file(f"oko/{name}.txt")
+            elif name in self.bot_names:
+                reset_localLogs_file(f"oko/{name}.txt")
+            else:
+                return
+            success_translation = self.translation.translate("ADMINS.RESET_BOTS_SUCCESSFULLY_PASSED")
+            await ctx.respond(f"**Głos z Eteru**:\n{success_translation}")
+
+    @slash_command(name="get-oponents-of-bot", guild_ids=LEGIT_SERVERS, description="[Admin command]: get players who played with bot")
+    async def get_oponenets_of_bot(self, ctx, name: Option(str, "Enter a bot name")):
+        if ctx.author.id in self.admins:
+            bot_name = name.lower().strip()
+
+            if bot_name not in self.bot_names:
+                not_found = self.translation.translate("ADMINS.NOT_FOUND_BOT")
+
+                await ctx.respond(f"**Głos z Eteru**:\n{not_found}")
+
+                return
+
+            oponenets = read_file_lines(f"./localLogs/oko/{bot_name}.txt")
+
+            if oponenets == []:
+                oponents_not_founded = self.translation.translate("ADMINS.NOT_FOUNDED_OPONENTS", [{"bot_name": bot_name}])
+
+                await ctx.respond(f"**Głos z Eteru:**\n{oponents_not_founded}")
+            else:
+                oponents_founded = self.translation.translate("ADMINS.FOUNDED_OPONENTS", [{"bot_name": bot_name}])
+
+                await ctx.respond(f"**Głos z Eteru:**\n{oponents_founded}\n{oponenets}")
+
+    @slash_command(name="clean-logs", guild_ids=LEGIT_SERVERS, description="[Admin command]: it cleans logs! DONT DO IT IF U'RE NOT SURE!!")
+    async def clean_logs(self, ctx):
+        if ctx.author.id in self.admins:
+            try:
+                with open("./localLogs/oko/eye-game-logs.txt", "w"):
+                    pass
+            except FileNotFoundError:
+                print(f"[RESET LOGS]: lack of file eye-game-logs.txt")
+                return
+            except IOError as e:
+                print(f"[RESET LOGS]: An unexpected error occurred: {e}")
+                return
+
+            success_translation = self.translation.translate("ADMINS.RESET_LOGS_SUCCESSFULLY_PASSED")
+            await ctx.respond(f"**Głos z Eteru**:\n{success_translation}")
+
+    @slash_command(name="kill-bastian", guild_ids=LEGIT_SERVERS, description="[Admin command]: turn off the bot")
+    async def get_logs(self, ctx):
+        if ctx.author.id in self.admins:
+            exit(0)
+
+    @slash_command(name="get-bot-full-logs", guild_ids=LEGIT_SERVERS, description="[Admin command]: get logs file")
+    async def get_logs(self, ctx):
+        if ctx.author.id in self.admins:
+            path_to_logs = "./localLogs/oko/eye-game-logs.txt"
+
+            file = discord.File(path_to_logs, filename="eye-game-logs.txt")
+
+            here_are_logs = self.translation.translate("ADMINS.LOGS_FILE")
+            await ctx.respond(f"**Głos z Eteru**:\n{here_are_logs}", file=file)
 
     @slash_command(name="oko-pomoc", guild_ids=LEGIT_SERVERS, description="Sprawdź dostępne komendy do gry w oko")
     async def available_commands(self, ctx):
@@ -143,6 +217,64 @@ class EyeGame(commands.Cog):
                     name="thrognik",
                     lower_limit=26,
                     upper_limit=40,
+                    bid=number
+                )
+
+    @slash_command(name="wyzwij-talan", guild_ids=LEGIT_SERVERS, description="Wyzwij Talana na potyczkę w Oko")
+    async def challenge_talan(self, ctx, number: Option(int, "Enter a number")):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+            if await self.__is_rupella_in_action(ctx):
+                return
+
+            if not self.is_not_talan_busy:
+                await self.__display_lack_of_player(ctx, "Talan")
+                return
+
+            banned = self.__read_blacklist_players("talan")
+            if str(ctx.author.id) in banned and not self.is_talan_eager_for_many_games:
+                we_played_log = self.translation.translate("GAMES.EYE.TALAN.WE_PLAYED")
+                await ctx.respond(f"**🍞Talan🍞:**\n{we_played_log}")
+                return
+
+            if 30 < number < 51:
+                self.is_not_talan_busy = False
+                self.talan_bid = number
+                self.id_talan_game = uuid.uuid4()
+                self.talan_enemy_id = ctx.author.id
+                self.player_talan_dices = 1
+                self.talan_dices = 1
+                self.talan_game_strategy = random.randint(3, 4)
+
+                talan_initiative, player_initiative = self.__roll_initiative()
+                self.__generate_initiative_log({
+                    "id_game": self.id_talan_game,
+                    "bot": "talan",
+                    "player": ctx.author,
+                    "bot_initiative": talan_initiative,
+                    "player_initiative": player_initiative,
+                    "bot_strategy": self.talan_game_strategy,
+                    "bid": number
+                })
+
+                beginning_of_game_talan = self.translation.translate(
+                    "GAMES.EYE.TALAN.START",
+                    [
+                        {"bot_value": talan_initiative},
+                        {"player_value": player_initiative},
+                        {"player_name": ctx.author.display_name}
+                    ])
+                await ctx.respond(f"**Głos z eteru:**\n{beginning_of_game_talan}")
+
+                if talan_initiative < player_initiative:
+                    await self.__talan_draw_die(ctx)
+                else:
+                    await ctx.respond(f"{self.GENERAL_COMMANDS}")
+            elif isinstance(number, int):
+                await self.__display_wrong_thresold_message(
+                    ctx=ctx,
+                    name="talan",
+                    lower_limit=31,
+                    upper_limit=50,
                     bid=number
                 )
 
@@ -550,6 +682,118 @@ class EyeGame(commands.Cog):
             faiulre_thrognik_log = self.translation.translate("GAMES.EYE.THROGNIK.FAIL")
 
             await ctx.respond(f"**Thrognik:**\n{faiulre_thrognik_log}\n{self.GENERAL_COMMANDS}")
+
+
+    @slash_command(name="rzucam-talan", guild_ids=LEGIT_SERVERS,
+                   description="Wykonaj rzut w grze z Talanem")
+    async def player_roll_dices_in_talan_game(self, ctx):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+            if self.is_not_talan_busy or (not self.is_not_talan_busy and self.talan_enemy_id != ctx.author.id):
+                await self.__cannot_roll(ctx)
+                return
+
+            player_talan_roll_result = await self.__perform_roll(self.player_talan_dices, ctx,
+                                                                    ctx.author.display_name)
+
+            self.__save_roll_log({
+                "id_game": self.id_talan_game,
+                "roller": ctx.author.display_name,
+                "result": player_talan_roll_result
+            })
+
+            if "9" in player_talan_roll_result:
+                self.__save_winning_log({
+                    "id_game": self.id_talan_game,
+                    "roller": ctx.author.display_name,
+                    "result": player_talan_roll_result
+                })
+
+                talan_reaction = self.translation.translate("GAMES.EYE.TALAN.REACTION_ON_SUCCESS_PLAYER")
+                await ctx.respond(f"**🍞Talan🍞:**\n{talan_reaction}")
+
+                self.__add_to_already_played_file({
+                    "bot": "talan",
+                    "player": ctx.author.id
+                })
+                self.is_not_talan_busy = True
+            else:
+                talan_reaction = self.translation.translate("GAMES.EYE.TALAN.REACTION_ON_FAIL_PLAYER")
+                await ctx.respond(f"**🍞Talan🍞:**\n{talan_reaction}")
+
+                await self.__perform_talan_action(ctx)
+
+    @slash_command(name="dobieram-talan", guild_ids=LEGIT_SERVERS,
+                   description="Dobierz kość w grze z Talanem")
+    async def player_draw_die_in_talan_game(self, ctx):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+            if self.is_not_talan_busy or (not self.is_not_talan_busy and self.talan_enemy_id != ctx.author.id):
+                await self.__cannot_draw(ctx)
+                return
+
+            self.player_talan_dices += 1
+
+            self.__save_draw_log({
+                "id_game": self.id_talan_game,
+                "bot": ctx.author.display_name,
+                "amount": self.player_talan_dices
+            })
+
+            draw_response = self.translation.translate("GAMES.EYE.DRAW_PLAYER",
+                                                       [{"amount": str(self.player_talan_dices)}])
+
+            await ctx.respond(f"**Głos z Eteru:**\n{draw_response}")
+
+            await self.__perform_talan_action(ctx)
+
+    async def __perform_talan_action(self, ctx):
+        if self.talan_dices >= self.talan_game_strategy:
+            await self.__talan_roll_dices(ctx)
+        else:
+            await self.__talan_draw_die(ctx)
+
+    async def __talan_draw_die(self, ctx):
+        self.talan_dices += 1
+
+        draw_talan = self.translation.translate('GAMES.EYE.TALAN.DRAW', [{"dices": str(self.talan_dices)}])
+        await ctx.respond(f"**🍞Talan🍞:**\n{draw_talan}\n{self.GENERAL_COMMANDS}")
+
+        self.__save_draw_log({
+            "id_game": self.id_talan_game,
+            "bot": "Talan",
+            "current_amount": self.talan_dices
+        })
+
+    async def __talan_roll_dices(self, ctx):
+        results = await self.__perform_roll(
+            self.talan_dices,
+            ctx,
+            "Talan"
+        )
+
+        if "9" in results:
+            self.__save_winning_log({
+                "id_game": self.id_talan_game,
+                "roller": "talan",
+                "result": results
+            })
+            victory_talan_log = self.translation.translate("GAMES.EYE.TALAN.VICTORY")
+
+            await ctx.respond(f"**🍞Talan🍞:**\n{victory_talan_log}")
+
+            self.__add_to_already_played_file({
+                "bot": "talan",
+                "player": ctx.author.id
+            })
+            self.is_not_talan_busy = True
+        else:
+            self.__save_roll_log({
+                "id_game": self.id_talan_game,
+                "roller": "talan",
+                "result": results
+            })
+            faiulre_talan_log = self.translation.translate("GAMES.EYE.TALAN.FAIL")
+
+            await ctx.respond(f"**🍞Talan🍞:**\n{faiulre_talan_log}\n{self.GENERAL_COMMANDS}")
 
     @slash_command(name="dobieram-gerald", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Geraldem")
     async def player_draw_die_in_gerald_game(self, ctx):

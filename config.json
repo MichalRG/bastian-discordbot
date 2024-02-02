@@ -1,6 +1,9 @@
 {
   "ADMIN_IDS": [
-    "688301052033761282"
+    688301052033761282,
+    456718571599560715,
+    888873503170904104,
+    269168167161430018
   ],
   "devmode": {
     "process": true
@@ -30,12 +33,17 @@
   "games": {
     "eye": {
       "process": true,
+      "bot_names": ["talan", "amalberg", "gerald", "guerino", "liebwin", "thrognik"],
       "roles": [
         "Test-1",
         "Wstęp na zaplecze \"Gardła Gustava\"",
         "SUPER DUPER"
       ],
       "players": {
+        "Talan": {
+          "process": true,
+          "many_games": true
+        },
         "Gerald Berchtold": {
           "process": true,
           "many_games": true

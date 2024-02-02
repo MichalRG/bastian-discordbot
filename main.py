@@ -31,6 +31,7 @@ client = commands.Bot(command_prefix='/', intents=intents)
 
 config = Config()
 rupella_manager = None
+admins = []
 
 channels_allowed_to_use = []
 roles_allowed_to_process = []
@@ -91,8 +92,11 @@ def __set_allowed_channels():
         channels_allowed_to_use = __get_allowed_channels(TEST_2_text_channels, TEST_2)
 
     if channels_allowed_to_use == []:
-        exit('[Self exit]: No privileges')
+        exit('[Self exit]: No privileges for channels')
 
+def __set_admins() -> List[str]:
+    global admins
+    admins = config.get_config_key("ADMIN_IDS")
 
 def __get_allowed_roles_for_eye():
     return config.get_config_key("games.eye.roles")
@@ -117,6 +121,7 @@ async def on_ready():
 
     global rupella_manager
     __set_allowed_channels()
+    __set_admins()
 
     if config.get_process_permissions_for_section('welcome'):
         welcome = Welcome(config=config)
@@ -129,7 +134,7 @@ async def on_ready():
         roles = __get_allowed_roles_for_eye()
 
         try:
-            client.add_cog(EyeGame(config, None, roles, channels_allowed_to_use))
+            client.add_cog(EyeGame(config, None, roles, channels_allowed_to_use, admins))
         except Exception as error:
             print("Adding Eye Game has failed", error)
     if config.get_process_permissions_for_section('actions.rupella') and not hasattr(client, 'rupella_action_initialized'):
@@ -138,7 +143,7 @@ async def on_ready():
         roles = config.get_config_key("actions.rupella.roles")
 
         try:
-            rupella_manager = RupellaGuard(config, None, roles, channels_allowed_to_use)
+            rupella_manager = RupellaGuard(config, None, roles, channels_allowed_to_use, admins)
             client.add_cog(rupella_manager)
         except Exception as error:
             print("Adding Rupella Actions has failed", error)

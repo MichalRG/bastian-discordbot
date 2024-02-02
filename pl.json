@@ -42,6 +42,17 @@
         "VICTORY": "Ha! Łatwizna, wystarczy trochę pomyślunku łamago! *Zgarnia miedziaki*",
         "FAIL": "AH KURWA! Była 9! Widziałeś! Ja pierdolę, tak blisko... 😡"
       },
+       "TALAN": {
+        "WE_PLAYED": "Talan BUŁECZKA nie ma dla ciebie czasu! Co? Myślałeś, że nie wiem o twoich żarcikach za moimi plecami?",
+        "NOT_ENOUGH": "Sypnij więcej i gramy! Nie bądź leszcz jak Jodokus!",
+        "TOO_MUCH": "Wiesz ile Bańka mnie kosztowała?! Nie mam tyle! Resztę miedziaków wydałem na spłatę frajerów z ostatniej wyprawy!",
+        "START": "Dosiadasz się do stolika, przy którym siedzi... gnom! Zwęża oczka i marszczy nos, patrząc na ciebie. Grajmy, szkoda czasu! - woła, po czym chwyta jedną z kości i rzuca, by ustalić kto zaczyna. Kości mkną po stole, odbijając się od krawędzi. Wyniki to Talan: {{bot_value}} {{player_name}}: {{player_value}}",
+        "DRAW": "Ech... Z kośćmi jest jak z talanami. Im więcej, tym lepiej. *Talan sięga po kość* (Aktualnie posiada: {{dices}})",
+        "REACTION_ON_SUCCESS_PLAYER": "Wiesz, że mógłbym sprawić iluzją, że będą tu same dziewiątki? Znaj moje dobre serce i ciesz się wygraną! *Wstaje i odchodzi.*",
+        "REACTION_ON_FAIL_PLAYER": "X",
+        "VICTORY": "Było miło, ale się skończyło! A za wygrane miedziaki zakupię więcej sprzętu. Bańka musi się rozwijać! Gratulacje, właśnie podreperowałeś budżet Mercatores!",
+        "FAIL": "X"
+      },
       "GUERINO": {
         "WE_PLAYED": "Aj, no my już graliśmy, a ja to tak miedziaczków ledwo na hazard mam, wystarczy na dziś wspólnej gry.",
         "NOT_ENOUGH": "Ja nie gram o dużo, ale o coś trzeba grać *puszcza oczko*. Dejże symbloczinego miedziaczka 🪙",
@@ -102,5 +113,13 @@
         "INTRODUCTION": "O przyszedłeś zapytać o mądrą radę? Proszę *zamyśla się i rzuca* "
       }
     }
+  },
+  "ADMINS": {
+    "RESET_BOTS_SUCCESSFULLY_PASSED": "Eter wykonał pomyślnie powierzoną mu misje :wink:",
+    "NOT_FOUND_BOT": "Nie wypiłeś za dużo 🍺? Nie widzę nikogo takiego w pobliżu...",
+    "FOUNDED_OPONENTS": "Oto identyfikatory przeciwników {{bot_name}}: ",
+    "NOT_FOUNDED_OPONENTS": "Wyglada na to, że {{bot_name}} nie rozegrał jeszcze gry",
+    "RESET_LOGS_SUCCESSFULLY_PASSED": "Eter dokonał wyczyszczenia pamięci",
+    "LOGS_FILE": "Eter ma dla Ciebie plik:"
   }
 }

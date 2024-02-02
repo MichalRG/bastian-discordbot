@@ -1,195 +1,56 @@
-[ed91a286-f39e-427b-b789-4dadd850dbc5] 2024-01-26 22:56:14.309247: thrognik VS jarver(688301052033761282), bid: 30, initiative rolls: 8:6, strategy drawing: 3
-[ed91a286-f39e-427b-b789-4dadd850dbc5] 2024-01-26 22:56:20.267561: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 2
-[ed91a286-f39e-427b-b789-4dadd850dbc5] 2024-01-26 22:56:20.977966: Thrognik has drawn a dice, current amount of dice: current_amount
-[ed91a286-f39e-427b-b789-4dadd850dbc5] 2024-01-26 22:56:22.857544: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 3
-[ed91a286-f39e-427b-b789-4dadd850dbc5] 2024-01-26 22:56:23.683842: Thrognik has drawn a dice, current amount of dice: current_amount
-[ed91a286-f39e-427b-b789-4dadd850dbc5] 2024-01-26 22:56:30.369327: 🎲 Jarver | Jarverus performed its roll! The result roll: ['1', '9', '1']
-[ed91a286-f39e-427b-b789-4dadd850dbc5] 2024-01-26 22:56:30.381012: 🎲 Jarver | Jarverus won! The result winning roll: ['1', '9', '1']
-[80cf677b-7c0e-4a14-b245-ad2a945722fc] 2024-01-26 22:57:07.204371: thrognik VS jarver(688301052033761282), bid: 30, initiative rolls: 7:3, strategy drawing: 2
-[80cf677b-7c0e-4a14-b245-ad2a945722fc] 2024-01-26 22:57:29.969825: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 2
-[80cf677b-7c0e-4a14-b245-ad2a945722fc] 2024-01-26 22:57:31.208937: Thrognik has drawn a dice, current amount of dice: current_amount
-[80cf677b-7c0e-4a14-b245-ad2a945722fc] 2024-01-26 22:57:35.707713: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 3
-[80cf677b-7c0e-4a14-b245-ad2a945722fc] 2024-01-26 22:57:36.857630: thrognik won! The result winning roll: ['2', '9']
-[28324c32-c877-43e9-99c5-5f3f05ab3813] 2024-01-26 22:58:07.646100: thrognik VS jarver(688301052033761282), bid: 40, initiative rolls: 9:10, strategy drawing: 3
-[0218a5f7-1711-4d91-9450-9b25ea9270da] 2024-01-26 23:00:11.871311: thrognik VS jarver(688301052033761282), bid: 40, initiative rolls: 5:9, strategy drawing: 2
-[0218a5f7-1711-4d91-9450-9b25ea9270da] 2024-01-26 23:00:12.662494: Thrognik has drawn a dice, current amount of dice: current_amount
-[0218a5f7-1711-4d91-9450-9b25ea9270da] 2024-01-26 23:00:27.737284: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 2
-[0218a5f7-1711-4d91-9450-9b25ea9270da] 2024-01-26 23:00:28.499481: thrognik won! The result winning roll: ['9', '4']
-[cb974681-efe8-4f1b-afeb-e92fd19d0296] 2024-01-26 23:07:41.224690: amalberg VS jarver(688301052033761282), bid: 24, initiative rolls: 7:5, strategy drawing: 3
-[cb974681-efe8-4f1b-afeb-e92fd19d0296] 2024-01-26 23:07:47.313613: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 2
-[cb974681-efe8-4f1b-afeb-e92fd19d0296] 2024-01-26 23:07:48.358435: alamberg has drawn a dice, current amount of dice: current_amount
-[cb974681-efe8-4f1b-afeb-e92fd19d0296] 2024-01-26 23:07:52.540814: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 3
-[cb974681-efe8-4f1b-afeb-e92fd19d0296] 2024-01-26 23:07:53.253039: alamberg has drawn a dice, current amount of dice: current_amount
-[cb974681-efe8-4f1b-afeb-e92fd19d0296] 2024-01-26 23:07:58.380702: 🎲 Jarver | Jarverus performed its roll! The result roll: ['8', '8', '9']
-[cb974681-efe8-4f1b-afeb-e92fd19d0296] 2024-01-26 23:07:58.381227: 🎲 Jarver | Jarverus won! The result winning roll: ['8', '8', '9']
-[dfd28b38-c321-4c0b-8673-dff7c250ccab] 2024-01-26 23:08:09.841091: amalberg VS jarver(688301052033761282), bid: 29, initiative rolls: 4:9, strategy drawing: 3
-[dfd28b38-c321-4c0b-8673-dff7c250ccab] 2024-01-26 23:08:10.493683: alamberg has drawn a dice, current amount of dice: current_amount
-[dfd28b38-c321-4c0b-8673-dff7c250ccab] 2024-01-26 23:08:53.080688: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 2
-[dfd28b38-c321-4c0b-8673-dff7c250ccab] 2024-01-26 23:08:54.289503: alamberg has drawn a dice, current amount of dice: current_amount
-[dfd28b38-c321-4c0b-8673-dff7c250ccab] 2024-01-26 23:08:57.235784: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 3
-[dfd28b38-c321-4c0b-8673-dff7c250ccab] 2024-01-26 23:08:57.966128: amalberg performed its roll! The result roll: ['7', '2', '5']
-[dfd28b38-c321-4c0b-8673-dff7c250ccab] 2024-01-26 23:09:10.230021: 🎲 Jarver | Jarverus performed its roll! The result roll: ['7', '6', '2']
-[dfd28b38-c321-4c0b-8673-dff7c250ccab] 2024-01-26 23:09:10.926419: amalberg performed its roll! The result roll: ['1', '7', '4']
-[dfd28b38-c321-4c0b-8673-dff7c250ccab] 2024-01-26 23:09:15.389589: 🎲 Jarver | Jarverus performed its roll! The result roll: ['3', '8', '6']
-[dfd28b38-c321-4c0b-8673-dff7c250ccab] 2024-01-26 23:09:16.113865: amalberg performed its roll! The result roll: ['4', '1', '1']
-[dfd28b38-c321-4c0b-8673-dff7c250ccab] 2024-01-26 23:09:21.802620: 🎲 Jarver | Jarverus performed its roll! The result roll: ['7', '3', '9']
-[dfd28b38-c321-4c0b-8673-dff7c250ccab] 2024-01-26 23:09:21.802620: 🎲 Jarver | Jarverus won! The result winning roll: ['7', '3', '9']
-[6be21932-9130-4901-a0ae-30c813280804] 2024-01-26 23:12:19.118595: gerald VS jarver(688301052033761282), bid: 19, initiative rolls: 1:5, strategy drawing: 2
-[6be21932-9130-4901-a0ae-30c813280804] 2024-01-26 23:12:20.177078: gerald has drawn a dice, current amount of dice: current_amount
-[6be21932-9130-4901-a0ae-30c813280804] 2024-01-26 23:12:26.838973: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 2
-[6be21932-9130-4901-a0ae-30c813280804] 2024-01-26 23:12:27.483353: gerald performed its roll! The result roll: ['4', '4']
-[6be21932-9130-4901-a0ae-30c813280804] 2024-01-26 23:12:32.249132: 🎲 Jarver | Jarverus performed its roll! The result roll: ['4', '3']
-[6be21932-9130-4901-a0ae-30c813280804] 2024-01-26 23:12:32.959857: gerald performed its roll! The result roll: ['3', '8']
-[6be21932-9130-4901-a0ae-30c813280804] 2024-01-26 23:12:38.418357: 🎲 Jarver | Jarverus performed its roll! The result roll: ['9', '10']
-[6be21932-9130-4901-a0ae-30c813280804] 2024-01-26 23:12:38.418357: 🎲 Jarver | Jarverus won! The result winning roll: ['9', '10']
-[cbc098ae-8bfd-4041-bcdc-2d76a642b142] 2024-01-26 23:24:30.989668: guerino VS jarver(688301052033761282), bid: 1, initiative rolls: 2:4, strategy drawing: 1
-[cbc098ae-8bfd-4041-bcdc-2d76a642b142] 2024-01-26 23:24:32.006265: guerino performed its roll! The result roll: ['6']
-[cbc098ae-8bfd-4041-bcdc-2d76a642b142] 2024-01-26 23:24:38.315083: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 2
-[cbc098ae-8bfd-4041-bcdc-2d76a642b142] 2024-01-26 23:24:39.004596: guerino performed its roll! The result roll: ['7']
-[cbc098ae-8bfd-4041-bcdc-2d76a642b142] 2024-01-26 23:24:44.055950: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 3
-[cbc098ae-8bfd-4041-bcdc-2d76a642b142] 2024-01-26 23:24:44.856734: guerino performed its roll! The result roll: ['3']
-[cbc098ae-8bfd-4041-bcdc-2d76a642b142] 2024-01-26 23:24:45.921844: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 4
-[cbc098ae-8bfd-4041-bcdc-2d76a642b142] 2024-01-26 23:24:46.466543: guerino performed its roll! The result roll: ['7']
-[cbc098ae-8bfd-4041-bcdc-2d76a642b142] 2024-01-26 23:24:47.647789: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 5
-[cbc098ae-8bfd-4041-bcdc-2d76a642b142] 2024-01-26 23:24:48.234607: guerino performed its roll! The result roll: ['4']
-[cbc098ae-8bfd-4041-bcdc-2d76a642b142] 2024-01-26 23:24:54.038909: 🎲 Jarver | Jarverus performed its roll! The result roll: ['1', '6', '1', '9', '5']
-[cbc098ae-8bfd-4041-bcdc-2d76a642b142] 2024-01-26 23:24:54.038909: 🎲 Jarver | Jarverus won! The result winning roll: ['1', '6', '1', '9', '5']
-[6f593297-f0c4-40dd-b615-296465e8727b] 2024-01-26 23:25:44.256130: guerino VS jarver(688301052033761282), bid: 1, initiative rolls: 9:6, strategy drawing: 1
-[c3720153-361b-4cac-b0e2-034d3149bb40] 2024-01-29 12:50:50.884629: thrognik VS jarver(688301052033761282), bid: 30, initiative rolls: 5:6, strategy drawing: 2
-[c3720153-361b-4cac-b0e2-034d3149bb40] 2024-01-29 12:50:51.771837: Thrognik has drawn a dice, current amount of dice: current_amount
-[c3720153-361b-4cac-b0e2-034d3149bb40] 2024-01-29 12:51:12.438202: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 2
-[c3720153-361b-4cac-b0e2-034d3149bb40] 2024-01-29 12:51:13.336252: thrognik won! The result winning roll: ['9', '7']
-[1503120b-42c7-4120-b9f0-0d97bdf39128] 2024-01-29 12:51:42.950968: thrognik VS jarver(688301052033761282), bid: 30, initiative rolls: 4:3, strategy drawing: 3
-[1503120b-42c7-4120-b9f0-0d97bdf39128] 2024-01-29 12:52:17.459155: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 2
-[1503120b-42c7-4120-b9f0-0d97bdf39128] 2024-01-29 12:52:18.079183: Thrognik has drawn a dice, current amount of dice: current_amount
-[8b6e6f71-0b06-4924-bbfb-11ae3669697c] 2024-01-29 12:53:14.020550: thrognik VS jarver(688301052033761282), bid: 30, initiative rolls: 7:5, strategy drawing: 3
-[8b6e6f71-0b06-4924-bbfb-11ae3669697c] 2024-01-29 12:53:19.625388: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 2
-[8b6e6f71-0b06-4924-bbfb-11ae3669697c] 2024-01-29 12:53:20.296722: Thrognik has drawn a dice, current amount of dice: current_amount
-[8b6e6f71-0b06-4924-bbfb-11ae3669697c] 2024-01-29 12:53:21.843269: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 3
-[8b6e6f71-0b06-4924-bbfb-11ae3669697c] 2024-01-29 12:53:22.452568: Thrognik has drawn a dice, current amount of dice: current_amount
-[8b6e6f71-0b06-4924-bbfb-11ae3669697c] 2024-01-29 12:53:29.725918: 🎲 Jarver | Jarverus performed its roll! The result roll: ['7', '2', '2']
-[8b6e6f71-0b06-4924-bbfb-11ae3669697c] 2024-01-29 12:53:30.431617: thrognik performed its roll! The result roll: ['1', '6', '1']
-[8b6e6f71-0b06-4924-bbfb-11ae3669697c] 2024-01-29 12:53:32.916798: 🎲 Jarver | Jarverus performed its roll! The result roll: ['3', '4', '6']
-[8b6e6f71-0b06-4924-bbfb-11ae3669697c] 2024-01-29 12:53:33.865937: thrognik won! The result winning roll: ['9', '7', '6']
-[4a9bfafe-530b-44ad-9717-2c30d58ae73e] 2024-01-29 12:53:41.394444: thrognik VS jarver(688301052033761282), bid: 30, initiative rolls: 6:4, strategy drawing: 2
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 17:22:10.551287: gerald VS wojciszkaaa(748178128781967492), bid: 20, initiative rolls: 10:8, strategy drawing: 2
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 17:24:11.868103: wojciszkaaa has drawn a dice, current amount of dice: 2
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 17:24:12.717520: gerald has drawn a dice, current amount of dice: current_amount
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 17:24:42.579167: wojciszkaaa performed its roll! The result roll: ['2', '1']
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 17:24:43.281814: gerald performed its roll! The result roll: ['4', '2']
-[e0da279f-5996-4420-87d3-ba359a457cea] 2024-01-29 17:26:47.194866: amalberg VS wojciszkaaa(748178128781967492), bid: 23, initiative rolls: 9:1, strategy drawing: 4
-[e0da279f-5996-4420-87d3-ba359a457cea] 2024-01-29 17:28:45.854631: wojciszkaaa has drawn a dice, current amount of dice: 2
-[e0da279f-5996-4420-87d3-ba359a457cea] 2024-01-29 17:28:46.707651: alamberg has drawn a dice, current amount of dice: current_amount
-[e0da279f-5996-4420-87d3-ba359a457cea] 2024-01-29 17:29:26.802835: wojciszkaaa performed its roll! The result roll: ['5', '5']
-[e0da279f-5996-4420-87d3-ba359a457cea] 2024-01-29 17:29:27.784937: alamberg has drawn a dice, current amount of dice: current_amount
-[e0da279f-5996-4420-87d3-ba359a457cea] 2024-01-29 17:30:03.165637: wojciszkaaa performed its roll! The result roll: ['8', '8']
-[e0da279f-5996-4420-87d3-ba359a457cea] 2024-01-29 17:30:03.873234: alamberg has drawn a dice, current amount of dice: current_amount
-[e0da279f-5996-4420-87d3-ba359a457cea] 2024-01-29 17:30:13.974670: wojciszkaaa has drawn a dice, current amount of dice: 3
-[e0da279f-5996-4420-87d3-ba359a457cea] 2024-01-29 17:30:14.505306: amalberg performed its roll! The result roll: ['6', '10', '2', '7']
-[e0da279f-5996-4420-87d3-ba359a457cea] 2024-01-29 17:30:36.751904: wojciszkaaa performed its roll! The result roll: ['4', '10', '9']
-[e0da279f-5996-4420-87d3-ba359a457cea] 2024-01-29 17:30:36.751904: wojciszkaaa won! The result winning roll: ['4', '10', '9']
-[fd5be94e-8f28-4855-948b-e7514810aec2] 2024-01-29 17:33:46.497737: liebwin VS wojciszkaaa(748178128781967492), bid: 5, initiative rolls: 4:10, strategy drawing: 1
-[fd5be94e-8f28-4855-948b-e7514810aec2] 2024-01-29 17:33:47.249414: liebwin performed its roll! The result roll: ['4']
-[fd5be94e-8f28-4855-948b-e7514810aec2] 2024-01-29 17:35:11.425994: wojciszkaaa has drawn a dice, current amount of dice: 2
-[fd5be94e-8f28-4855-948b-e7514810aec2] 2024-01-29 17:35:12.168784: liebwin performed its roll! The result roll: ['4']
-[fd5be94e-8f28-4855-948b-e7514810aec2] 2024-01-29 17:41:42.272871: wojciszkaaa performed its roll! The result roll: ['10', '1']
-[fd5be94e-8f28-4855-948b-e7514810aec2] 2024-01-29 17:41:42.923608: liebwin performed its roll! The result roll: ['5']
-[fd5be94e-8f28-4855-948b-e7514810aec2] 2024-01-29 17:42:29.208485: wojciszkaaa performed its roll! The result roll: ['10', '10']
-[fd5be94e-8f28-4855-948b-e7514810aec2] 2024-01-29 17:42:29.999111: liebwin performed its roll! The result roll: ['6']
-[0d716396-73d4-4f32-b2c4-1b78c50c682e] 2024-01-29 17:44:24.143578: guerino VS wojciszkaaa(748178128781967492), bid: 1, initiative rolls: 1:8, strategy drawing: 2
-[0d716396-73d4-4f32-b2c4-1b78c50c682e] 2024-01-29 17:45:53.922303: wojciszkaaa has drawn a dice, current amount of dice: 2
-[0d716396-73d4-4f32-b2c4-1b78c50c682e] 2024-01-29 17:45:54.679467: guerino performed its roll! The result roll: ['7', '5']
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 17:47:02.733821: wojciszkaaa performed its roll! The result roll: ['2', '1']
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 17:47:03.525577: gerald performed its roll! The result roll: ['8', '8']
-[0d716396-73d4-4f32-b2c4-1b78c50c682e] 2024-01-29 17:47:34.331984: wojciszkaaa performed its roll! The result roll: ['6', '1']
-[0d716396-73d4-4f32-b2c4-1b78c50c682e] 2024-01-29 17:47:35.047035: guerino performed its roll! The result roll: ['4', '2']
-[0d716396-73d4-4f32-b2c4-1b78c50c682e] 2024-01-29 17:49:01.620741: wojciszkaaa performed its roll! The result roll: ['2', '7']
-[0d716396-73d4-4f32-b2c4-1b78c50c682e] 2024-01-29 17:49:02.484562: guerino performed its roll! The result roll: ['7', '3']
-[a2492e42-8527-4bd1-8438-fce25d364169] 2024-01-29 17:51:40.446900: amalberg VS wojciszkaaa(748178128781967492), bid: 23, initiative rolls: 1:10, strategy drawing: 4
-[a2492e42-8527-4bd1-8438-fce25d364169] 2024-01-29 17:51:41.148748: alamberg has drawn a dice, current amount of dice: current_amount
-[4a9bfafe-530b-44ad-9717-2c30d58ae73e] 2024-01-29 17:59:35.823269: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 2
-[4a9bfafe-530b-44ad-9717-2c30d58ae73e] 2024-01-29 17:59:36.595501: Thrognik has drawn a dice, current amount of dice: current_amount
-[4a9bfafe-530b-44ad-9717-2c30d58ae73e] 2024-01-29 17:59:42.477860: 🎲 Jarver | Jarverus performed its roll! The result roll: ['5', '3']
-[4a9bfafe-530b-44ad-9717-2c30d58ae73e] 2024-01-29 17:59:43.512544: thrognik performed its roll! The result roll: ['2', '7']
-[4a9bfafe-530b-44ad-9717-2c30d58ae73e] 2024-01-29 17:59:47.026110: 🎲 Jarver | Jarverus performed its roll! The result roll: ['3', '10']
-[4a9bfafe-530b-44ad-9717-2c30d58ae73e] 2024-01-29 17:59:47.606598: thrognik performed its roll! The result roll: ['6', '7']
-[4a9bfafe-530b-44ad-9717-2c30d58ae73e] 2024-01-29 17:59:51.738869: 🎲 Jarver | Jarverus performed its roll! The result roll: ['6', '5']
-[4a9bfafe-530b-44ad-9717-2c30d58ae73e] 2024-01-29 17:59:52.376096: thrognik performed its roll! The result roll: ['1', '1']
-[4a9bfafe-530b-44ad-9717-2c30d58ae73e] 2024-01-29 17:59:56.580036: 🎲 Jarver | Jarverus performed its roll! The result roll: ['3', '9']
-[4a9bfafe-530b-44ad-9717-2c30d58ae73e] 2024-01-29 17:59:56.581035: 🎲 Jarver | Jarverus won! The result winning roll: ['3', '9']
-[d489c167-6143-4bf3-a3ac-ade56ee11c49] 2024-01-29 18:00:33.658412: thrognik VS wojciszkaaa(748178128781967492), bid: 32, initiative rolls: 9:1, strategy drawing: 2
-[d489c167-6143-4bf3-a3ac-ade56ee11c49] 2024-01-29 18:01:53.419554: wojciszkaaa performed its roll! The result roll: ['1']
-[d489c167-6143-4bf3-a3ac-ade56ee11c49] 2024-01-29 18:01:54.121506: Thrognik has drawn a dice, current amount of dice: current_amount
-[d489c167-6143-4bf3-a3ac-ade56ee11c49] 2024-01-29 18:02:24.224382: wojciszkaaa has drawn a dice, current amount of dice: 2
-[d489c167-6143-4bf3-a3ac-ade56ee11c49] 2024-01-29 18:02:24.896802: thrognik performed its roll! The result roll: ['7', '10']
-[d489c167-6143-4bf3-a3ac-ade56ee11c49] 2024-01-29 18:02:42.582160: wojciszkaaa performed its roll! The result roll: ['5', '1']
-[d489c167-6143-4bf3-a3ac-ade56ee11c49] 2024-01-29 18:02:43.192837: thrognik performed its roll! The result roll: ['1', '2']
-[d489c167-6143-4bf3-a3ac-ade56ee11c49] 2024-01-29 18:02:58.186159: wojciszkaaa performed its roll! The result roll: ['3', '2']
-[d489c167-6143-4bf3-a3ac-ade56ee11c49] 2024-01-29 18:02:59.287584: thrognik performed its roll! The result roll: ['5', '7']
-[d489c167-6143-4bf3-a3ac-ade56ee11c49] 2024-01-29 18:03:06.955024: wojciszkaaa has drawn a dice, current amount of dice: 3
-[d489c167-6143-4bf3-a3ac-ade56ee11c49] 2024-01-29 18:03:07.647687: thrognik won! The result winning roll: ['6', '9']
-[a2492e42-8527-4bd1-8438-fce25d364169] 2024-01-29 18:04:21.266509: wojciszkaaa has drawn a dice, current amount of dice: 2
-[a2492e42-8527-4bd1-8438-fce25d364169] 2024-01-29 18:04:22.157390: alamberg has drawn a dice, current amount of dice: current_amount
-[a2492e42-8527-4bd1-8438-fce25d364169] 2024-01-29 18:04:35.185281: wojciszkaaa performed its roll! The result roll: ['10', '3']
-[a2492e42-8527-4bd1-8438-fce25d364169] 2024-01-29 18:04:35.847052: alamberg has drawn a dice, current amount of dice: current_amount
-[a2492e42-8527-4bd1-8438-fce25d364169] 2024-01-29 18:04:49.707429: wojciszkaaa performed its roll! The result roll: ['4', '8']
-[a2492e42-8527-4bd1-8438-fce25d364169] 2024-01-29 18:04:50.497654: amalberg performed its roll! The result roll: ['3', '7', '4', '8']
-[a2492e42-8527-4bd1-8438-fce25d364169] 2024-01-29 18:05:04.163590: wojciszkaaa performed its roll! The result roll: ['4', '8']
-[a2492e42-8527-4bd1-8438-fce25d364169] 2024-01-29 18:05:05.485900: amalberg performed its roll! The result roll: ['7', '5', '3', '1']
-[a2492e42-8527-4bd1-8438-fce25d364169] 2024-01-29 18:05:15.475127: wojciszkaaa has drawn a dice, current amount of dice: 3
-[a2492e42-8527-4bd1-8438-fce25d364169] 2024-01-29 18:05:16.206025: amalberg won! The result winning roll: ['4', '9', '2', '5']
-[fd5be94e-8f28-4855-948b-e7514810aec2] 2024-01-29 18:06:08.760027: wojciszkaaa has drawn a dice, current amount of dice: 3
-[fd5be94e-8f28-4855-948b-e7514810aec2] 2024-01-29 18:06:09.713570: liebwin performed its roll! The result roll: ['5']
-[fd5be94e-8f28-4855-948b-e7514810aec2] 2024-01-29 18:06:42.798419: wojciszkaaa performed its roll! The result roll: ['9', '9', '2']
-[fd5be94e-8f28-4855-948b-e7514810aec2] 2024-01-29 18:06:42.798419: wojciszkaaa won! The result winning roll: ['9', '9', '2']
-[0d716396-73d4-4f32-b2c4-1b78c50c682e] 2024-01-29 18:07:11.865170: wojciszkaaa has drawn a dice, current amount of dice: 3
-[0d716396-73d4-4f32-b2c4-1b78c50c682e] 2024-01-29 18:07:12.596165: guerino performed its roll! The result roll: ['1', '4']
-[0d716396-73d4-4f32-b2c4-1b78c50c682e] 2024-01-29 18:07:41.924579: wojciszkaaa performed its roll! The result roll: ['2', '6', '9']
-[0d716396-73d4-4f32-b2c4-1b78c50c682e] 2024-01-29 18:07:41.924579: wojciszkaaa won! The result winning roll: ['2', '6', '9']
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 18:08:06.231286: wojciszkaaa has drawn a dice, current amount of dice: 3
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 18:08:07.015644: gerald performed its roll! The result roll: ['8', '1']
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 18:08:17.673858: wojciszkaaa performed its roll! The result roll: ['7', '10', '8']
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 18:08:18.419507: gerald performed its roll! The result roll: ['7', '2']
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 18:08:39.279424: wojciszkaaa has drawn a dice, current amount of dice: 4
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 18:08:40.006341: gerald performed its roll! The result roll: ['8', '3']
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 18:08:49.293339: wojciszkaaa performed its roll! The result roll: ['8', '7', '2', '6']
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 18:08:50.086982: gerald performed its roll! The result roll: ['10', '1']
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 18:09:02.685974: wojciszkaaa performed its roll! The result roll: ['3', '3', '7', '7']
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 18:09:03.711596: gerald performed its roll! The result roll: ['7', '4']
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 18:09:12.238033: wojciszkaaa has drawn a dice, current amount of dice: 5
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 18:09:13.022573: gerald performed its roll! The result roll: ['2', '3']
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 18:09:24.518455: wojciszkaaa performed its roll! The result roll: ['4', '9', '2', '2', '5']
-[ea06dc5e-aef7-4f7f-857b-4b17247b961f] 2024-01-29 18:09:24.518455: wojciszkaaa won! The result winning roll: ['4', '9', '2', '2', '5']
-[7c2ed078-62a1-4109-83b0-5caa3ed92fd1] 2024-01-29 19:02:47.645924: guerino VS jarver(688301052033761282), bid: 1, initiative rolls: 9:1, strategy drawing: 1
-[7c2ed078-62a1-4109-83b0-5caa3ed92fd1] 2024-01-29 19:03:00.130217: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 2
-[7c2ed078-62a1-4109-83b0-5caa3ed92fd1] 2024-01-29 19:03:00.762421: guerino performed its roll! The result roll: ['2']
-[7c2ed078-62a1-4109-83b0-5caa3ed92fd1] 2024-01-29 19:03:06.143888: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 3
-[7c2ed078-62a1-4109-83b0-5caa3ed92fd1] 2024-01-29 19:03:06.969090: guerino performed its roll! The result roll: ['2']
-[7c2ed078-62a1-4109-83b0-5caa3ed92fd1] 2024-01-29 19:03:07.986854: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 4
-[7c2ed078-62a1-4109-83b0-5caa3ed92fd1] 2024-01-29 19:03:09.183331: guerino performed its roll! The result roll: ['7']
-[7c2ed078-62a1-4109-83b0-5caa3ed92fd1] 2024-01-29 19:03:09.635671: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 5
-[7c2ed078-62a1-4109-83b0-5caa3ed92fd1] 2024-01-29 19:03:10.513639: guerino performed its roll! The result roll: ['8']
-[7c2ed078-62a1-4109-83b0-5caa3ed92fd1] 2024-01-29 19:03:11.147615: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 6
-[7c2ed078-62a1-4109-83b0-5caa3ed92fd1] 2024-01-29 19:03:12.084814: guerino performed its roll! The result roll: ['6']
-[7c2ed078-62a1-4109-83b0-5caa3ed92fd1] 2024-01-29 19:03:21.076370: 🎲 Jarver | Jarverus performed its roll! The result roll: ['9', '1', '1', '2', '5', '4']
-[7c2ed078-62a1-4109-83b0-5caa3ed92fd1] 2024-01-29 19:03:21.077379: 🎲 Jarver | Jarverus won! The result winning roll: ['9', '1', '1', '2', '5', '4']
-[32fd7d02-919f-40fc-8d1f-5ee4806ab36f] 2024-01-29 19:03:36.679294: guerino VS jarver(688301052033761282), bid: 1, initiative rolls: 2:10, strategy drawing: 2
-[32fd7d02-919f-40fc-8d1f-5ee4806ab36f] 2024-01-29 19:03:44.887820: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 2
-[32fd7d02-919f-40fc-8d1f-5ee4806ab36f] 2024-01-29 19:03:45.353399: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 3
-[32fd7d02-919f-40fc-8d1f-5ee4806ab36f] 2024-01-29 19:03:45.480942: guerino won! The result winning roll: ['9', '3']
-[32fd7d02-919f-40fc-8d1f-5ee4806ab36f] 2024-01-29 19:03:46.296421: guerino performed its roll! The result roll: ['7', '7']
-[2c3aa9d1-dc12-40ba-b923-eefbf308e255] 2024-01-29 19:05:16.870906: guerino VS jarver(688301052033761282), bid: 1, initiative rolls: 1:5, strategy drawing: 1
-[2c3aa9d1-dc12-40ba-b923-eefbf308e255] 2024-01-29 19:05:19.253518: guerino performed its roll! The result roll: ['5']
-[ae4b583a-11bb-4eea-8824-674dc15250e4] 2024-01-29 19:05:53.861020: guerino VS jarver(688301052033761282), bid: 1, initiative rolls: 1:8, strategy drawing: 2
-[a3a35d4b-29cb-4bb7-927f-566077dcbc42] 2024-01-29 19:10:48.975011: guerino VS jarver(688301052033761282), bid: 1, initiative rolls: 8:3, strategy drawing: 1
-[a3a35d4b-29cb-4bb7-927f-566077dcbc42] 2024-01-29 19:10:54.366454: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 2
-[a3a35d4b-29cb-4bb7-927f-566077dcbc42] 2024-01-29 19:10:55.130211: guerino performed its roll! The result roll: ['10']
-[3842e06e-8be1-4c83-b428-1a0c1a3b9454] 2024-01-29 19:11:14.212422: guerino VS jarver(688301052033761282), bid: 1, initiative rolls: 3:2, strategy drawing: 1
-[3842e06e-8be1-4c83-b428-1a0c1a3b9454] 2024-01-29 19:11:18.929917: 🎲 Jarver | Jarverus has drawn a dice, current amount of dice: 2
-[3842e06e-8be1-4c83-b428-1a0c1a3b9454] 2024-01-29 19:11:19.636687: guerino performed its roll! The result roll: ['6']
-[c1bc9eda-d2cd-447c-8d77-6ba025df992d] 2024-01-29 19:11:35.841024: guerino VS jarver(688301052033761282), bid: 1, initiative rolls: 7:9, strategy drawing: 2
-[c1bc9eda-d2cd-447c-8d77-6ba025df992d] 2024-01-29 19:11:36.631280: guerino has drawn a dice, current amount of dice: current_amount
-[2cdee59a-f363-46e4-84ea-8d3b675bfe5f] 2024-01-29 19:12:02.051483: guerino VS jarver(688301052033761282), bid: 1, initiative rolls: 4:9, strategy drawing: 2
-[a044b431-321d-493a-bf08-cd9a30905bb5] 2024-01-29 19:12:49.096983: guerino VS jarver(688301052033761282), bid: 1, initiative rolls: 7:9, strategy drawing: 2
-[8efde3f5-efe0-400e-b561-769afe9424c8] 2024-01-29 19:17:40.856057: guerino VS jarver(688301052033761282), bid: 1, initiative rolls: 8:10, strategy drawing: 1
-[0303b067-f4e4-4a3a-96bd-3603911240aa] 2024-01-29 19:19:10.817291: guerino VS jarver(688301052033761282), bid: 1, initiative rolls: 4:6, strategy drawing: 1
+[7f646ba4-823a-443c-ad44-a94f523ec402] 2024-02-02 22:57:03.951446: talan VS jarver(688301052033761282), bid: 40, initiative rolls: 9:2, strategy drawing: 4
+[23fa2626-f2ae-4352-b612-b299f0726891] 2024-02-02 22:59:22.134749: talan VS jarver(688301052033761282), bid: 40, initiative rolls: 9:3, strategy drawing: 3
+[23fa2626-f2ae-4352-b612-b299f0726891] 2024-02-02 22:59:28.288828: jarver has drawn a dice, current amount of dice: 2
+[23fa2626-f2ae-4352-b612-b299f0726891] 2024-02-02 22:59:30.486496: Talan has drawn a dice, current amount of dice: current_amount
+[23fa2626-f2ae-4352-b612-b299f0726891] 2024-02-02 22:59:43.831218: jarver has drawn a dice, current amount of dice: 3
+[23fa2626-f2ae-4352-b612-b299f0726891] 2024-02-02 22:59:44.428081: Talan has drawn a dice, current amount of dice: current_amount
+[23fa2626-f2ae-4352-b612-b299f0726891] 2024-02-02 22:59:56.166687: jarver performed its roll! The result roll: ['4', '9', '10']
+[23fa2626-f2ae-4352-b612-b299f0726891] 2024-02-02 22:59:56.166687: jarver won! The result winning roll: ['4', '9', '10']
+[71938a64-5cd4-4f42-8bec-c03e0aff3cf5] 2024-02-02 23:00:07.554178: talan VS jarver(688301052033761282), bid: 45, initiative rolls: 2:8, strategy drawing: 3
+[71938a64-5cd4-4f42-8bec-c03e0aff3cf5] 2024-02-02 23:00:08.963109: Talan has drawn a dice, current amount of dice: current_amount
+[71938a64-5cd4-4f42-8bec-c03e0aff3cf5] 2024-02-02 23:00:16.469582: jarver has drawn a dice, current amount of dice: 2
+[71938a64-5cd4-4f42-8bec-c03e0aff3cf5] 2024-02-02 23:00:17.075040: Talan has drawn a dice, current amount of dice: current_amount
+[71938a64-5cd4-4f42-8bec-c03e0aff3cf5] 2024-02-02 23:00:21.212274: jarver has drawn a dice, current amount of dice: 3
+[71938a64-5cd4-4f42-8bec-c03e0aff3cf5] 2024-02-02 23:02:13.977256: jarver has drawn a dice, current amount of dice: 4
+[078715a4-1606-407c-bbf1-b6acaad476b5] 2024-02-02 23:02:36.580284: talan VS jarver(688301052033761282), bid: 50, initiative rolls: 5:6, strategy drawing: 3
+[078715a4-1606-407c-bbf1-b6acaad476b5] 2024-02-02 23:02:38.069704: Talan has drawn a dice, current amount of dice: current_amount
+[078715a4-1606-407c-bbf1-b6acaad476b5] 2024-02-02 23:02:44.198839: jarver has drawn a dice, current amount of dice: 2
+[078715a4-1606-407c-bbf1-b6acaad476b5] 2024-02-02 23:02:44.897702: Talan has drawn a dice, current amount of dice: current_amount
+[078715a4-1606-407c-bbf1-b6acaad476b5] 2024-02-02 23:02:48.913069: jarver has drawn a dice, current amount of dice: 3
+[078715a4-1606-407c-bbf1-b6acaad476b5] 2024-02-02 23:02:49.592789: talan won! The result winning roll: ['2', '5', '9']
+[47fe614c-7988-475e-b4f4-717101f345f1] 2024-02-02 23:03:13.737081: talan VS jarver(688301052033761282), bid: 50, initiative rolls: 2:6, strategy drawing: 3
+[47fe614c-7988-475e-b4f4-717101f345f1] 2024-02-02 23:03:14.487225: Talan has drawn a dice, current amount of dice: current_amount
+[47fe614c-7988-475e-b4f4-717101f345f1] 2024-02-02 23:03:26.000412: jarver has drawn a dice, current amount of dice: 2
+[47fe614c-7988-475e-b4f4-717101f345f1] 2024-02-02 23:03:26.875291: Talan has drawn a dice, current amount of dice: current_amount
+[47fe614c-7988-475e-b4f4-717101f345f1] 2024-02-02 23:03:29.689366: jarver has drawn a dice, current amount of dice: 3
+[47fe614c-7988-475e-b4f4-717101f345f1] 2024-02-02 23:03:31.019196: talan performed its roll! The result roll: ['5', '10', '1']
+[47fe614c-7988-475e-b4f4-717101f345f1] 2024-02-02 23:03:39.140371: jarver performed its roll! The result roll: ['1', '5', '1']
+[47fe614c-7988-475e-b4f4-717101f345f1] 2024-02-02 23:03:39.759599: talan won! The result winning roll: ['8', '3', '9']
+[295b867e-f6cd-4057-8107-6c490b6bc086] 2024-02-02 23:03:44.568683: talan VS jarver(688301052033761282), bid: 50, initiative rolls: 4:2, strategy drawing: 4
+[295b867e-f6cd-4057-8107-6c490b6bc086] 2024-02-02 23:03:49.232488: jarver has drawn a dice, current amount of dice: 2
+[295b867e-f6cd-4057-8107-6c490b6bc086] 2024-02-02 23:03:49.784311: Talan has drawn a dice, current amount of dice: current_amount
+[295b867e-f6cd-4057-8107-6c490b6bc086] 2024-02-02 23:03:51.974085: jarver has drawn a dice, current amount of dice: 3
+[295b867e-f6cd-4057-8107-6c490b6bc086] 2024-02-02 23:03:52.700534: Talan has drawn a dice, current amount of dice: current_amount
+[295b867e-f6cd-4057-8107-6c490b6bc086] 2024-02-02 23:03:57.843455: jarver has drawn a dice, current amount of dice: 4
+[295b867e-f6cd-4057-8107-6c490b6bc086] 2024-02-02 23:03:58.991411: Talan has drawn a dice, current amount of dice: current_amount
+[295b867e-f6cd-4057-8107-6c490b6bc086] 2024-02-02 23:04:07.285450: jarver performed its roll! The result roll: ['3', '9', '2', '7']
+[295b867e-f6cd-4057-8107-6c490b6bc086] 2024-02-02 23:04:07.286450: jarver won! The result winning roll: ['3', '9', '2', '7']
+[ff725eb6-bd13-42dd-a276-cc9d55dc4bbd] 2024-02-02 23:08:40.915440: talan VS jarver(688301052033761282), bid: 50, initiative rolls: 4:2, strategy drawing: 3
+[ff725eb6-bd13-42dd-a276-cc9d55dc4bbd] 2024-02-02 23:08:44.241312: jarver has drawn a dice, current amount of dice: 2
+[ff725eb6-bd13-42dd-a276-cc9d55dc4bbd] 2024-02-02 23:08:44.826097: Talan has drawn a dice, current amount of dice: current_amount
+[ff725eb6-bd13-42dd-a276-cc9d55dc4bbd] 2024-02-02 23:08:47.329584: jarver has drawn a dice, current amount of dice: 3
+[ff725eb6-bd13-42dd-a276-cc9d55dc4bbd] 2024-02-02 23:08:47.906177: Talan has drawn a dice, current amount of dice: current_amount
+[ff725eb6-bd13-42dd-a276-cc9d55dc4bbd] 2024-02-02 23:08:48.581501: jarver has drawn a dice, current amount of dice: 4
+[ff725eb6-bd13-42dd-a276-cc9d55dc4bbd] 2024-02-02 23:08:49.274333: talan performed its roll! The result roll: ['2', '2', '2']
+[ff725eb6-bd13-42dd-a276-cc9d55dc4bbd] 2024-02-02 23:09:13.125755: jarver performed its roll! The result roll: ['9', '1', '2', '2']
+[ff725eb6-bd13-42dd-a276-cc9d55dc4bbd] 2024-02-02 23:09:13.125755: jarver won! The result winning roll: ['9', '1', '2', '2']
+[38c04968-2ac7-442f-88d7-006594c67e11] 2024-02-02 23:09:20.148015: talan VS jarver(688301052033761282), bid: 49, initiative rolls: 5:1, strategy drawing: 4
+[38c04968-2ac7-442f-88d7-006594c67e11] 2024-02-02 23:09:24.486972: jarver performed its roll! The result roll: ['1']
+[38c04968-2ac7-442f-88d7-006594c67e11] 2024-02-02 23:09:25.067785: Talan has drawn a dice, current amount of dice: current_amount
+[38c04968-2ac7-442f-88d7-006594c67e11] 2024-02-02 23:09:29.293305: jarver performed its roll! The result roll: ['10']
+[38c04968-2ac7-442f-88d7-006594c67e11] 2024-02-02 23:09:30.263871: Talan has drawn a dice, current amount of dice: current_amount
+[38c04968-2ac7-442f-88d7-006594c67e11] 2024-02-02 23:09:33.493561: jarver performed its roll! The result roll: ['10']
+[38c04968-2ac7-442f-88d7-006594c67e11] 2024-02-02 23:09:35.136108: Talan has drawn a dice, current amount of dice: current_amount
+[38c04968-2ac7-442f-88d7-006594c67e11] 2024-02-02 23:09:44.290066: jarver performed its roll! The result roll: ['2']
+[38c04968-2ac7-442f-88d7-006594c67e11] 2024-02-02 23:09:44.942087: talan won! The result winning roll: ['8', '9', '7', '9']
+[aab7cc0b-0daa-4058-96e3-c84edb1d1658] 2024-02-02 23:21:15.060244: talan VS jarver(688301052033761282), bid: 50, initiative rolls: 8:1, strategy drawing: 4

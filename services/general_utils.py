@@ -63,3 +63,14 @@ def role_and_channel_valid(data):
 
     return any(discord.utils.get(author_roles, name=role) for role in allowed_roles) and \
            channel_name in allowed_channels_names
+
+def reset_localLogs_file(path):
+    try:
+        with open(f"./localLogs/{path}", "w"):
+            pass
+    except FileNotFoundError:
+        print(f"[RESET STATS]: lack of file {path}.text")
+        return
+    except IOError as e:
+        print(f"[RESET STATS]: An unexpected error occurred: {e}")
+        return
