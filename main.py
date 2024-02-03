@@ -113,12 +113,6 @@ async def keep_alive():
         logger.info(f'Current bot latency: {client.latency*1000:.2f}ms')
         await asyncio.sleep(300)  # Wait for 5 minutes before checking again
 
-# @client.event
-# async def on_connect():
-#     if client.auto_sync_commands:
-#         await client.sync_commands()
-#         print(f"{client.user.name} synchronized.")
-#     print(f"{client.user.name} connected.")
 
 @client.event
 async def on_ready():
@@ -158,7 +152,7 @@ async def on_ready():
         client.devmode_initialized = True
         client.add_cog(DevTestCommands())
 
-    await client.sync_commands(guild_ids=['1198002006481178805'])  # Sync commands
+    await client.sync_commands(guild_ids=['1109232371666014310'])  # Sync commands
 
 
 @client.event

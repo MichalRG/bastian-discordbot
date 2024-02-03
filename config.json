@@ -36,7 +36,9 @@
       "bot_names": ["talan", "amalberg", "gerald", "guerino", "liebwin", "thrognik"],
       "roles": [
         "Test-1",
-        "Wstęp na zaplecze \"Gardła Gustava\"",
+        "Strażnik Porządku",
+        "Strażnik Chaosu",
+        "Ten, co Wam prowadzi",
         "SUPER DUPER"
       ],
       "players": {
@@ -68,9 +70,9 @@
     }
   },
   "permissions": {
-    "awanturnicy": false,
+    "awanturnicy": true,
     "test": false,
-    "testcior-2": true
+    "testcior-2": false
   },
   "legit": {
     "guilds": [
@@ -79,10 +81,8 @@
       "Testcior-2"
     ],
     "channels": [
-      "👋 | witaj-pośród-awanturników",
       "kanał-drugi-⚓",
-      "📦zaplecze-gardła-gustava",
-      "🐀┇stary-świat"
+      "🔥┇dev-hell"
     ],
     "admin_channels": [
       "🦇┇kanciapa-adminów"
