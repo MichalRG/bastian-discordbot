@@ -14,11 +14,13 @@ from services.translation import Translation
 
 
 class EyeGame(commands.Cog):
-    def __init__(self, config, translation, roles, channels, admins):
+    def __init__(self, config, translation, roles, channels, admins, admin_channel_allowed_tou_use):
         self.config = config or Config()
         self.translation = translation or Translation()
         self.allowed_channels = channels  # TODO: Consider to not reply just use this channels or in this game just single channel
         self.allowed_channels_names = [channel.name for channel in channels]
+        self.allowed_admin_channels = admin_channel_allowed_tou_use
+        self.admin_channel_allowed_to_use_names = [channel.name for channel in admin_channel_allowed_tou_use]
         self.allowed_roles = roles
         self.GENERAL_COMMANDS = self.translation.translate("GAMES.EYE.GENERAL_COMMANDS")
         self.blacklisted_by_Rupella = None
@@ -71,7 +73,7 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="reset-bots-status", guild_ids=LEGIT_SERVERS, description="[Admin command]: reset status of all players for all bots")
     async def rest_stats(self, ctx, name: Option(str, "Enter a bot name")):
-        if ctx.author.id in self.admins:
+        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
             if name == 'all':
                 for name in self.bot_names:
                     reset_localLogs_file(f"oko/{name}.txt")
@@ -84,7 +86,7 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="get-oponents-of-bot", guild_ids=LEGIT_SERVERS, description="[Admin command]: get players who played with bot")
     async def get_oponenets_of_bot(self, ctx, name: Option(str, "Enter a bot name")):
-        if ctx.author.id in self.admins:
+        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
             bot_name = name.lower().strip()
 
             if bot_name not in self.bot_names:
@@ -107,7 +109,7 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="clean-logs", guild_ids=LEGIT_SERVERS, description="[Admin command]: it cleans logs! DONT DO IT IF U'RE NOT SURE!!")
     async def clean_logs(self, ctx):
-        if ctx.author.id in self.admins:
+        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
             try:
                 with open("./localLogs/oko/eye-game-logs.txt", "w"):
                     pass
@@ -123,12 +125,12 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="kill-bastian", guild_ids=LEGIT_SERVERS, description="[Admin command]: turn off the bot")
     async def get_logs(self, ctx):
-        if ctx.author.id in self.admins:
+        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
             exit(0)
 
     @slash_command(name="get-bot-full-logs", guild_ids=LEGIT_SERVERS, description="[Admin command]: get logs file")
     async def get_logs(self, ctx):
-        if ctx.author.id in self.admins:
+        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
             path_to_logs = "./localLogs/oko/eye-game-logs.txt"
 
             file = discord.File(path_to_logs, filename="eye-game-logs.txt")
@@ -649,7 +651,7 @@ class EyeGame(commands.Cog):
         self.__save_draw_log({
             "id_game": self.id_thrognik_game,
             "bot": "Thrognik",
-            "current_amount": self.thrognik_dices
+            "amount": self.thrognik_dices
         })
 
     async def __thrognik_roll_dices(self, ctx):
@@ -760,7 +762,7 @@ class EyeGame(commands.Cog):
         self.__save_draw_log({
             "id_game": self.id_talan_game,
             "bot": "Talan",
-            "current_amount": self.talan_dices
+            "amount": self.talan_dices
         })
 
     async def __talan_roll_dices(self, ctx):
@@ -868,7 +870,7 @@ class EyeGame(commands.Cog):
         self.__save_draw_log({
             "id_game": self.id_gerald_game,
             "bot": "gerald",
-            "current_amount": self.gerald_dices
+            "amount": self.gerald_dices
         })
 
     async def __gerald_roll_dices(self, ctx):
@@ -973,10 +975,10 @@ class EyeGame(commands.Cog):
         draw_amalberg = self.translation.translate('GAMES.EYE.AMALBERG.DRAW', [{"dices": str(self.amalberg_dices)}])
         await ctx.respond(f"**Głos z Eteru:**\n{draw_amalberg}\n{self.GENERAL_COMMANDS}")
 
-        self.__save_draw_log({
+        self.__save_draw_log__save_draw_log({
             "id_game": self.id_amalberg_game,
             "bot": "alamberg",
-            "current_amount": self.amalberg_dices
+            "amount": self.amalberg_dices
         })
 
     async def __amalberg_roll_dices(self, ctx):
@@ -1084,7 +1086,7 @@ class EyeGame(commands.Cog):
         self.__save_draw_log({
             "id_game": self.id_liebwin_game,
             "bot": "liebwin",
-            "current_amount": self.liebwin_dices
+            "amount": self.liebwin_dices
         })
 
     async def __liebwin_roll_dices(self, ctx):
@@ -1192,7 +1194,7 @@ class EyeGame(commands.Cog):
         self.__save_draw_log({
             "id_game": self.id_guerino_game,
             "bot": "guerino",
-            "current_amount": self.guerino_dices
+            "amount": self.guerino_dices
         })
 
     async def __guerino_roll_dices(self, ctx):
@@ -1365,3 +1367,5 @@ class EyeGame(commands.Cog):
         return any(discord.utils.get(rolesAuthor, name=role) for role in self.allowed_roles) and \
                channelName in self.allowed_channels_names
 
+    def __id_admin_and_channel_valid(self, id, channelName):
+        return id in self.admins and channelName in self.admin_channel_allowed_to_use_names

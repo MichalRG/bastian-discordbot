@@ -10,10 +10,12 @@ from services.translation import Translation
 
 
 class RupellaGuard(commands.Cog):
-    def __init__(self, config, translation, roles, channels, admins):
+    def __init__(self, config, translation, roles, channels, admins, admins_channels):
         self.config = config or Config()
         self.translation = translation or Translation()
         self.channels = channels
+        self.admin_channels = admins_channels
+        self.admin_channels_names = [channel.name for channel in admins_channels]
         self.allowed_channels_names = [channel.name for channel in channels]
         self.allowed_roles = roles
         self.bel_shelorin_quotes = read_json_file("./additional_files/quotes.json")
@@ -50,7 +52,7 @@ class RupellaGuard(commands.Cog):
     @slash_command(name="reset-rupella-status", guild_ids=LEGIT_SERVERS,
                    description="[Admin command]: reset status for Rupella")
     async def rest_rupella_stats(self, ctx):
-        if ctx.author.id in self.admins:
+        if ctx.author.id in self.admins and ctx.channel.name in self.admin_channels_names:
             reset_localLogs_file("actions/rueplla-blacklist.txt")
 
             success_translation = self.translation.translate("ADMINS.RESET_BOTS_SUCCESSFULLY_PASSED")

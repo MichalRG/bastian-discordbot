@@ -34,6 +34,7 @@ rupella_manager = None
 admins = []
 
 channels_allowed_to_use = []
+admin_channel_allowed_tou_use = []
 roles_allowed_to_process = []
 
 """
@@ -63,19 +64,24 @@ def __get_guilds_and_text_channels(current_client_guilds):
     return AWANTURNICY_text_channels, AWANTURNICY, TEST_text_channels, TEST, TESCIOR_2_text_channels, TESCIOR_2
 
 
-def __get_allowed_channels(text_channels_to_check, guild) -> List:
+def __get_allowed_channels(text_channels_to_check, guild) -> [List, List]:
     legit_channels = config.get_legit_channels()
+    admin_legit_channels = config.get_config_key("legit.admin_channels")
     channels_to_use = []
+    admin_channels = []
 
     for channel in text_channels_to_check:
         if channel.name in legit_channels and channel.permissions_for(guild.me).send_messages:
             channels_to_use.append(channel)
+        if channel.name in admin_legit_channels and channel.permissions_for(guild.me).send_messages:
+            admin_channels.append(channel)
 
-    return channels_to_use
+    return channels_to_use, admin_channels
 
 
 def __set_allowed_channels():
     global channels_allowed_to_use
+    global admin_channel_allowed_tou_use
 
     permissions_access_guild = config.get_permissions_access_for_guilds()
 
@@ -85,11 +91,11 @@ def __set_allowed_channels():
         __get_guilds_and_text_channels(current_client_guilds)
 
     if permissions_access_guild.get('awanturnicy'):
-        channels_allowed_to_use = __get_allowed_channels(AWANTURNICY_text_channels, AWANTURNICY)
+        channels_allowed_to_use, admin_channel_allowed_tou_use = __get_allowed_channels(AWANTURNICY_text_channels, AWANTURNICY)
     if permissions_access_guild.get('test'):
-        channels_allowed_to_use = __get_allowed_channels(TEST_text_channels, TEST)
+        channels_allowed_to_use, admin_channel_allowed_tou_use = __get_allowed_channels(TEST_text_channels, TEST)
     if permissions_access_guild.get('testcior-2'):
-        channels_allowed_to_use = __get_allowed_channels(TEST_2_text_channels, TEST_2)
+        channels_allowed_to_use, admin_channel_allowed_tou_use = __get_allowed_channels(TEST_2_text_channels, TEST_2)
 
     if channels_allowed_to_use == []:
         exit('[Self exit]: No privileges for channels')
@@ -134,7 +140,7 @@ async def on_ready():
         roles = __get_allowed_roles_for_eye()
 
         try:
-            client.add_cog(EyeGame(config, None, roles, channels_allowed_to_use, admins))
+            client.add_cog(EyeGame(config, None, roles, channels_allowed_to_use, admins, admin_channel_allowed_tou_use))
         except Exception as error:
             print("Adding Eye Game has failed", error)
     if config.get_process_permissions_for_section('actions.rupella') and not hasattr(client, 'rupella_action_initialized'):
@@ -143,7 +149,7 @@ async def on_ready():
         roles = config.get_config_key("actions.rupella.roles")
 
         try:
-            rupella_manager = RupellaGuard(config, None, roles, channels_allowed_to_use, admins)
+            rupella_manager = RupellaGuard(config, None, roles, channels_allowed_to_use, admins, admin_channel_allowed_tou_use)
             client.add_cog(rupella_manager)
         except Exception as error:
             print("Adding Rupella Actions has failed", error)
