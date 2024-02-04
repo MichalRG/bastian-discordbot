@@ -148,6 +148,23 @@ class EyeGame(commands.Cog):
             here_are_logs = self.translation.translate("ADMINS.LOGS_FILE")
             await ctx.respond(f"**Głos z Eteru**:\n{here_are_logs}", file=file)
 
+    @slash_command(name="clean-sumup-logs", guild_ids=LEGIT_SERVERS,
+                   description="[Admin command]: it cleans sumup logs! DONT DO IT IF U'RE NOT SURE!!")
+    async def clean_logs(self, ctx):
+        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
+            try:
+                with open("./localLogs/oko/eye-game-sumup-logs.txt", "w"):
+                    pass
+            except FileNotFoundError:
+                print(f"[RESET LOGS]: lack of file eye-game-sumup-logs.txt")
+                return
+            except IOError as e:
+                print(f"[RESET LOGS]: An unexpected error occurred: {e}")
+                return
+
+            success_translation = self.translation.translate("ADMINS.RESET_LOGS_SUCCESSFULLY_PASSED")
+            await ctx.respond(f"**Głos z Eteru**:\n{success_translation}")
+
     @slash_command(name="oko-pomoc", guild_ids=LEGIT_SERVERS, description="Sprawdź dostępne komendy do gry w oko")
     async def available_commands(self, ctx):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
