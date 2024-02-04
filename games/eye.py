@@ -863,7 +863,7 @@ class EyeGame(commands.Cog):
                 })
 
                 gerald_reaction = self.translation.translate("GAMES.EYE.GERALD.REACTION_ON_SUCCESS_PLAYER")
-                game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.guerino_bid}])
+                game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.gerald_bid}])
 
                 await ctx.respond(f"**Gerald:**\n{gerald_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
