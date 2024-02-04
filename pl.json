@@ -21,8 +21,8 @@
       },
       "CANNOT_DRAW": "Nie jesteś w grze z tym przeciwnikiem, nie możesz dobierać kości :(",
       "CANNOT_ROLL": "Nie jesteś w grze z tym przeciwnikiem, nie możesz rzucać koścmi :(",
-      "HELP_COMMANDS":"Dostępne komendy:\n1. /oko-gracze - wyświetla aktualnie dostępnych graczy, których możesz wyzwać do gry w oko\n2. /wyzwij-X [LICZBA] - wyzwij kogoś na pojedynek w oko, gdzie za X wstaw imię gracza, czyli: Thrognik, Amalberga, Guerino, Liebwin, Gerald. Za [LICZBA] wstaw jakąś wartość całowitoliczbową. Przykład: /wyzwij-amalberg 20 \n3. /oko-dobieram-X - podczas gry możesz dobrać kość, za X wstaw imię gracza. Przykład: /oko-dobieram-thrognik.\n4. /oko-rzucam-X - Wpisz podczas rozgrywki by rzucić kośmi, gdzie jak wcześniej wstaw imię gracza. Przykład: /oko-rzucam-Liebwin.",
-      "GENERAL_COMMANDS":"||By dobrać kość w czasie gry z jednym z graczy wpisz /oko-dobieram-X, gdzie za X wstaw imię gracza, czyli Thrognik, Amalberga, Guerino, Liebwin, Gerald. Przykład: /oko-dobieram-thrognik.\n\nBy rzucić kośmi w czasie gry z jednym graczem wpisz /oko-rzucam-X, gdzie jak wcześniej wstaw imię gracza. Przykład: /oko-rzucam-Liebwin.||",
+      "HELP_COMMANDS":"Dostępne komendy:\n1. /oko-gracze - wyświetla aktualnie dostępnych graczy, których możesz wyzwać do gry w oko\n2. /wyzwij-X [LICZBA] - wyzwij kogoś na pojedynek w oko, gdzie za X wstaw imię gracza, czyli: Thrognik, Amalberga, Guerino, Liebwin, Gerald. Za [LICZBA] wstaw jakąś wartość całowitoliczbową. Przykład: /wyzwij-amalberg 20 \n3. /dobieram-X - podczas gry możesz dobrać kość, za X wstaw imię gracza. Przykład: /dobieram-thrognik.\n4. /rzucam-X - Wpisz podczas rozgrywki by rzucić kośmi, gdzie jak wcześniej wstaw imię gracza. Przykład: /rzucam-Liebwin.",
+      "GENERAL_COMMANDS":"||By dobrać kość w czasie gry z jednym z graczy wpisz /dobieram-X, gdzie za X wstaw imię gracza, czyli Thrognik, Amalberga, Guerino, Liebwin, Gerald. Przykład: /dobieram-thrognik.\n\nBy rzucić kośmi w czasie gry z jednym graczem wpisz /rzucam-X, gdzie jak wcześniej wstaw imię gracza. Przykład: /rzucam-Liebwin.||",
       "AVAILABLE_PLAYERS": {
         "MESSAGE": "Zagrać można z: ",
         "NON": "Obecnie każdy z kimś już gra, poczekaj trochę 🕰️",
@@ -31,6 +31,7 @@
       "DRAW_PLAYER": "Sięgasz po kość do stosika na środku i dorzucasz do swojego obecnego zasobu (posiadasz {{amount}} kości).",
       "LACK_OF_PLAYER": "Rozglądasz się po osobach na zapleczu, lecz nigdzie go/jej nie dostrzegasz {{name}}, być może już z kimś gra, albo dziś nie zjawił/a się na rozgrywkach.",
       "ROLL_RESULT": "{{name}} sięga po kości, mieszając je w dłoniach i turla po stole. Kości toczą się 🎲 ukazując wynik: {{result}}",
+      "GAME_IS_DONE": "Gra zakończyła się zwycięstwem {{name}}. Zwycięzca zgarnia {{bid}} (kwoty zostaną odpisane/ przypisane przez adminów w odpowiednim czasie ⌚)",
       "THROGNIK": {
         "WE_PLAYED": "A to Ty... My już graliśmy dziś, wypieprzaj nie grywam więcej niż raz z każdym w ciągu dnia ",
         "REACTION_ON_FAIL_PLAYER": "No, no, wyczuwam cięższą sakiewieczkę już za chwilę, he, he... 💰",

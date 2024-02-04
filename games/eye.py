@@ -138,6 +138,16 @@ class EyeGame(commands.Cog):
             here_are_logs = self.translation.translate("ADMINS.LOGS_FILE")
             await ctx.respond(f"**Głos z Eteru**:\n{here_are_logs}", file=file)
 
+    @slash_command(name="get-bot-sumup-logs", guild_ids=LEGIT_SERVERS, description="[Admin command]: get sumup log file")
+    async def get_logs(self, ctx):
+        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
+            path_to_logs = "./localLogs/oko/eye-game-sumup-logs.txt"
+
+            file = discord.File(path_to_logs, filename="eye-game-sumup-logs.txt")
+
+            here_are_logs = self.translation.translate("ADMINS.LOGS_FILE")
+            await ctx.respond(f"**Głos z Eteru**:\n{here_are_logs}", file=file)
+
     @slash_command(name="oko-pomoc", guild_ids=LEGIT_SERVERS, description="Sprawdź dostępne komendy do gry w oko")
     async def available_commands(self, ctx):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
@@ -341,9 +351,11 @@ class EyeGame(commands.Cog):
                                 "roller": "guerino",
                                 "result": results
                             })
-                            victory_guerino_log = self.translation.translate("GAMES.EYE.GUERINO.VICTORY")
 
-                            await ctx.respond(f"**Guerino:**\n{victory_guerino_log}")
+                            victory_guerino_log = self.translation.translate("GAMES.EYE.GUERINO.VICTORY")
+                            game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Guerino"}, {"bid": self.guerino_bid}])
+
+                            await ctx.respond(f"**Guerino:**\n{victory_guerino_log}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
                             self.__add_to_already_played_file({
                                 "bot": "guerino",
@@ -432,9 +444,11 @@ class EyeGame(commands.Cog):
                                 "roller": "liebwin",
                                 "result": results
                             })
-                            victory_liebwin_log = self.translation.translate("GAMES.EYE.LIEBWIN.VICTORY")
 
-                            await ctx.respond(f"**Liebwin:**\n{victory_liebwin_log}")
+                            victory_liebwin_log = self.translation.translate("GAMES.EYE.LIEBWIN.VICTORY")
+                            game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Liebwin"}, {"bid": self.liebwin_bid}])
+
+                            await ctx.respond(f"**Liebwin:**\n{victory_liebwin_log}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
                             self.__add_to_already_played_file({
                                 "bot": "liebwin",
@@ -623,7 +637,9 @@ class EyeGame(commands.Cog):
                 })
 
                 thrognik_reaction = self.translation.translate("GAMES.EYE.THROGNIK.REACTION_ON_SUCCESS_PLAYER")
-                await ctx.respond(f"**Thrognik:**\n{thrognik_reaction}")
+                game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.thrognik_bid}])
+
+                await ctx.respond(f"**Thrognik:**\n{thrognik_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
                 self.__add_to_already_played_file({
                     "bot": "thrognik",
@@ -667,8 +683,9 @@ class EyeGame(commands.Cog):
                 "result": results
             })
             victory_thrognik_log = self.translation.translate("GAMES.EYE.THROGNIK.VICTORY")
+            game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Thrognik"}, {"bid": self.thrognik_bid}])
 
-            await ctx.respond(f"**Thrognik:**\n{victory_thrognik_log}")
+            await ctx.respond(f"**Thrognik:**\n{victory_thrognik_log}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
             self.__add_to_already_played_file({
                 "bot": "thrognik",
@@ -711,7 +728,9 @@ class EyeGame(commands.Cog):
                 })
 
                 talan_reaction = self.translation.translate("GAMES.EYE.TALAN.REACTION_ON_SUCCESS_PLAYER")
-                await ctx.respond(f"**🍞Talan🍞:**\n{talan_reaction}")
+                game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.talan_bid}])
+
+                await ctx.respond(f"**🍞Talan🍞:**\n{talan_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
                 self.__add_to_already_played_file({
                     "bot": "talan",
@@ -778,9 +797,11 @@ class EyeGame(commands.Cog):
                 "roller": "talan",
                 "result": results
             })
-            victory_talan_log = self.translation.translate("GAMES.EYE.TALAN.VICTORY")
 
-            await ctx.respond(f"**🍞Talan🍞:**\n{victory_talan_log}")
+            victory_talan_log = self.translation.translate("GAMES.EYE.TALAN.VICTORY")
+            game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Talan"}, {"bid": self.talan_bid}])
+
+            await ctx.respond(f"**🍞Talan🍞:**\n{victory_talan_log}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
             self.__add_to_already_played_file({
                 "bot": "talan",
@@ -842,7 +863,9 @@ class EyeGame(commands.Cog):
                 })
 
                 gerald_reaction = self.translation.translate("GAMES.EYE.GERALD.REACTION_ON_SUCCESS_PLAYER")
-                await ctx.respond(f"**Gerald:**\n{gerald_reaction}")
+                game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.guerino_bid}])
+
+                await ctx.respond(f"**Gerald:**\n{gerald_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
                 self.__add_to_already_played_file({
                     "bot": "gerald",
@@ -886,9 +909,11 @@ class EyeGame(commands.Cog):
                 "roller": "gerald",
                 "result": results
             })
-            victory_gerald_log = self.translation.translate("GAMES.EYE.GERALD.VICTORY")
 
-            await ctx.respond(f"**Gerald:**\n{victory_gerald_log}")
+            victory_gerald_log = self.translation.translate("GAMES.EYE.GERALD.VICTORY")
+            game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Gerald"}, {"bid": self.gerald_bid}])
+
+            await ctx.respond(f"**Gerald:**\n{victory_gerald_log}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
             self.__add_to_already_played_file({
                 "bot": "gerald",
@@ -950,7 +975,9 @@ class EyeGame(commands.Cog):
                 })
 
                 amalberg_reaction = self.translation.translate("GAMES.EYE.AMALBERG.REACTION_ON_SUCCESS_PLAYER")
-                await ctx.respond(f"**Amalberg:**\n{amalberg_reaction}")
+                game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.amalberg_bid}])
+
+                await ctx.respond(f"**Amalberg:**\n{amalberg_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
                 self.__add_to_already_played_file({
                     "bot": "amalberg",
@@ -994,9 +1021,11 @@ class EyeGame(commands.Cog):
                 "roller": "amalberg",
                 "result": results
             })
-            victory_amalberg_log = self.translation.translate("GAMES.EYE.AMALBERG.VICTORY")
 
-            await ctx.respond(f"**Amalberg:**\n{victory_amalberg_log}")
+            victory_amalberg_log = self.translation.translate("GAMES.EYE.AMALBERG.VICTORY")
+            game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Amalberg"}, {"bid": self.amalberg_bid}])
+
+            await ctx.respond(f"**Amalberg:**\n{victory_amalberg_log}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
             self.__add_to_already_played_file({
                 "bot": "amalberg",
@@ -1058,7 +1087,9 @@ class EyeGame(commands.Cog):
                 })
 
                 liebwin_reaction = self.translation.translate("GAMES.EYE.LIEBWIN.REACTION_ON_SUCCESS_PLAYER")
-                await ctx.respond(f"**Liebwin:**\n{liebwin_reaction}")
+                game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.liebwin_bid}])
+
+                await ctx.respond(f"**Liebwin:**\n{liebwin_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
                 self.__add_to_already_played_file({
                     "bot": "liebwin",
@@ -1102,9 +1133,11 @@ class EyeGame(commands.Cog):
                 "roller": "liebwin",
                 "result": results
             })
-            victory_liebwin_log = self.translation.translate("GAMES.EYE.LIEBWIN.VICTORY")
 
-            await ctx.respond(f"**Liebwin:**\n{victory_liebwin_log}")
+            victory_liebwin_log = self.translation.translate("GAMES.EYE.LIEBWIN.VICTORY")
+            game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Liebwin"}, {"bid": self.liebwin_bid}])
+
+            await ctx.respond(f"**Liebwin:**\n{victory_liebwin_log}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
             self.__add_to_already_played_file({
                 "bot": "liebwin",
@@ -1166,7 +1199,9 @@ class EyeGame(commands.Cog):
                 })
 
                 guerino_reaction = self.translation.translate("GAMES.EYE.GUERINO.REACTION_ON_SUCCESS_PLAYER")
-                await ctx.respond(f"**Guerino:**\n{guerino_reaction}")
+                game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.guerino_bid}])
+
+                await ctx.respond(f"**Guerino:**\n{guerino_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
                 self.__add_to_already_played_file({
                     "bot": "guerino",
@@ -1210,9 +1245,11 @@ class EyeGame(commands.Cog):
                 "roller": "guerino",
                 "result": results
             })
-            victory_guerino_log = self.translation.translate("GAMES.EYE.GUERINO.VICTORY")
 
-            await ctx.respond(f"**Guerino:**\n{victory_guerino_log}\n{self.GENERAL_COMMANDS}")
+            victory_guerino_log = self.translation.translate("GAMES.EYE.GUERINO.VICTORY")
+            game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "guerino"}, {"bid": self.guerino_bid}])
+
+            await ctx.respond(f"**Guerino:**\n{victory_guerino_log}\n{self.GENERAL_COMMANDS}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
             self.__add_to_already_played_file({
                 "bot": "guerino",
@@ -1249,6 +1286,7 @@ class EyeGame(commands.Cog):
 
         log = f"[{id}] {datetime.now()}: {roller} won! The result winning roll: {roll_result}"
         write_to_game_logs('oko/eye-game-logs.txt', log)
+        write_to_game_logs('oko/eye-game-sumup-logs.txt', log)
 
     def __save_roll_log(self, data):
         id = data.get("id_game", "dupa")
