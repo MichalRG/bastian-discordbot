@@ -149,7 +149,7 @@ class EyeGame(commands.Cog):
         self.jodokus_game_strategy = None
 
 
-def __get_available_players(self) -> List:
+    def __get_available_players(self) -> List:
         players = []
 
         if self.is_not_thrognik_busy:
