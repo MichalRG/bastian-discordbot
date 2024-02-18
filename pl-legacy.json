@@ -1,6 +1,10 @@
 {
   "WELCOME": {
-    "SAY_HELLO": "Witaj w Kajucie Hazardzistów!\nWygląda na to, że przebywa w niej teraz pięć osób gotowych na odrobinę hazardu. Talan, Jodokus, Aubrey, Hubert, Kaia… Wszyscy gotowi na partyjkę! W końcu pomiędzy tymi śmiercionośnymi wyprawami trzeba się odrobinę rozerwać.\n\nRozsiądź się wygodnie, zamów piwo i… graj! Niech Ranald ci sprzyja!\n\nZasady gry:\nNa początku gry ustala się inicjatywę (co dzieje się automatycznie). Zwycięża ten kto na d10 wyrzuci mniejszy wynik. \nNastępnie zaczyna się gra i Gracze wykonują tury naprzemiennie, zaczynając od Gracza, który zwyciężył test inicjatywy. \nKażdy zaczyna, posiadając jedną kość d10. W ramach swojej tury Gracz wybiera jedną z dwóch opcji - rzuca wszystkimi posiadanymi kośćmi, albo dobiera kolejną d10. **Wygrywa ten, kto pierwszy wyrzuci 9 na przynajmniej jednej kości!**\n\n*Przykład: Gracze wykonują testy inicjatywy! Talan wyrzuca 3. Jego przeciwnik Jodokus wyrzuca 9. Z rzutów, rzut Talana jest mniejszy, dlatego Talan zaczyna!*\n*Talan rzuca 8. Uff, było blisko!*\n*Jodokus dobiera kość.*\n*Talan rzuca 3.*\n*Jodokus wyrzuca 4 i 1.*\n*Talan dobiera!*\n*Jodokus dobiera!*\n*Talan wyrzuca 7 i 5.*\n*Jodokus wyrzuca 3, 1 i 7!*\n*Talan rzuca, jego wyniki to 9 i 3!*\n*Talan trafia Oko i wygrywa! Proste!*\n",
+    "SAY_HELLO": [
+      "Witam, witam szanownych graczy!",
+      "Uszanowanko na zapleczu 😉",
+      "Kłaniam się nisko szanownemu Państwo, zapraszam do stołu!"
+    ],
     "PROPOSAL_GENERAL_MESSAGE": "Dziś będziemy grać w ",
     "PLAY_NOTHING": "w, w.... Wyglada na to że nic, nie ma dziś dużo chętnych. 🤔 Wpadnij potem może się coś zmieni. 👋 No idź już...",
     "EYE": {
@@ -15,19 +19,19 @@
       "RUPELLA": {
         "GTFO": "Hej! Znowu się tu kręcisz! Mam Cię na oku, wynocha! Nawet się tam nie zbliżaj łajdaku!"
       },
-      "CANNOT_DRAW": "Szaleju się najadłeś? Nie jesteś w grze z tym przeciwnikiem, nie możesz dobrać kości!",
-      "CANNOT_ROLL": "Szaleju się najadłeś? Nie jesteś w grze z tym przeciwnikiem, nie możesz rzucać kośćmi!",
+      "CANNOT_DRAW": "Nie jesteś w grze z tym przeciwnikiem, nie możesz dobierać kości :(",
+      "CANNOT_ROLL": "Nie jesteś w grze z tym przeciwnikiem, nie możesz rzucać koścmi :(",
       "HELP_COMMANDS":"Dostępne komendy:\n1. /oko-gracze - wyświetla aktualnie dostępnych graczy, których możesz wyzwać do gry w oko\n2. /wyzwij-X [LICZBA] - wyzwij kogoś na pojedynek w oko, gdzie za X wstaw imię gracza, czyli: Thrognik, Amalberga, Guerino, Liebwin, Gerald. Za [LICZBA] wstaw jakąś wartość całowitoliczbową. Przykład: /wyzwij-amalberg 20 \n3. /dobieram-X - podczas gry możesz dobrać kość, za X wstaw imię gracza. Przykład: /dobieram-thrognik.\n4. /rzucam-X - Wpisz podczas rozgrywki by rzucić kośmi, gdzie jak wcześniej wstaw imię gracza. Przykład: /rzucam-Liebwin.",
-      "GENERAL_COMMANDS":"||By dobrać kość w czasie gry z jednym z partnerów do gry wpisz /dobieram-X, gdzie za X wstaw imię partnera (czyli Talan, Jodokus, Aubrey, Hubert, Kaia). Przykład: /dobieram-Jodokus.\n\nBy rzucić kośćmi w czasie gry z jednym z partnerów wpisz /rzucam-X, gdzie jak wcześniej wstaw imię partnera do gry. Przykład: /rzucam-Jodokus.||",
+      "GENERAL_COMMANDS":"||By dobrać kość w czasie gry z jednym z graczy wpisz /dobieram-X, gdzie za X wstaw imię gracza, czyli Thrognik, Amalberga, Guerino, Liebwin, Gerald. Przykład: /dobieram-thrognik.\n\nBy rzucić kośmi w czasie gry z jednym graczem wpisz /rzucam-X, gdzie jak wcześniej wstaw imię gracza. Przykład: /rzucam-Liebwin.||",
       "AVAILABLE_PLAYERS": {
         "MESSAGE": "Zagrać można z: ",
         "NON": "Obecnie każdy z kimś już gra, poczekaj trochę 🕰️",
         "CHALLENGE_PLAYER": "||By wyzwać kogoś na pojedynek wpisz /wyzwij-X [wartość]. Gdzie za X wstaw jednego z dostępnych graczy czyli dostępne opcje to: Thrognik, Amalberga, Guerino, Liebwin, Gerald, a za [wartośc] ile miedziaków proponujesz. Przykład /wyzwij-throgink 10.||"
       },
-      "DRAW_PLAYER": "Sięgasz po kość ze stosika na środku i dorzucasz do swojej puli (posiadasz {{amount}} kości).",
-      "LACK_OF_PLAYER": "Hmm… Wygląda na to, że przeciwnik, którego szukasz jest zajęty. Może z kimś gra, a może dłubanie w nosie aż nadto go zajmuje.",
-      "ROLL_RESULT": "{{name}} sięga po kości, mieszając je w dłoniach i turla po stole. Kości toczą się, 🎲 ukazując: {{result}}",
-      "GAME_IS_DONE": "**Gra zakończyła się zwycięstwem {{name}}. Zwycięzca zgarnia {{bid}} (kwoty zostaną odpisane/ przypisane przez adminów w odpowiednim czasie ⌚)**",
+      "DRAW_PLAYER": "Sięgasz po kość do stosika na środku i dorzucasz do swojego obecnego zasobu (posiadasz {{amount}} kości).",
+      "LACK_OF_PLAYER": "Rozglądasz się po osobach na zapleczu, lecz nigdzie go/jej nie dostrzegasz {{name}}, być może już z kimś gra, albo dziś nie zjawił/a się na rozgrywkach.",
+      "ROLL_RESULT": "{{name}} sięga po kości, mieszając je w dłoniach i turla po stole. Kości toczą się 🎲 ukazując wynik: {{result}}",
+      "GAME_IS_DONE": "Gra zakończyła się zwycięstwem {{name}}. Zwycięzca zgarnia {{bid}} (kwoty zostaną odpisane/ przypisane przez adminów w odpowiednim czasie ⌚)",
       "THROGNIK": {
         "WE_PLAYED": "A to Ty... My już graliśmy dziś, wypieprzaj nie grywam więcej niż raz z każdym w ciągu dnia ",
         "REACTION_ON_FAIL_PLAYER": "No, no, wyczuwam cięższą sakiewieczkę już za chwilę, he, he... 💰",
@@ -39,60 +43,16 @@
         "VICTORY": "Ha! Łatwizna, wystarczy trochę pomyślunku łamago! *Zgarnia miedziaki*",
         "FAIL": "AH KURWA! Była 9! Widziałeś! Ja pierdolę, tak blisko... 😡"
       },
-      "TALAN": {
+       "TALAN": {
         "WE_PLAYED": "Talan BUŁECZKA nie ma dla ciebie czasu! Co? Myślałeś, że nie wiem o twoich żarcikach za moimi plecami?",
         "NOT_ENOUGH": "Sypnij więcej i gramy! Nie bądź leszcz jak Jodokus!",
         "TOO_MUCH": "Wiesz ile Bańka mnie kosztowała?! Nie mam tyle! Resztę miedziaków wydałem na spłatę frajerów z ostatniej wyprawy!",
-        "START": "*Dosiadasz się do stolika, przy którym siedzi... gnom! Istota zwęża oczka i marszczy nos, patrząc na ciebie.* Grajmy, szkoda czasu! *- woła, po czym chwyta jedną z kości i rzuca, by ustalić kto zaczyna. Wynik Talana to:* {{bot_value}} {{player_name}}: {{player_value}}",
-        "DRAW": "Z kośćmi jest jak z talanami. Im więcej, tym lepiej! *Talan sięga po kość.* (Aktualnie posiada: {{dices}})",
+        "START": "Dosiadasz się do stolika, przy którym siedzi... gnom! Zwęża oczka i marszczy nos, patrząc na ciebie. Grajmy, szkoda czasu! - woła, po czym chwyta jedną z kości i rzuca, by ustalić kto zaczyna. Kości mkną po stole, odbijając się od krawędzi. Wyniki to Talan: {{bot_value}} {{player_name}}: {{player_value}}",
+        "DRAW": "Ech... Z kośćmi jest jak z talanami. Im więcej, tym lepiej. *Talan sięga po kość* (Aktualnie posiada: {{dices}})",
         "REACTION_ON_SUCCESS_PLAYER": "Wiesz, że mógłbym sprawić iluzją, że będą tu same dziewiątki? Znaj moje dobre serce i ciesz się wygraną! *Wstaje i odchodzi.*",
-        "REACTION_ON_FAIL_PLAYER": "Jeśli jesteś tak samo przydatny jak rzucasz to możesz się zawijać z powrotem do Versmold! Moja kolej!",
-        "VICTORY": "Było miło, ale się skończyło! A za wygrane miedziaki zakupię więcej sprzętu. Gratulacje, właśnie podreperowałeś budżet Mercatores… frajerze!",
-        "FAIL": "Kurwaaa!"
-      },
-       "JODOKUS": {
-        "WE_PLAYED": "Wybacz, ale na jednej potyczce powinniśmy dziś poprzestać. Hazard budzi skrajne emocje, a każda skrajna emocja cieszy Mroczne Potęgi.",
-        "NOT_ENOUGH": "Zagrajmy o odrobinę większą kwotę. Moja praca w Averheim została przerwana, więc nie pogardzę szansą na większy zarobek.",
-        "TOO_MUCH": "Tak wysoka kwota wzniesie nasze emocje na wyżyny, a skrajne emocje są mi obce. Zagrajmy o maksymalnie dwadzieścia pensów.",
-        "START": "*Dosiadasz się do stolika, przy którym siedzi czarodziej w lśniącej szacie. Kilka osób spogląda w waszą stronę z obawą i zaciekawieniem, zupełnie jakbyście mieli spiskować.* Nie przejmuj się nimi. W końcu udowodnię im swoją wartość *- mówi, po czym chwyta jedną z kości i rzuca, by ustalić kto zaczyna. Wynik Jodokusa to:* {{bot_value}} {{player_name}}: {{player_value}}",
-        "DRAW": "Można splatać skomplikowane zaklęcia, ale bez pomocy wiatrów magii niewiele jest się w stanie osiągnąć. Chcę przez to powiedzieć, że zasoby są kluczowe. *Jodokus sięga po kość.* (Aktualnie posiada: {{dices}})",
-        "REACTION_ON_SUCCESS_PLAYER": "Każda przegrana nadaje wartości innym zwycięstwom. Dziękuję za to doświadczenie i gratuluję.",
-        "REACTION_ON_FAIL_PLAYER": "Nie martw się, prawdopodobieństwo i tak nie było po twojej stronie. Teraz moja kolej.",
-        "VICTORY": "Noc jest najczarniejsza tuż przed świtem. Być może to zwycięstwo jest pierwszym zwiastunem mojego odkupienia. Rad jestem, że przyjąłeś porażkę z klasą.",
-        "FAIL": "Los jest dla mnie niewdzięczny. Przywykłem."
-      },
-      "AUBREY": {
-        "WE_PLAYED": "Na dziś nam wystarczy. Mam kilka spraw na głowie. Ktoś musi trzymać tę misję w ryzach.",
-        "NOT_ENOUGH": "Jeśli mam poświęcić ci czas, musisz się bardziej postarać.",
-        "TOO_MUCH": "Strata takiej kwoty w prymitywnej potyczce hazardowej byłaby żałosna. Zaproponuj mniejszą wartość.",
-        "START": "*Dosiadasz się do stolika, przy którym siedzi kobieta w obcisłym skórzanym stroju.* Postaram się, żeby było szybko i bezboleśnie *- mówi, po czym chwyta jedną z kości i rzuca, by ustalić kto zaczyna. Wynik Aubrey to:* {{bot_value}} {{player_name}}: {{player_value}}",
-        "DRAW": "Przed ostatecznym uderzeniem należy zebrać wszystkie możliwe informacje i zasoby. *Aubrey sięga po kość.* (Aktualnie posiada: {{dices}})",
-        "REACTION_ON_SUCCESS_PLAYER": "W prawdziwym świecie liczy się coś więcej niż złudne szczęście. A jeśli chodzi o tę nieistotną potyczkę… Gratulacje.",
-        "REACTION_ON_FAIL_PLAYER": "Dokładnie tego się spodziewałam.",
-        "VICTORY": "Najcenniejsza w świecie jest informacja, ale pieniądzem nie pogardzę. W końcu za garść złota można posiąść niemal każdą wiedzę. Powodzenia w dalszych pojedynkach. Wiem, że to nie był twój ostatni.",
-        "FAIL": "Byłabym zdziwiona, gdyby udało się na tym etapie."
-      },
-      "HUBERT": {
-        "WE_PLAYED": "Jeszcze raz? Nie… We łbie mi się już kręci!",
-        "NOT_ENOUGH": "O więcej grajmy! Kto nie ryzykuje ten piwa nie pije!",
-        "TOO_MUCH": "Hoho! Ktoś tu ma miedziaków za dużo! Za dobrze Mercatores płaci, za dobrze!",
-        "START": "*Dosiadasz się do stolika, przy którym siedzi potężny mężczyzna o gęstej czarnej brodzie.* Gra to tylko dodatek do smakowitego piwa. Zdrowie Oddona! *- mówi, po czym chwyta kufel i szturcha nim jedną z kości, by ustalić kto zaczyna. Wynik Huberta to:* {{bot_value}} {{player_name}}: {{player_value}}",
-        "DRAW": "Nie ma co ryzykować… Dobieram! *Kapitan Hubert sięga po kość.* (Aktualnie posiada: {{dices}})",
-        "REACTION_ON_SUCCESS_PLAYER": "Pięknie rozegrane! Aż duma rozpiera, że tu tacy kamraci zaradni! Twoje zdrowie!",
-        "REACTION_ON_FAIL_PLAYER": "Hoho! Mam szansę!",
-        "VICTORY": "Tym razem szczęście po mojej stronie! Przyjdź jutro to może się odkujesz. Twoje zdrowie!",
-        "FAIL": "Figlarne te kości, figlarne! Hohoho!"
-      },
-      "KAIA": {
-        "WE_PLAYED": "Nie, nie… Dziś wystarczy. Pójdę do swojej kajuty. Boję się, że tu jest ten Kastner. Nie wierzę, że zginął.",
-        "NOT_ENOUGH": "Może dorzuciłbyś więcej? Zbieram na powrót do Nuln.",
-        "TOO_MUCH": "To dla mnie za dużo… Zostałam prawie z niczym.",
-        "START": "*Dosiadasz się do stolika, przy którym siedzi rosła kobieta o małych i niepokojących oczkach.* Naprawdę? Chcesz ze mną zagrać? No dobrze… *- mówi, po czym rzuca jedną z kości, by ustalić kto zaczyna. Wynik Kai to:* {{bot_value}} {{player_name}}: {{player_value}}",
-        "DRAW": "Ivo podarował mi takie kości na urodziny. Są prześliczne… *Kaia sięga po kość, ale zamiast zaczerpnąć z dostępnej kupki, sięga do własnej kieszonki.* (Aktualnie posiada: {{dices}})",
-        "REACTION_ON_SUCCESS_PLAYER": "Wiedziałam, że tak będzie… Każdy chce mojej krzywdy! Ivo… Ivo, pomóż! Ivo? *Rozgląda się, bełkocząc niewyraźnie, po czym wstaje i odchodzi.*",
-        "REACTION_ON_FAIL_PLAYER": "Pewnie następnym razem ci się uda…",
-        "VICTORY": "Ja… Ja… Wygrałam? Naprawdę? I te wszystkie miedziaki… moje?!",
-        "FAIL": "Nie nadaję się do tego… Mój braciszek to dopiero ma głowę do takich rzeczy!"
+        "REACTION_ON_FAIL_PLAYER": "X",
+        "VICTORY": "Było miło, ale się skończyło! A za wygrane miedziaki zakupię więcej sprzętu. Bańka musi się rozwijać! Gratulacje, właśnie podreperowałeś budżet Mercatores!",
+        "FAIL": "X"
       },
       "GUERINO": {
         "WE_PLAYED": "Aj, no my już graliśmy, a ja to tak miedziaczków ledwo na hazard mam, wystarczy na dziś wspólnej gry.",

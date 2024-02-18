@@ -26,8 +26,20 @@ class Welcome:
 
             chosen_message = welcome_messages
 
-            await channel.send(f"**Bastian:**\n{chosen_message}",
-                               file=discord.File("./imgs/bastianWelcome.png", description="Bastian"))
+            # TEST APPROACH EXPERIMENTAL WITH EMBEDED
+            embed = discord.Embed(title="Kajuta Hazardzistów Wita!", description=chosen_message,
+                                  color=0x00ff00)
+            embed.set_image(url="attachment://KajutaHazardzistow.png")
+            file = discord.File("./imgs/KajutaHazardzistow.png", filename="KajutaHazardzistow.png")
+            await channel.send(file=file, embed=embed)
+
+            # NEW APPROACh
+            # await channel.send("", file=discord.File("./imgs/KajutaHazardzistow.png", description="Kajuta Hazardzistów Wita!"))
+            # await channel.send(chosen_message)
+
+            # LEGACY APPROACH
+            # await channel.send(f"{chosen_message}",
+            #                    file=discord.File("./imgs/bastianWelcome.png", description="Bastian"))
 
     async def __send_game_proposal(self, channel) -> List:
         if not self.config.get_process_permissions_for_section("welcome.games"):

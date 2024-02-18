@@ -14,7 +14,7 @@
       "process": true
     },
     "games": {
-      "process": true,
+      "process": false,
       "eye": {
         "process": true
       }
@@ -22,7 +22,7 @@
   },
   "actions": {
     "rupella": {
-      "process": true,
+      "process": false,
       "roles": [
         "Test-1",
         "Wstęp na zaplecze \"Gardła Gustava\"",
@@ -33,7 +33,7 @@
   "games": {
     "eye": {
       "process": true,
-      "bot_names": ["talan", "amalberg", "gerald", "guerino", "liebwin", "thrognik"],
+      "bot_names": ["talan", "jodokus", "aubrey", "hubert", "kaia"],
       "roles": [
         "Test-1",
         "Strażnik Porządku",
@@ -44,27 +44,43 @@
       "players": {
         "Talan": {
           "process": true,
-          "many_games": true
+          "many_games": false
         },
         "Gerald Berchtold": {
-          "process": true,
+          "process": false,
           "many_games": true
         },
         "Liebwin Müller": {
-          "process": true,
+          "process": false,
           "many_games": true
         },
         "Guerino Wessely": {
-          "process": true,
+          "process": false,
           "many_games": true
         },
         "Amalberga Auerswald": {
-          "process": true,
+          "process": false,
           "many_games": true
         },
         "Thrognik Rockson": {
-          "process": true,
+          "process": false,
           "many_games": true
+        },
+        "Jodokus": {
+          "process": true,
+          "many_games": false
+        },
+        "Aubrey": {
+          "process": true,
+          "many_games": false
+        },
+        "Hubert": {
+          "process": true,
+          "many_games": false
+        },
+        "Kaia": {
+          "process": true,
+          "many_games": false
         }
       }
     }
