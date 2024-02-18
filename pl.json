@@ -40,16 +40,16 @@
         "VICTORY": "Ha! Łatwizna, wystarczy trochę pomyślunku łamago! *Zgarnia miedziaki*",
         "FAIL": "AH KURWA! Była 9! Widziałeś! Ja pierdolę, tak blisko... 😡"
       },
-      "TALAN": {
-        "WE_PLAYED": "Talan BUŁECZKA nie ma dla ciebie czasu! Co? Myślałeś, że nie wiem o twoich żarcikach za moimi plecami?",
-        "NOT_ENOUGH": "Sypnij więcej i gramy! Nie bądź leszcz jak Jodokus!",
-        "TOO_MUCH": "Wiesz ile Bańka mnie kosztowała?! Nie mam tyle! Resztę miedziaków wydałem na spłatę frajerów z ostatniej wyprawy!",
+       "TALAN": {
+        "WE_PLAYED": ["Talan BUŁECZKA nie ma dla ciebie czasu! Co? Myślałeś, że nie wiem o twoich żarcikach za moimi plecami?","Graliśmy. Już. Dziś. Czego nie rozumiesz?”,“Nie mam czasu dla ciebie."],
+        "NOT_ENOUGH": ["Sypnij więcej i gramy! Nie bądź leszcz jak Jodokus!","Dawaj więcej! Wygrzmocę cię jak Alrik Fennę!”,“Masz tylko tyle? Kpina! Na pewno coś tam chowasz!"],
+        "TOO_MUCH": ["Wiesz ile Bańka mnie kosztowała?! Nie mam tyle! Resztę miedziaków wydałem na spłatę frajerów z ostatniej wyprawy!","Nie… A może? Nie… Nie! Nie gram o tyle! Muszę się pilnować!","Mam trochę monet, ale nie wszystkie są do PRZEJEBANIA! Grajmy o mniej!"],
         "START": "*Dosiadasz się do stolika, przy którym siedzi... gnom! Istota zwęża oczka i marszczy nos, patrząc na ciebie.* Grajmy, szkoda czasu! *- woła, po czym chwyta jedną z kości i rzuca, by ustalić kto zaczyna. Wynik Talana to:* {{bot_value}} {{player_name}}: {{player_value}}",
-        "DRAW": "Z kośćmi jest jak z talanami. Im więcej, tym lepiej! *Talan sięga po kość.* (Aktualnie posiada: {{dices}})",
-        "REACTION_ON_SUCCESS_PLAYER": "Wiesz, że mógłbym sprawić iluzją, że będą tu same dziewiątki? Znaj moje dobre serce i ciesz się wygraną! *Wstaje i odchodzi.*",
-        "REACTION_ON_FAIL_PLAYER": "Jeśli jesteś tak samo przydatny jak rzucasz to możesz się zawijać z powrotem do Versmold! Moja kolej!",
-        "VICTORY": "Było miło, ale się skończyło! A za wygrane miedziaki zakupię więcej sprzętu. Gratulacje, właśnie podreperowałeś budżet Mercatores… frajerze!",
-        "FAIL": "Kurwaaa!"
+        "DRAW": ["Z kośćmi jest jak z talanami. Im więcej, tym lepiej! *Talan sięga po kość.* (Aktualnie posiada: {{dices}})","Kolejna kosteczka nie zaszkodzi! *Talan sięga po kość.* (Aktualnie posiada: {{dices}})","Dobra, rzucam! Albo… Chuj, dobieram! *Talan sięga po kość.* (Aktualnie posiada: {{dices}})"],
+        "REACTION_ON_SUCCESS_PLAYER": ["Wiesz, że mógłbym sprawić iluzją, że będą tu same dziewiątki? Znaj moje dobre serce i ciesz się wygraną! *Wstaje i odchodzi.*", "Nie zesraj się ze szczęścia! *Wstaje i odchodzi.*","Było miło, ale się skurwiło. Idę zrobić coś pożytecznego. *Wstaje i odchodzi.*"],
+        "REACTION_ON_FAIL_PLAYER": ["Jeśli jesteś tak samo przydatny jak rzucasz to możesz zawijać z powrotem do Versmold!","Żałosne!","Chciałeś pieczywko, a dostałeś zakalec!"],
+        "VICTORY": ["Było miło, ale się skończyło! A za wygrane miedziaki zakupię więcej sprzętu. Gratulacje, właśnie podreperowałeś budżet Mercatores… frajerze!","Ha, dziewiątka! Widzisz?! Widzisz?! No właśnie… Nie wiesz czy widzisz! Wszystko może być iluzją… A jaka jest prawda? Prawda jest taka, że tracisz monety, kmiocie!","HA! Weszło gładko jak Alrik w krasnoludzką cipę!"],
+        "FAIL": ["Kurwaaa!", "Następnym razem wejdzie, czuję to w kościach!","Clevios Aleinsh… Ach, nieważne. Nie będę taki…"]
       },
        "JODOKUS": {
         "WE_PLAYED": "Wybacz, ale na jednej potyczce powinniśmy dziś poprzestać. Hazard budzi skrajne emocje, a każda skrajna emocja cieszy Mroczne Potęgi.",
