@@ -28,8 +28,9 @@ class Welcome:
 
             # TEST APPROACH EXPERIMENTAL WITH EMBEDED
             embed = discord.Embed(title="Kajuta Hazardzistów Wita!", description=chosen_message,
-                                  color=0x00ff00)
-            embed.set_image(url="attachment://KajutaHazardzistow.png")
+                                  color=0x47bbd6)
+            # embed.set_image(url="attachment://KajutaHazardzistow.png")
+            embed.set_thumbnail(url="attachment://KajutaHazardzistow.png")
             file = discord.File("./imgs/KajutaHazardzistow.png", filename="KajutaHazardzistow.png")
             await channel.send(file=file, embed=embed)
 
