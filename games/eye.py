@@ -217,6 +217,10 @@ class EyeGame(commands.Cog):
             if await self.__is_rupella_in_action(ctx):
                 return
 
+            if not self.is_not_thrognik_busy and self.thrognik_enemy_id == ctx.author.id:
+                await self.__display_u_play_with_him("Thrognik", ctx)
+                return
+
             if not self.is_not_thrognik_busy:
                 await self.__display_lack_of_player(ctx, "Thrognika")
                 return
@@ -275,6 +279,10 @@ class EyeGame(commands.Cog):
             if await self.__is_rupella_in_action(ctx):
                 return
 
+            if not self.is_not_talan_busy and self.talan_enemy_id == ctx.author.id:
+                await self.__display_u_play_with_him("Talan", ctx)
+                return
+
             if not self.is_not_talan_busy:
                 await self.__display_lack_of_player(ctx, "Talan")
                 return
@@ -331,6 +339,10 @@ class EyeGame(commands.Cog):
     async def challenge_guerino(self, ctx, number: Option(int, "Enter a number")):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
             if await self.__is_rupella_in_action(ctx):
+                return
+
+            if not self.is_not_guerino_busy and self.guerino_enemy_id == ctx.author.id:
+                await self.__display_u_play_with_him("Guerino", ctx)
                 return
 
             if not self.is_not_guerino_busy:
@@ -428,6 +440,10 @@ class EyeGame(commands.Cog):
             if await self.__is_rupella_in_action(ctx):
                 return
 
+            if not self.is_not_liebwin_busy and self.liebwin_enemy_id == ctx.author.id:
+                await self.__display_u_play_with_him("Liebwin", ctx)
+                return
+
             if not self.is_not_liebwin_busy:
                 await self.__display_lack_of_player(ctx, "Liebwina")
                 return
@@ -522,6 +538,10 @@ class EyeGame(commands.Cog):
             if await self.__is_rupella_in_action(ctx):
                 return
 
+            if not self.is_not_gerald_busy and self.gerald_enemy_id == ctx.author.id:
+                await self.__display_u_play_with_him("Gerald", ctx)
+                return
+
             if not self.is_not_gerald_busy:
                 await self.__display_lack_of_player(ctx, "Geralda")
                 return
@@ -580,6 +600,10 @@ class EyeGame(commands.Cog):
             if await self.__is_rupella_in_action(ctx):
                 return
 
+            if not self.is_not_amalberga_busy and self.amalberg_enemy_id == ctx.author.id:
+                await self.__display_u_play_with_him("Amalberg", ctx)
+                return
+
             if not self.is_not_amalberga_busy:
                 await self.__display_lack_of_player(ctx, "Amalbergi")
                 return
@@ -636,6 +660,10 @@ class EyeGame(commands.Cog):
     async def challenge_jodokus(self, ctx, number: Option(int, "Enter a number")):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
             if await self.__is_rupella_in_action(ctx):
+                return
+
+            if not self.is_not_jodokus_busy and self.jodokus_enemy_id == ctx.author.id:
+                await self.__display_u_play_with_him("Jodokus", ctx)
                 return
 
             if not self.is_not_jodokus_busy:
@@ -816,6 +844,10 @@ class EyeGame(commands.Cog):
             if await self.__is_rupella_in_action(ctx):
                 return
 
+            if not self.is_not_aubrey_busy and self.aubrey_enemy_id == ctx.author.id:
+                await self.__display_u_play_with_him("Aubrey", ctx)
+                return
+
             if not self.is_not_aubrey_busy:
                 await self.__display_lack_of_player(ctx, "Aubrey")
                 return
@@ -993,6 +1025,10 @@ class EyeGame(commands.Cog):
     async def challenge_hubert(self, ctx, number: Option(int, "Enter a number")):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
             if await self.__is_rupella_in_action(ctx):
+                return
+
+            if not self.is_not_hubert_busy and self.hubert_enemy_id == ctx.author.id:
+                await self.__display_u_play_with_him("Hubert", ctx)
                 return
 
             if not self.is_not_hubert_busy:
@@ -1211,6 +1247,10 @@ class EyeGame(commands.Cog):
     async def challenge_kaia(self, ctx, number: Option(int, "Enter a number")):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
             if await self.__is_rupella_in_action(ctx):
+                return
+
+            if not self.is_not_kaia_busy and self.kaia_enemy_id == ctx.author.id:
+                await self.__display_u_play_with_him("Kaia", ctx)
                 return
 
             if not self.is_not_kaia_busy:
@@ -2225,3 +2265,8 @@ class EyeGame(commands.Cog):
 
     def __id_admin_and_channel_valid(self, id, channelName):
         return id in self.admins and channelName in self.admin_channel_allowed_to_use_names
+
+    def __display_u_play_with_him(self, name: str, ctx):
+        u_play_with_this_oponent = self.translation.translate("GAMES.EYE.CURRENT_IN_GAME_WITH_THIS_OPONENET", {"name": name})
+
+        await ctx.respond(f"**Głos z Eteru:**\n{u_play_with_this_oponent}")
