@@ -22,7 +22,7 @@
       "AVAILABLE_PLAYERS": {
         "MESSAGE": "Zagrać można z: ",
         "NON": "Obecnie każdy z kimś już gra, poczekaj trochę 🕰️",
-        "CHALLENGE_PLAYER": "||By wyzwać kogoś na pojedynek wpisz /wyzwij-X [wartość]. Gdzie za X wstaw jednego z dostępnych graczy czyli dostępne opcje to: Thrognik, Amalberga, Guerino, Liebwin, Gerald, a za [wartośc] ile miedziaków proponujesz. Przykład /wyzwij-throgink 10.||"
+        "CHALLENGE_PLAYER": "||By wyzwać kogoś na pojedynek wpisz /wyzwij-X [wartość]. Gdzie za X wstaw jednego z dostępnych bywalców Kajuty Hazardzistów. Dostępne opcje to: Talan, Jodokus, Aubrey, Hubert, Kaia, a za [wartość] podaj ile miedziaków proponujesz. Przykład /wyzwij-Jodokus 10.||"
       },
       "DRAW_PLAYER": "Sięgasz po kość ze stosika na środku i dorzucasz do swojej puli (posiadasz {{amount}} kości).",
       "LACK_OF_PLAYER": "Hmm… Wygląda na to, że przeciwnik, którego szukasz jest zajęty. Może z kimś gra, a może dłubanie w nosie aż nadto go zajmuje.",
