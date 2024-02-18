@@ -65,7 +65,91 @@ class EyeGame(commands.Cog):
         self.is_kaia_eager_for_many_games = kaia.get("many_games")
         self.is_aubrey_eager_for_many_games = aubrey.get("many_games")
 
-    def __get_available_players(self) -> List:
+        self.__set_base_params()
+
+    def __set_base_params(self):
+        self.is_not_thrognik_busy = None
+        self.thrognik_bid = None
+        self.id_thrognik_game = None
+        self.thrognik_enemy_id = None
+        self.player_thrognik_dices = 1
+        self.thrognik_dices = 1
+        self.thrognik_game_strategy = None
+
+        self.is_not_amalberga_busy = None
+        self.amalberg_bid = None
+        self.id_amalberg_game = None
+        self.amalberg_enemy_id = None
+        self.player_amalberg_dices = 1
+        self.amalberg_dices = 1
+        self.amalberg_game_strategy = None
+
+        self.is_not_gerald_busy = None
+        self.gerald_bid = None
+        self.id_gerald_game = None
+        self.gerald_enemy_id = None
+        self.player_gerald_dices = 1
+        self.gerald_dices = 1
+        self.gerald_game_strategy = None
+
+        self.is_not_liebwin_busy = None
+        self.liebwin_bid = None
+        self.id_liebwin_game = None
+        self.liebwin_enemy_id = None
+        self.player_liebwin_dices = 1
+        self.liebwin_dices = 1
+        self.liebwin_game_strategy = None
+
+        self.is_not_guerino_busy = None
+        self.guerino_bid = None
+        self.id_guerino_game = None
+        self.guerino_enemy_id = None
+        self.player_guerino_dices = 1
+        self.guerino_dices = 1
+        self.guerino_game_strategy = None
+
+        self.is_not_talan_busy = None
+        self.talan_bid = None
+        self.id_talan_game = None
+        self.talan_enemy_id = None
+        self.player_talan_dices = 1
+        self.talan_dices = 1
+        self.talan_game_strategy = None
+
+        self.is_not_kaia_busy = None
+        self.kaia_bid = None
+        self.id_kaia_game = None
+        self.kaia_enemy_id = None
+        self.player_kaia_dices = 1
+        self.kaia_dices = 1
+        self.kaia_game_strategy = None
+
+        self.is_not_hubert_busy = None
+        self.hubert_bid = None
+        self.id_hubert_game = None
+        self.hubert_enemy_id = None
+        self.player_hubert_dices = 1
+        self.hubert_dices = 1
+        self.hubert_game_strategy = None
+
+        self.is_not_aubrey_busy = None
+        self.aubrey_bid = None
+        self.id_aubrey_game = None
+        self.aubrey_enemy_id = None
+        self.player_aubrey_dices = 1
+        self.aubrey_dices = 1
+        self.aubrey_game_strategy = None
+
+        self.is_not_jodokus_busy = None
+        self.jodokus_bid = None
+        self.id_jodokus_game = None
+        self.jodokus_enemy_id = None
+        self.player_jodokus_dices = 1
+        self.jodokus_dices = 1
+        self.jodokus_game_strategy = None
+
+
+def __get_available_players(self) -> List:
         players = []
 
         if self.is_not_thrognik_busy:
@@ -2266,7 +2350,7 @@ class EyeGame(commands.Cog):
     def __id_admin_and_channel_valid(self, id, channelName):
         return id in self.admins and channelName in self.admin_channel_allowed_to_use_names
 
-    def __display_u_play_with_him(self, name: str, ctx):
+    async def __display_u_play_with_him(self, name: str, ctx):
         u_play_with_this_oponent = self.translation.translate("GAMES.EYE.CURRENT_IN_GAME_WITH_THIS_OPONENET", {"name": name})
 
         await ctx.respond(f"**Głos z Eteru:**\n{u_play_with_this_oponent}")
