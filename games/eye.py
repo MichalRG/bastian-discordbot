@@ -68,7 +68,6 @@ class EyeGame(commands.Cog):
         self.__set_base_params()
 
     def __set_base_params(self):
-        self.is_not_thrognik_busy = None
         self.thrognik_bid = None
         self.id_thrognik_game = None
         self.thrognik_enemy_id = None
@@ -76,7 +75,6 @@ class EyeGame(commands.Cog):
         self.thrognik_dices = 1
         self.thrognik_game_strategy = None
 
-        self.is_not_amalberga_busy = None
         self.amalberg_bid = None
         self.id_amalberg_game = None
         self.amalberg_enemy_id = None
@@ -84,7 +82,6 @@ class EyeGame(commands.Cog):
         self.amalberg_dices = 1
         self.amalberg_game_strategy = None
 
-        self.is_not_gerald_busy = None
         self.gerald_bid = None
         self.id_gerald_game = None
         self.gerald_enemy_id = None
@@ -92,7 +89,6 @@ class EyeGame(commands.Cog):
         self.gerald_dices = 1
         self.gerald_game_strategy = None
 
-        self.is_not_liebwin_busy = None
         self.liebwin_bid = None
         self.id_liebwin_game = None
         self.liebwin_enemy_id = None
@@ -100,7 +96,6 @@ class EyeGame(commands.Cog):
         self.liebwin_dices = 1
         self.liebwin_game_strategy = None
 
-        self.is_not_guerino_busy = None
         self.guerino_bid = None
         self.id_guerino_game = None
         self.guerino_enemy_id = None
@@ -108,7 +103,6 @@ class EyeGame(commands.Cog):
         self.guerino_dices = 1
         self.guerino_game_strategy = None
 
-        self.is_not_talan_busy = None
         self.talan_bid = None
         self.id_talan_game = None
         self.talan_enemy_id = None
@@ -116,7 +110,6 @@ class EyeGame(commands.Cog):
         self.talan_dices = 1
         self.talan_game_strategy = None
 
-        self.is_not_kaia_busy = None
         self.kaia_bid = None
         self.id_kaia_game = None
         self.kaia_enemy_id = None
@@ -124,7 +117,6 @@ class EyeGame(commands.Cog):
         self.kaia_dices = 1
         self.kaia_game_strategy = None
 
-        self.is_not_hubert_busy = None
         self.hubert_bid = None
         self.id_hubert_game = None
         self.hubert_enemy_id = None
@@ -132,7 +124,6 @@ class EyeGame(commands.Cog):
         self.hubert_dices = 1
         self.hubert_game_strategy = None
 
-        self.is_not_aubrey_busy = None
         self.aubrey_bid = None
         self.id_aubrey_game = None
         self.aubrey_enemy_id = None
@@ -140,7 +131,6 @@ class EyeGame(commands.Cog):
         self.aubrey_dices = 1
         self.aubrey_game_strategy = None
 
-        self.is_not_jodokus_busy = None
         self.jodokus_bid = None
         self.id_jodokus_game = None
         self.jodokus_enemy_id = None
