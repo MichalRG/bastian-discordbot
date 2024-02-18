@@ -1522,45 +1522,45 @@ class EyeGame(commands.Cog):
 
             await self.__perform_thrognik_action(ctx)
 
-    @slash_command(name="rzucam-thrognik", guild_ids=LEGIT_SERVERS,
-                   description="Wykonaj rzut w grze z Thrognikiem")
-    async def player_roll_dices_in_thrognik_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
-            if self.is_not_thrognik_busy or (not self.is_not_thrognik_busy and self.thrognik_enemy_id != ctx.author.id):
-                await self.__cannot_roll(ctx)
-                return
-
-            player_thrognik_roll_result = await self.__perform_roll(self.player_thrognik_dices, ctx, ctx.author.display_name)
-
-            self.__save_roll_log({
-                "id_game": self.id_thrognik_game,
-                "roller": ctx.author.display_name,
-                "result": player_thrognik_roll_result
-            })
-
-            if "9" in player_thrognik_roll_result:
-                self.__save_winning_log({
-                    "id_game": self.id_thrognik_game,
-                    "roller": ctx.author.display_name,
-                    "bid": self.thrognik_bid,
-                    "result": player_thrognik_roll_result
-                })
-
-                thrognik_reaction = self.translation.translate("GAMES.EYE.THROGNIK.REACTION_ON_SUCCESS_PLAYER")
-                game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.thrognik_bid}])
-
-                await ctx.respond(f"**Thrognik:**\n{thrognik_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
-
-                self.__add_to_already_played_file({
-                    "bot": "thrognik",
-                    "player": ctx.author.id
-                })
-                self.is_not_thrognik_busy = True
-            else:
-                thrognik_reaction = self.translation.translate("GAMES.EYE.THROGNIK.REACTION_ON_FAIL_PLAYER")
-                await ctx.respond(f"**Thrognik:**\n{thrognik_reaction}")
-
-                await self.__perform_thrognik_action(ctx)
+    # @slash_command(name="rzucam-thrognik", guild_ids=LEGIT_SERVERS,
+    #                description="Wykonaj rzut w grze z Thrognikiem")
+    # async def player_roll_dices_in_thrognik_game(self, ctx):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #         if self.is_not_thrognik_busy or (not self.is_not_thrognik_busy and self.thrognik_enemy_id != ctx.author.id):
+    #             await self.__cannot_roll(ctx)
+    #             return
+    #
+    #         player_thrognik_roll_result = await self.__perform_roll(self.player_thrognik_dices, ctx, ctx.author.display_name)
+    #
+    #         self.__save_roll_log({
+    #             "id_game": self.id_thrognik_game,
+    #             "roller": ctx.author.display_name,
+    #             "result": player_thrognik_roll_result
+    #         })
+    #
+    #         if "9" in player_thrognik_roll_result:
+    #             self.__save_winning_log({
+    #                 "id_game": self.id_thrognik_game,
+    #                 "roller": ctx.author.display_name,
+    #                 "bid": self.thrognik_bid,
+    #                 "result": player_thrognik_roll_result
+    #             })
+    #
+    #             thrognik_reaction = self.translation.translate("GAMES.EYE.THROGNIK.REACTION_ON_SUCCESS_PLAYER")
+    #             game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.thrognik_bid}])
+    #
+    #             await ctx.respond(f"**Thrognik:**\n{thrognik_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
+    #
+    #             self.__add_to_already_played_file({
+    #                 "bot": "thrognik",
+    #                 "player": ctx.author.id
+    #             })
+    #             self.is_not_thrognik_busy = True
+    #         else:
+    #             thrognik_reaction = self.translation.translate("GAMES.EYE.THROGNIK.REACTION_ON_FAIL_PLAYER")
+    #             await ctx.respond(f"**Thrognik:**\n{thrognik_reaction}")
+    #
+    #             await self.__perform_thrognik_action(ctx)
 
     async def __perform_thrognik_action(self, ctx):
         if self.thrognik_dices >= self.thrognik_game_strategy:
