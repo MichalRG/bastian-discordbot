@@ -2341,6 +2341,6 @@ class EyeGame(commands.Cog):
         return id in self.admins and channelName in self.admin_channel_allowed_to_use_names
 
     async def __display_u_play_with_him(self, name: str, ctx):
-        u_play_with_this_oponent = self.translation.translate("GAMES.EYE.CURRENT_IN_GAME_WITH_THIS_OPONENET", {"name": name})
+        u_play_with_this_oponent = self.translation.translate("GAMES.EYE.CURRENT_IN_GAME_WITH_THIS_OPONENET", [{"name": name}])
 
         await ctx.respond(f"**Głos z Eteru:**\n{u_play_with_this_oponent}")
