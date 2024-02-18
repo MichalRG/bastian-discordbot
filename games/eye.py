@@ -285,67 +285,67 @@ class EyeGame(commands.Cog):
 
             await ctx.respond(f"**Bastian:**\n{base_response}{concatenated_players}.\n{rule_to_challenge}")
 
-    @slash_command(name="wyzwij-thrognik", guild_ids=LEGIT_SERVERS, description="Wyzwij Thrognika na potyczkę w Oko")
-    async def challenge_thrognik(self, ctx, number: Option(int, "Enter a number")):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
-            if await self.__is_rupella_in_action(ctx):
-                return
-
-            if not self.is_not_thrognik_busy and self.thrognik_enemy_id == ctx.author.id:
-                await self.__display_u_play_with_him("Thrognik", ctx)
-                return
-
-            if not self.is_not_thrognik_busy:
-                await self.__display_lack_of_player(ctx, "Thrognika")
-                return
-
-            banned = self.__read_blacklist_players("thrognik")
-            if str(ctx.author.id) in banned and not self.is_thrognik_eager_for_many_games:
-                we_played_log = self.translation.translate("GAMES.EYE.THROGNIK.WE_PLAYED")
-                await ctx.respond(f"**Thrognik:**\n{we_played_log}")
-                return
-
-            if 25 < number < 41:
-                self.is_not_thrognik_busy = False
-                self.thrognik_bid = number
-                self.id_thrognik_game = uuid.uuid4()
-                self.thrognik_enemy_id = ctx.author.id
-                self.player_thrognik_dices = 1
-                self.thrognik_dices = 1
-                self.thrognik_game_strategy = random.randint(2, 3)
-
-                thrognik_initiative, player_initiative = self.__roll_initiative()
-                self.__generate_initiative_log({
-                    "id_game": self.id_thrognik_game,
-                    "bot": "thrognik",
-                    "player": ctx.author,
-                    "bot_initiative": thrognik_initiative,
-                    "player_initiative": player_initiative,
-                    "bot_strategy": self.thrognik_game_strategy,
-                    "bid": number
-                })
-
-                beginning_of_game_thrognik = self.translation.translate(
-                    "GAMES.EYE.THROGNIK.START",
-                    [
-                        {"bot_value": thrognik_initiative},
-                        {"player_value": player_initiative},
-                        {"player_name": ctx.author.display_name}
-                    ])
-                await ctx.respond(f"**Głos z eteru:**\n{beginning_of_game_thrognik}")
-
-                if thrognik_initiative < player_initiative:
-                    await self.__thrognik_draw_die(ctx)
-                else:
-                    await ctx.respond(f"{self.GENERAL_COMMANDS}")
-            elif isinstance(number, int):
-                await self.__display_wrong_thresold_message(
-                    ctx=ctx,
-                    name="thrognik",
-                    lower_limit=26,
-                    upper_limit=40,
-                    bid=number
-                )
+    # @slash_command(name="wyzwij-thrognik", guild_ids=LEGIT_SERVERS, description="Wyzwij Thrognika na potyczkę w Oko")
+    # async def challenge_thrognik(self, ctx, number: Option(int, "Enter a number")):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #         if await self.__is_rupella_in_action(ctx):
+    #             return
+    #
+    #         if not self.is_not_thrognik_busy and self.thrognik_enemy_id == ctx.author.id:
+    #             await self.__display_u_play_with_him("Thrognik", ctx)
+    #             return
+    #
+    #         if not self.is_not_thrognik_busy:
+    #             await self.__display_lack_of_player(ctx, "Thrognika")
+    #             return
+    #
+    #         banned = self.__read_blacklist_players("thrognik")
+    #         if str(ctx.author.id) in banned and not self.is_thrognik_eager_for_many_games:
+    #             we_played_log = self.translation.translate("GAMES.EYE.THROGNIK.WE_PLAYED")
+    #             await ctx.respond(f"**Thrognik:**\n{we_played_log}")
+    #             return
+    #
+    #         if 25 < number < 41:
+    #             self.is_not_thrognik_busy = False
+    #             self.thrognik_bid = number
+    #             self.id_thrognik_game = uuid.uuid4()
+    #             self.thrognik_enemy_id = ctx.author.id
+    #             self.player_thrognik_dices = 1
+    #             self.thrognik_dices = 1
+    #             self.thrognik_game_strategy = random.randint(2, 3)
+    #
+    #             thrognik_initiative, player_initiative = self.__roll_initiative()
+    #             self.__generate_initiative_log({
+    #                 "id_game": self.id_thrognik_game,
+    #                 "bot": "thrognik",
+    #                 "player": ctx.author,
+    #                 "bot_initiative": thrognik_initiative,
+    #                 "player_initiative": player_initiative,
+    #                 "bot_strategy": self.thrognik_game_strategy,
+    #                 "bid": number
+    #             })
+    #
+    #             beginning_of_game_thrognik = self.translation.translate(
+    #                 "GAMES.EYE.THROGNIK.START",
+    #                 [
+    #                     {"bot_value": thrognik_initiative},
+    #                     {"player_value": player_initiative},
+    #                     {"player_name": ctx.author.display_name}
+    #                 ])
+    #             await ctx.respond(f"**Głos z eteru:**\n{beginning_of_game_thrognik}")
+    #
+    #             if thrognik_initiative < player_initiative:
+    #                 await self.__thrognik_draw_die(ctx)
+    #             else:
+    #                 await ctx.respond(f"{self.GENERAL_COMMANDS}")
+    #         elif isinstance(number, int):
+    #             await self.__display_wrong_thresold_message(
+    #                 ctx=ctx,
+    #                 name="thrognik",
+    #                 lower_limit=26,
+    #                 upper_limit=40,
+    #                 bid=number
+    #             )
 
     @slash_command(name="wyzwij-talan", guild_ids=LEGIT_SERVERS, description="Wyzwij Talana na potyczkę w Oko")
     async def challenge_talan(self, ctx, number: Option(int, "Enter a number")):
@@ -409,326 +409,326 @@ class EyeGame(commands.Cog):
                     bid=number
                 )
 
-    @slash_command(name="wyzwij-guerino", guild_ids=LEGIT_SERVERS, description="Wyzwij Guerino na potyczkę w Oko")
-    async def challenge_guerino(self, ctx, number: Option(int, "Enter a number")):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
-            if await self.__is_rupella_in_action(ctx):
-                return
+    # @slash_command(name="wyzwij-guerino", guild_ids=LEGIT_SERVERS, description="Wyzwij Guerino na potyczkę w Oko")
+    # async def challenge_guerino(self, ctx, number: Option(int, "Enter a number")):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #         if await self.__is_rupella_in_action(ctx):
+    #             return
+    #
+    #         if not self.is_not_guerino_busy and self.guerino_enemy_id == ctx.author.id:
+    #             await self.__display_u_play_with_him("Guerino", ctx)
+    #             return
+    #
+    #         if not self.is_not_guerino_busy:
+    #             await self.__display_lack_of_player(ctx, "Guerino")
+    #             return
+    #
+    #         banned = self.__read_blacklist_players("guerino")
+    #         if str(ctx.author.id) in banned and not self.is_guerino_eager_for_many_games:
+    #             we_played_log = self.translation.translate("GAMES.EYE.GUERINO.WE_PLAYED")
+    #             await ctx.respond(f"**Guerino:**\n{we_played_log}")
+    #             return
+    #
+    #         if number == 1:
+    #             self.is_not_guerino_busy = False
+    #             self.guerino_bid = number
+    #             self.id_guerino_game = uuid.uuid4()
+    #             self.guerino_enemy_id = ctx.author.id
+    #             self.player_guerino_dices = 1
+    #             self.guerino_dices = 1
+    #             self.guerino_game_strategy = random.randint(1, 2)
+    #
+    #             guerino_initiative, player_initiative = self.__roll_initiative()
+    #             self.__generate_initiative_log({
+    #                 "id_game": self.id_guerino_game,
+    #                 "bot": "guerino",
+    #                 "player": ctx.author,
+    #                 "bot_initiative": guerino_initiative,
+    #                 "player_initiative": player_initiative,
+    #                 "bot_strategy": self.guerino_game_strategy,
+    #                 "bid": number
+    #             })
+    #
+    #             beginning_of_game_guerino = self.translation.translate(
+    #                 "GAMES.EYE.GUERINO.START",
+    #                 [
+    #                     {"bot_value": guerino_initiative},
+    #                     {"player_value": player_initiative},
+    #                     {"player_name": ctx.author.display_name}
+    #                 ])
+    #             await ctx.respond(f"**Głos z eteru:**\n{beginning_of_game_guerino}")
+    #
+    #             if guerino_initiative < player_initiative:
+    #                 if self.guerino_game_strategy > 1:
+    #                     await self.__guerino_draw_die(ctx)
+    #                 else:
+    #                     results = await self.__perform_roll(
+    #                         self.guerino_dices,
+    #                         ctx,
+    #                         "Guerino"
+    #                     )
+    #
+    #                     if "9" in results:
+    #                         self.__save_winning_log({
+    #                             "id_game": self.id_guerino_game,
+    #                             "roller": "guerino",
+    #                             "loser": ctx.author.name,
+    #                             "bid": self.guerino_bid,
+    #                             "result": results
+    #                         })
+    #
+    #                         victory_guerino_log = self.translation.translate("GAMES.EYE.GUERINO.VICTORY")
+    #                         game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Guerino"}, {"bid": self.guerino_bid}])
+    #
+    #                         await ctx.respond(f"**Guerino:**\n{victory_guerino_log}\n\n**Głos z Eteru:**\n{game_is_done_log}")
+    #
+    #                         self.__add_to_already_played_file({
+    #                             "bot": "guerino",
+    #                             "player": ctx.author.id
+    #                          })
+    #                         self.is_not_guerino_busy = True
+    #                     else:
+    #                         self.__save_roll_log({
+    #                             "id_game": self.id_guerino_game,
+    #                             "roller": "guerino",
+    #                             "result": results
+    #                         })
+    #                         failure_guerino_log = self.translation.translate("GAMES.EYE.GUERINO.FAIL")
+    #
+    #                         await ctx.respond(f"**Guerino:**\n{failure_guerino_log}")
+    #             else:
+    #                 await ctx.respond(f"{self.GENERAL_COMMANDS}")
+    #
+    #         elif isinstance(number, int):
+    #             await self.__display_wrong_thresold_message(
+    #                 ctx=ctx,
+    #                 name="guerino",
+    #                 lower_limit=1,
+    #                 upper_limit=1,
+    #                 bid=number
+    #             )
 
-            if not self.is_not_guerino_busy and self.guerino_enemy_id == ctx.author.id:
-                await self.__display_u_play_with_him("Guerino", ctx)
-                return
+    # @slash_command(name="wyzwij-liebwin", guild_ids=LEGIT_SERVERS, description="Wyzwij Liebwina na potyczkę w Oko")
+    # async def challenge_liebwin(self, ctx, number: Option(int, "Enter a number")):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #         if await self.__is_rupella_in_action(ctx):
+    #             return
+    #
+    #         if not self.is_not_liebwin_busy and self.liebwin_enemy_id == ctx.author.id:
+    #             await self.__display_u_play_with_him("Liebwin", ctx)
+    #             return
+    #
+    #         if not self.is_not_liebwin_busy:
+    #             await self.__display_lack_of_player(ctx, "Liebwina")
+    #             return
+    #
+    #         banned = self.__read_blacklist_players("liebwin")
+    #         if str(ctx.author.id) in banned and not self.is_liebwin_eager_for_many_games:
+    #             we_played_log = self.translation.translate("GAMES.EYE.LIEBWIN.WE_PLAYED")
+    #             await ctx.respond(f"**Liebwin:**\n{we_played_log}")
+    #             return
+    #
+    #         if 1 < number < 10:
+    #             self.is_not_liebwin_busy = False
+    #             self.liebwin_bid = number
+    #             self.id_liebwin_game = uuid.uuid4()
+    #             self.liebwin_enemy_id = ctx.author.id
+    #             self.player_liebwin_dices = 1
+    #             self.liebwin_dices = 1
+    #             self.liebwin_game_strategy = random.randint(1, 3)
+    #
+    #             liebwin_initiative, player_initiative = self.__roll_initiative()
+    #             self.__generate_initiative_log({
+    #                 "id_game": self.id_liebwin_game,
+    #                 "bot": "liebwin",
+    #                 "player": ctx.author,
+    #                 "bot_initiative": liebwin_initiative,
+    #                 "player_initiative": player_initiative,
+    #                 "bot_strategy": self.liebwin_game_strategy,
+    #                 "bid": number
+    #             })
+    #
+    #             beginning_of_game_liebwin = self.translation.translate(
+    #                 "GAMES.EYE.LIEBWIN.START",
+    #                 [
+    #                     {"bot_value": liebwin_initiative},
+    #                     {"player_value": player_initiative},
+    #                     {"player_name": ctx.author.display_name}
+    #                 ])
+    #             await ctx.respond(f"**Głos z eteru:**\n{beginning_of_game_liebwin}")
+    #
+    #             if liebwin_initiative < player_initiative:
+    #                 if self.liebwin_game_strategy > 1:
+    #                     await self.__liebwin_draw_die(ctx)
+    #                 else:
+    #                     results = await self.__perform_roll(
+    #                         self.liebwin_dices,
+    #                         ctx,
+    #                         "Liebwin"
+    #                     )
+    #
+    #                     if "9" in results:
+    #                         self.__save_winning_log({
+    #                             "id_game": self.id_liebwin_game,
+    #                             "roller": "liebwin",
+    #                             "loser": ctx.author.name,
+    #                             "bid": self.liebwin_bid,
+    #                             "result": results
+    #                         })
+    #
+    #                         victory_liebwin_log = self.translation.translate("GAMES.EYE.LIEBWIN.VICTORY")
+    #                         game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Liebwin"}, {"bid": self.liebwin_bid}])
+    #
+    #                         await ctx.respond(f"**Liebwin:**\n{victory_liebwin_log}\n\n**Głos z Eteru:**\n{game_is_done_log}")
+    #
+    #                         self.__add_to_already_played_file({
+    #                             "bot": "liebwin",
+    #                             "player": ctx.author.id
+    #                         })
+    #                         self.is_not_liebwin_busy = True
+    #                     else:
+    #                         self.__save_roll_log({
+    #                             "id_game": self.id_liebwin_game,
+    #                             "roller": "liebwin",
+    #                             "result": results
+    #                         })
+    #                         faiulre_liebwin_log = self.translation.translate("GAMES.EYE.LIEBWIN.FAIL")
+    #
+    #                         await ctx.respond(f"**Liebwin:**\n{faiulre_liebwin_log}")
+    #             else:
+    #                 await ctx.respond(f"{self.GENERAL_COMMANDS}")
+    #         elif isinstance(number, int):
+    #             await self.__display_wrong_thresold_message(
+    #                 ctx=ctx,
+    #                 name="liebwin",
+    #                 lower_limit=2,
+    #                 upper_limit=9,
+    #                 bid=number
+    #             )
 
-            if not self.is_not_guerino_busy:
-                await self.__display_lack_of_player(ctx, "Guerino")
-                return
+    # @slash_command(name="wyzwij-gerald", guild_ids=LEGIT_SERVERS, description="Wyzwij Geralda na potyczkę w Oko")
+    # async def challenge_gerald(self, ctx, number: Option(int, "Enter a number")):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #         if await self.__is_rupella_in_action(ctx):
+    #             return
+    #
+    #         if not self.is_not_gerald_busy and self.gerald_enemy_id == ctx.author.id:
+    #             await self.__display_u_play_with_him("Gerald", ctx)
+    #             return
+    #
+    #         if not self.is_not_gerald_busy:
+    #             await self.__display_lack_of_player(ctx, "Geralda")
+    #             return
+    #
+    #         banned = self.__read_blacklist_players("gerald")
+    #         if str(ctx.author.id) in banned and not self.is_gerald_eager_for_many_games:
+    #             we_played_log = self.translation.translate("GAMES.EYE.GERALD.WE_PLAYED")
+    #             await ctx.respond(f"**Gerald:**\n{we_played_log}")
+    #             return
+    #
+    #         if 9 < number < 26:
+    #             self.is_not_gerald_busy = False
+    #             self.gerald_bid = number
+    #             self.id_gerald_game = uuid.uuid4()
+    #             self.gerald_enemy_id = ctx.author.id
+    #             self.player_gerald_dices = 1
+    #             self.gerald_dices = 1
+    #             self.gerald_game_strategy = random.randint(2, 4)
+    #
+    #             gerald_initiative, player_initiative = self.__roll_initiative()
+    #             self.__generate_initiative_log({
+    #                 "id_game": self.id_gerald_game,
+    #                 "bot": "gerald",
+    #                 "player": ctx.author,
+    #                 "bot_initiative": gerald_initiative,
+    #                 "player_initiative": player_initiative,
+    #                 "bot_strategy": self.gerald_game_strategy,
+    #                 "bid": number
+    #             })
+    #
+    #             beginning_of_game_gerald = self.translation.translate(
+    #                 "GAMES.EYE.GERALD.START",
+    #                 [
+    #                     {"bot_value": gerald_initiative},
+    #                     {"player_value": player_initiative},
+    #                     {"player_name": ctx.author.display_name}
+    #                 ])
+    #             await ctx.respond(f"**Głos z eteru:**\n{beginning_of_game_gerald}")
+    #
+    #             if gerald_initiative < player_initiative:
+    #                 await self.__gerald_draw_die(ctx)
+    #             else:
+    #                 await ctx.respond(f"{self.GENERAL_COMMANDS}")
+    #         elif isinstance(number, int):
+    #             await self.__display_wrong_thresold_message(
+    #                 ctx=ctx,
+    #                 name="gerald",
+    #                 lower_limit=10,
+    #                 upper_limit=25,
+    #                 bid=number
+    #             )
 
-            banned = self.__read_blacklist_players("guerino")
-            if str(ctx.author.id) in banned and not self.is_guerino_eager_for_many_games:
-                we_played_log = self.translation.translate("GAMES.EYE.GUERINO.WE_PLAYED")
-                await ctx.respond(f"**Guerino:**\n{we_played_log}")
-                return
-
-            if number == 1:
-                self.is_not_guerino_busy = False
-                self.guerino_bid = number
-                self.id_guerino_game = uuid.uuid4()
-                self.guerino_enemy_id = ctx.author.id
-                self.player_guerino_dices = 1
-                self.guerino_dices = 1
-                self.guerino_game_strategy = random.randint(1, 2)
-
-                guerino_initiative, player_initiative = self.__roll_initiative()
-                self.__generate_initiative_log({
-                    "id_game": self.id_guerino_game,
-                    "bot": "guerino",
-                    "player": ctx.author,
-                    "bot_initiative": guerino_initiative,
-                    "player_initiative": player_initiative,
-                    "bot_strategy": self.guerino_game_strategy,
-                    "bid": number
-                })
-
-                beginning_of_game_guerino = self.translation.translate(
-                    "GAMES.EYE.GUERINO.START",
-                    [
-                        {"bot_value": guerino_initiative},
-                        {"player_value": player_initiative},
-                        {"player_name": ctx.author.display_name}
-                    ])
-                await ctx.respond(f"**Głos z eteru:**\n{beginning_of_game_guerino}")
-
-                if guerino_initiative < player_initiative:
-                    if self.guerino_game_strategy > 1:
-                        await self.__guerino_draw_die(ctx)
-                    else:
-                        results = await self.__perform_roll(
-                            self.guerino_dices,
-                            ctx,
-                            "Guerino"
-                        )
-
-                        if "9" in results:
-                            self.__save_winning_log({
-                                "id_game": self.id_guerino_game,
-                                "roller": "guerino",
-                                "loser": ctx.author.name,
-                                "bid": self.guerino_bid,
-                                "result": results
-                            })
-
-                            victory_guerino_log = self.translation.translate("GAMES.EYE.GUERINO.VICTORY")
-                            game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Guerino"}, {"bid": self.guerino_bid}])
-
-                            await ctx.respond(f"**Guerino:**\n{victory_guerino_log}\n\n**Głos z Eteru:**\n{game_is_done_log}")
-
-                            self.__add_to_already_played_file({
-                                "bot": "guerino",
-                                "player": ctx.author.id
-                             })
-                            self.is_not_guerino_busy = True
-                        else:
-                            self.__save_roll_log({
-                                "id_game": self.id_guerino_game,
-                                "roller": "guerino",
-                                "result": results
-                            })
-                            failure_guerino_log = self.translation.translate("GAMES.EYE.GUERINO.FAIL")
-
-                            await ctx.respond(f"**Guerino:**\n{failure_guerino_log}")
-                else:
-                    await ctx.respond(f"{self.GENERAL_COMMANDS}")
-
-            elif isinstance(number, int):
-                await self.__display_wrong_thresold_message(
-                    ctx=ctx,
-                    name="guerino",
-                    lower_limit=1,
-                    upper_limit=1,
-                    bid=number
-                )
-
-    @slash_command(name="wyzwij-liebwin", guild_ids=LEGIT_SERVERS, description="Wyzwij Liebwina na potyczkę w Oko")
-    async def challenge_liebwin(self, ctx, number: Option(int, "Enter a number")):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
-            if await self.__is_rupella_in_action(ctx):
-                return
-
-            if not self.is_not_liebwin_busy and self.liebwin_enemy_id == ctx.author.id:
-                await self.__display_u_play_with_him("Liebwin", ctx)
-                return
-
-            if not self.is_not_liebwin_busy:
-                await self.__display_lack_of_player(ctx, "Liebwina")
-                return
-
-            banned = self.__read_blacklist_players("liebwin")
-            if str(ctx.author.id) in banned and not self.is_liebwin_eager_for_many_games:
-                we_played_log = self.translation.translate("GAMES.EYE.LIEBWIN.WE_PLAYED")
-                await ctx.respond(f"**Liebwin:**\n{we_played_log}")
-                return
-
-            if 1 < number < 10:
-                self.is_not_liebwin_busy = False
-                self.liebwin_bid = number
-                self.id_liebwin_game = uuid.uuid4()
-                self.liebwin_enemy_id = ctx.author.id
-                self.player_liebwin_dices = 1
-                self.liebwin_dices = 1
-                self.liebwin_game_strategy = random.randint(1, 3)
-
-                liebwin_initiative, player_initiative = self.__roll_initiative()
-                self.__generate_initiative_log({
-                    "id_game": self.id_liebwin_game,
-                    "bot": "liebwin",
-                    "player": ctx.author,
-                    "bot_initiative": liebwin_initiative,
-                    "player_initiative": player_initiative,
-                    "bot_strategy": self.liebwin_game_strategy,
-                    "bid": number
-                })
-
-                beginning_of_game_liebwin = self.translation.translate(
-                    "GAMES.EYE.LIEBWIN.START",
-                    [
-                        {"bot_value": liebwin_initiative},
-                        {"player_value": player_initiative},
-                        {"player_name": ctx.author.display_name}
-                    ])
-                await ctx.respond(f"**Głos z eteru:**\n{beginning_of_game_liebwin}")
-
-                if liebwin_initiative < player_initiative:
-                    if self.liebwin_game_strategy > 1:
-                        await self.__liebwin_draw_die(ctx)
-                    else:
-                        results = await self.__perform_roll(
-                            self.liebwin_dices,
-                            ctx,
-                            "Liebwin"
-                        )
-
-                        if "9" in results:
-                            self.__save_winning_log({
-                                "id_game": self.id_liebwin_game,
-                                "roller": "liebwin",
-                                "loser": ctx.author.name,
-                                "bid": self.liebwin_bid,
-                                "result": results
-                            })
-
-                            victory_liebwin_log = self.translation.translate("GAMES.EYE.LIEBWIN.VICTORY")
-                            game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Liebwin"}, {"bid": self.liebwin_bid}])
-
-                            await ctx.respond(f"**Liebwin:**\n{victory_liebwin_log}\n\n**Głos z Eteru:**\n{game_is_done_log}")
-
-                            self.__add_to_already_played_file({
-                                "bot": "liebwin",
-                                "player": ctx.author.id
-                            })
-                            self.is_not_liebwin_busy = True
-                        else:
-                            self.__save_roll_log({
-                                "id_game": self.id_liebwin_game,
-                                "roller": "liebwin",
-                                "result": results
-                            })
-                            faiulre_liebwin_log = self.translation.translate("GAMES.EYE.LIEBWIN.FAIL")
-
-                            await ctx.respond(f"**Liebwin:**\n{faiulre_liebwin_log}")
-                else:
-                    await ctx.respond(f"{self.GENERAL_COMMANDS}")
-            elif isinstance(number, int):
-                await self.__display_wrong_thresold_message(
-                    ctx=ctx,
-                    name="liebwin",
-                    lower_limit=2,
-                    upper_limit=9,
-                    bid=number
-                )
-
-    @slash_command(name="wyzwij-gerald", guild_ids=LEGIT_SERVERS, description="Wyzwij Geralda na potyczkę w Oko")
-    async def challenge_gerald(self, ctx, number: Option(int, "Enter a number")):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
-            if await self.__is_rupella_in_action(ctx):
-                return
-
-            if not self.is_not_gerald_busy and self.gerald_enemy_id == ctx.author.id:
-                await self.__display_u_play_with_him("Gerald", ctx)
-                return
-
-            if not self.is_not_gerald_busy:
-                await self.__display_lack_of_player(ctx, "Geralda")
-                return
-
-            banned = self.__read_blacklist_players("gerald")
-            if str(ctx.author.id) in banned and not self.is_gerald_eager_for_many_games:
-                we_played_log = self.translation.translate("GAMES.EYE.GERALD.WE_PLAYED")
-                await ctx.respond(f"**Gerald:**\n{we_played_log}")
-                return
-
-            if 9 < number < 26:
-                self.is_not_gerald_busy = False
-                self.gerald_bid = number
-                self.id_gerald_game = uuid.uuid4()
-                self.gerald_enemy_id = ctx.author.id
-                self.player_gerald_dices = 1
-                self.gerald_dices = 1
-                self.gerald_game_strategy = random.randint(2, 4)
-
-                gerald_initiative, player_initiative = self.__roll_initiative()
-                self.__generate_initiative_log({
-                    "id_game": self.id_gerald_game,
-                    "bot": "gerald",
-                    "player": ctx.author,
-                    "bot_initiative": gerald_initiative,
-                    "player_initiative": player_initiative,
-                    "bot_strategy": self.gerald_game_strategy,
-                    "bid": number
-                })
-
-                beginning_of_game_gerald = self.translation.translate(
-                    "GAMES.EYE.GERALD.START",
-                    [
-                        {"bot_value": gerald_initiative},
-                        {"player_value": player_initiative},
-                        {"player_name": ctx.author.display_name}
-                    ])
-                await ctx.respond(f"**Głos z eteru:**\n{beginning_of_game_gerald}")
-
-                if gerald_initiative < player_initiative:
-                    await self.__gerald_draw_die(ctx)
-                else:
-                    await ctx.respond(f"{self.GENERAL_COMMANDS}")
-            elif isinstance(number, int):
-                await self.__display_wrong_thresold_message(
-                    ctx=ctx,
-                    name="gerald",
-                    lower_limit=10,
-                    upper_limit=25,
-                    bid=number
-                )
-
-    @slash_command(name="wyzwij-amalberg", guild_ids=LEGIT_SERVERS, description="Wyzwij Amalberg na potyczkę w Oko")
-    async def challenge_amalberg(self, ctx, number: Option(int, "Enter a number")):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
-            if await self.__is_rupella_in_action(ctx):
-                return
-
-            if not self.is_not_amalberga_busy and self.amalberg_enemy_id == ctx.author.id:
-                await self.__display_u_play_with_him("Amalberg", ctx)
-                return
-
-            if not self.is_not_amalberga_busy:
-                await self.__display_lack_of_player(ctx, "Amalbergi")
-                return
-
-            banned = self.__read_blacklist_players("amalberg")
-            if str(ctx.author.id) in banned and not self.is_amalberg_eager_for_many_games:
-                we_played_log = self.translation.translate("GAMES.EYE.AMALBERG.WE_PLAYED")
-                await ctx.respond(f"**Amalberg:**\n{we_played_log}")
-                return
-
-            if 19 < number < 30:
-                self.is_not_amalberga_busy = False
-                self.amalberg_bid = number
-                self.id_amalberg_game = uuid.uuid4()
-                self.amalberg_enemy_id = ctx.author.id
-                self.player_amalberg_dices = 1
-                self.amalberg_dices = 1
-                self.amalberg_game_strategy = random.randint(3, 4)
-
-                amalberg_initiative, player_initiative = self.__roll_initiative()
-                self.__generate_initiative_log({
-                    "id_game": self.id_amalberg_game,
-                    "bot": "amalberg",
-                    "player": ctx.author,
-                    "bot_initiative": amalberg_initiative,
-                    "player_initiative": player_initiative,
-                    "bot_strategy": self.amalberg_game_strategy,
-                    "bid": number
-                })
-
-                beginning_of_game_amalberg = self.translation.translate(
-                    "GAMES.EYE.AMALBERG.START",
-                    [
-                        {"bot_value": amalberg_initiative},
-                        {"player_value": player_initiative},
-                        {"player_name": ctx.author.display_name}
-                    ])
-                await ctx.respond(f"**Głos z eteru:**\n{beginning_of_game_amalberg}")
-
-                if amalberg_initiative < player_initiative:
-                    await self.__amalberg_draw_die(ctx)
-                else:
-                    await ctx.respond(f"{self.GENERAL_COMMANDS}")
-            elif isinstance(number, int):
-                await self.__display_wrong_thresold_message(
-                    ctx=ctx,
-                    name="amalberg",
-                    lower_limit=20,
-                    upper_limit=29,
-                    bid=number
-                )
+    # @slash_command(name="wyzwij-amalberg", guild_ids=LEGIT_SERVERS, description="Wyzwij Amalberg na potyczkę w Oko")
+    # async def challenge_amalberg(self, ctx, number: Option(int, "Enter a number")):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #         if await self.__is_rupella_in_action(ctx):
+    #             return
+    #
+    #         if not self.is_not_amalberga_busy and self.amalberg_enemy_id == ctx.author.id:
+    #             await self.__display_u_play_with_him("Amalberg", ctx)
+    #             return
+    #
+    #         if not self.is_not_amalberga_busy:
+    #             await self.__display_lack_of_player(ctx, "Amalbergi")
+    #             return
+    #
+    #         banned = self.__read_blacklist_players("amalberg")
+    #         if str(ctx.author.id) in banned and not self.is_amalberg_eager_for_many_games:
+    #             we_played_log = self.translation.translate("GAMES.EYE.AMALBERG.WE_PLAYED")
+    #             await ctx.respond(f"**Amalberg:**\n{we_played_log}")
+    #             return
+    #
+    #         if 19 < number < 30:
+    #             self.is_not_amalberga_busy = False
+    #             self.amalberg_bid = number
+    #             self.id_amalberg_game = uuid.uuid4()
+    #             self.amalberg_enemy_id = ctx.author.id
+    #             self.player_amalberg_dices = 1
+    #             self.amalberg_dices = 1
+    #             self.amalberg_game_strategy = random.randint(3, 4)
+    #
+    #             amalberg_initiative, player_initiative = self.__roll_initiative()
+    #             self.__generate_initiative_log({
+    #                 "id_game": self.id_amalberg_game,
+    #                 "bot": "amalberg",
+    #                 "player": ctx.author,
+    #                 "bot_initiative": amalberg_initiative,
+    #                 "player_initiative": player_initiative,
+    #                 "bot_strategy": self.amalberg_game_strategy,
+    #                 "bid": number
+    #             })
+    #
+    #             beginning_of_game_amalberg = self.translation.translate(
+    #                 "GAMES.EYE.AMALBERG.START",
+    #                 [
+    #                     {"bot_value": amalberg_initiative},
+    #                     {"player_value": player_initiative},
+    #                     {"player_name": ctx.author.display_name}
+    #                 ])
+    #             await ctx.respond(f"**Głos z eteru:**\n{beginning_of_game_amalberg}")
+    #
+    #             if amalberg_initiative < player_initiative:
+    #                 await self.__amalberg_draw_die(ctx)
+    #             else:
+    #                 await ctx.respond(f"{self.GENERAL_COMMANDS}")
+    #         elif isinstance(number, int):
+    #             await self.__display_wrong_thresold_message(
+    #                 ctx=ctx,
+    #                 name="amalberg",
+    #                 lower_limit=20,
+    #                 upper_limit=29,
+    #                 bid=number
+    #             )
 
     @slash_command(name="wyzwij-jodokus", guild_ids=LEGIT_SERVERS, description="Wyzwij Jodokusa na potyczkę w Oko")
     async def challenge_jodokus(self, ctx, number: Option(int, "Enter a number")):
@@ -1734,66 +1734,66 @@ class EyeGame(commands.Cog):
 
             await ctx.respond(f"**🍞Talan🍞:**\n{faiulre_talan_log}\n{self.GENERAL_COMMANDS}")
 
-    @slash_command(name="dobieram-gerald", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Geraldem")
-    async def player_draw_die_in_gerald_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
-            if self.is_not_gerald_busy or (not self.is_not_gerald_busy and self.gerald_enemy_id != ctx.author.id):
-                await self.__cannot_draw(ctx)
-                return
-
-            self.player_gerald_dices += 1
-
-            self.__save_draw_log({
-                "id_game": self.id_gerald_game,
-                "bot": ctx.author.display_name,
-                "amount": self.player_gerald_dices
-            })
-
-            draw_response = self.translation.translate("GAMES.EYE.DRAW_PLAYER", [{"amount": str(self.player_gerald_dices)}])
-
-            await ctx.respond(f"**Głos z Eteru:**\n{draw_response}")
-
-            await self.__perform_gerald_action(ctx)
-
-    @slash_command(name="rzucam-gerald", guild_ids=LEGIT_SERVERS,
-                   description="Wykonaj rzut w grze z Geraldem")
-    async def player_roll_dices_in_gerald_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
-            if self.is_not_gerald_busy or (not self.is_not_gerald_busy and self.gerald_enemy_id != ctx.author.id):
-                await self.__cannot_roll(ctx)
-                return
-
-            player_gerald_roll_result = await self.__perform_roll(self.player_gerald_dices, ctx, ctx.author.display_name)
-
-            self.__save_roll_log({
-                "id_game": self.id_gerald_game,
-                "roller": ctx.author.display_name,
-                "result": player_gerald_roll_result
-            })
-
-            if "9" in player_gerald_roll_result:
-                self.__save_winning_log({
-                    "id_game": self.id_gerald_game,
-                    "roller": ctx.author.display_name,
-                    "bid": self.gerald_bid,
-                    "result": player_gerald_roll_result
-                })
-
-                gerald_reaction = self.translation.translate("GAMES.EYE.GERALD.REACTION_ON_SUCCESS_PLAYER")
-                game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.gerald_bid}])
-
-                await ctx.respond(f"**Gerald:**\n{gerald_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
-
-                self.__add_to_already_played_file({
-                    "bot": "gerald",
-                    "player": ctx.author.id
-                })
-                self.is_not_gerald_busy = True
-            else:
-                gerald_reaction = self.translation.translate("GAMES.EYE.GERALD.REACTION_ON_FAIL_PLAYER")
-                await ctx.respond(f"**Gerald:**\n{gerald_reaction}")
-
-                await self.__perform_gerald_action(ctx)
+    # @slash_command(name="dobieram-gerald", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Geraldem")
+    # async def player_draw_die_in_gerald_game(self, ctx):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #         if self.is_not_gerald_busy or (not self.is_not_gerald_busy and self.gerald_enemy_id != ctx.author.id):
+    #             await self.__cannot_draw(ctx)
+    #             return
+    #
+    #         self.player_gerald_dices += 1
+    #
+    #         self.__save_draw_log({
+    #             "id_game": self.id_gerald_game,
+    #             "bot": ctx.author.display_name,
+    #             "amount": self.player_gerald_dices
+    #         })
+    #
+    #         draw_response = self.translation.translate("GAMES.EYE.DRAW_PLAYER", [{"amount": str(self.player_gerald_dices)}])
+    #
+    #         await ctx.respond(f"**Głos z Eteru:**\n{draw_response}")
+    #
+    #         await self.__perform_gerald_action(ctx)
+    #
+    # @slash_command(name="rzucam-gerald", guild_ids=LEGIT_SERVERS,
+    #                description="Wykonaj rzut w grze z Geraldem")
+    # async def player_roll_dices_in_gerald_game(self, ctx):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #         if self.is_not_gerald_busy or (not self.is_not_gerald_busy and self.gerald_enemy_id != ctx.author.id):
+    #             await self.__cannot_roll(ctx)
+    #             return
+    #
+    #         player_gerald_roll_result = await self.__perform_roll(self.player_gerald_dices, ctx, ctx.author.display_name)
+    #
+    #         self.__save_roll_log({
+    #             "id_game": self.id_gerald_game,
+    #             "roller": ctx.author.display_name,
+    #             "result": player_gerald_roll_result
+    #         })
+    #
+    #         if "9" in player_gerald_roll_result:
+    #             self.__save_winning_log({
+    #                 "id_game": self.id_gerald_game,
+    #                 "roller": ctx.author.display_name,
+    #                 "bid": self.gerald_bid,
+    #                 "result": player_gerald_roll_result
+    #             })
+    #
+    #             gerald_reaction = self.translation.translate("GAMES.EYE.GERALD.REACTION_ON_SUCCESS_PLAYER")
+    #             game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.gerald_bid}])
+    #
+    #             await ctx.respond(f"**Gerald:**\n{gerald_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
+    #
+    #             self.__add_to_already_played_file({
+    #                 "bot": "gerald",
+    #                 "player": ctx.author.id
+    #             })
+    #             self.is_not_gerald_busy = True
+    #         else:
+    #             gerald_reaction = self.translation.translate("GAMES.EYE.GERALD.REACTION_ON_FAIL_PLAYER")
+    #             await ctx.respond(f"**Gerald:**\n{gerald_reaction}")
+    #
+    #             await self.__perform_gerald_action(ctx)
 
     async def __perform_gerald_action(self, ctx):
         if self.gerald_dices >= self.gerald_game_strategy:
@@ -1849,66 +1849,66 @@ class EyeGame(commands.Cog):
 
             await ctx.respond(f"**Gerald:**\n{failure_gerald_log}\n{self.GENERAL_COMMANDS}")
 
-    @slash_command(name="dobieram-amalberg", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Amalberg")
-    async def player_draw_die_in_amalberg_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
-            if self.is_not_amalberga_busy or (not self.is_not_amalberga_busy and self.amalberg_enemy_id != ctx.author.id):
-                await self.__cannot_draw(ctx)
-                return
+    # @slash_command(name="dobieram-amalberg", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Amalberg")
+    # async def player_draw_die_in_amalberg_game(self, ctx):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #         if self.is_not_amalberga_busy or (not self.is_not_amalberga_busy and self.amalberg_enemy_id != ctx.author.id):
+    #             await self.__cannot_draw(ctx)
+    #             return
+    #
+    #         self.player_amalberg_dices += 1
+    #
+    #         self.__save_draw_log({
+    #             "id_game": self.id_amalberg_game,
+    #             "bot": ctx.author.display_name,
+    #             "amount": self.player_amalberg_dices
+    #         })
+    #
+    #         draw_response = self.translation.translate("GAMES.EYE.DRAW_PLAYER", [{"amount": str(self.player_amalberg_dices)}])
+    #
+    #         await ctx.respond(f"**Głos z Eteru:**\n{draw_response}")
+    #
+    #         await self.__perform_amalberg_action(ctx)
 
-            self.player_amalberg_dices += 1
-
-            self.__save_draw_log({
-                "id_game": self.id_amalberg_game,
-                "bot": ctx.author.display_name,
-                "amount": self.player_amalberg_dices
-            })
-
-            draw_response = self.translation.translate("GAMES.EYE.DRAW_PLAYER", [{"amount": str(self.player_amalberg_dices)}])
-
-            await ctx.respond(f"**Głos z Eteru:**\n{draw_response}")
-
-            await self.__perform_amalberg_action(ctx)
-
-    @slash_command(name="rzucam-amalberg", guild_ids=LEGIT_SERVERS,
-                   description="Wykonaj rzut w grze z Amalberg")
-    async def player_roll_dices_in_amalberg_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
-            if self.is_not_amalberga_busy or (not self.is_not_amalberga_busy and self.amalberg_enemy_id != ctx.author.id):
-                await self.__cannot_roll(ctx)
-                return
-
-            player_amalberg_roll_result = await self.__perform_roll(self.player_amalberg_dices, ctx, ctx.author.display_name)
-
-            self.__save_roll_log({
-                "id_game": self.id_amalberg_game,
-                "roller": ctx.author.display_name,
-                "result": player_amalberg_roll_result
-            })
-
-            if "9" in player_amalberg_roll_result:
-                self.__save_winning_log({
-                    "id_game": self.id_amalberg_game,
-                    "roller": ctx.author.display_name,
-                    "bid": self.amalberg_bid,
-                    "result": player_amalberg_roll_result
-                })
-
-                amalberg_reaction = self.translation.translate("GAMES.EYE.AMALBERG.REACTION_ON_SUCCESS_PLAYER")
-                game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.amalberg_bid}])
-
-                await ctx.respond(f"**Amalberg:**\n{amalberg_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
-
-                self.__add_to_already_played_file({
-                    "bot": "amalberg",
-                    "player": ctx.author.id
-                })
-                self.is_not_amalberga_busy = True
-            else:
-                amalberg_reaction = self.translation.translate("GAMES.EYE.AMALBERG.REACTION_ON_FAIL_PLAYER")
-                await ctx.respond(f"**Amalberg:**\n{amalberg_reaction}")
-
-                await self.__perform_amalberg_action(ctx)
+    # @slash_command(name="rzucam-amalberg", guild_ids=LEGIT_SERVERS,
+    #                description="Wykonaj rzut w grze z Amalberg")
+    # async def player_roll_dices_in_amalberg_game(self, ctx):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #         if self.is_not_amalberga_busy or (not self.is_not_amalberga_busy and self.amalberg_enemy_id != ctx.author.id):
+    #             await self.__cannot_roll(ctx)
+    #             return
+    #
+    #         player_amalberg_roll_result = await self.__perform_roll(self.player_amalberg_dices, ctx, ctx.author.display_name)
+    #
+    #         self.__save_roll_log({
+    #             "id_game": self.id_amalberg_game,
+    #             "roller": ctx.author.display_name,
+    #             "result": player_amalberg_roll_result
+    #         })
+    #
+    #         if "9" in player_amalberg_roll_result:
+    #             self.__save_winning_log({
+    #                 "id_game": self.id_amalberg_game,
+    #                 "roller": ctx.author.display_name,
+    #                 "bid": self.amalberg_bid,
+    #                 "result": player_amalberg_roll_result
+    #             })
+    #
+    #             amalberg_reaction = self.translation.translate("GAMES.EYE.AMALBERG.REACTION_ON_SUCCESS_PLAYER")
+    #             game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.amalberg_bid}])
+    #
+    #             await ctx.respond(f"**Amalberg:**\n{amalberg_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
+    #
+    #             self.__add_to_already_played_file({
+    #                 "bot": "amalberg",
+    #                 "player": ctx.author.id
+    #             })
+    #             self.is_not_amalberga_busy = True
+    #         else:
+    #             amalberg_reaction = self.translation.translate("GAMES.EYE.AMALBERG.REACTION_ON_FAIL_PLAYER")
+    #             await ctx.respond(f"**Amalberg:**\n{amalberg_reaction}")
+    #
+    #             await self.__perform_amalberg_action(ctx)
 
     async def __perform_amalberg_action(self, ctx):
         if self.amalberg_dices >= self.amalberg_game_strategy:
@@ -1964,66 +1964,66 @@ class EyeGame(commands.Cog):
 
             await ctx.respond(f"**Amalberg:**\n{failure_amalberg_log}\n{self.GENERAL_COMMANDS}")
 
-    @slash_command(name="dobieram-liebwin", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Liebwinem")
-    async def player_draw_die_in_liebwin_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
-            if self.is_not_liebwin_busy or (not self.is_not_liebwin_busy and self.liebwin_enemy_id != ctx.author.id):
-                await self.__cannot_draw(ctx)
-                return
-
-            self.player_liebwin_dices += 1
-
-            self.__save_draw_log({
-                "id_game": self.id_liebwin_game,
-                "bot": ctx.author.display_name,
-                "amount": self.player_liebwin_dices
-            })
-
-            draw_response = self.translation.translate("GAMES.EYE.DRAW_PLAYER", [{"amount": str(self.player_liebwin_dices)}])
-
-            await ctx.respond(f"**Głos z Eteru:**\n{draw_response}")
-
-            await self.__perform_liebwin_action(ctx)
-
-    @slash_command(name="rzucam-liebwin", guild_ids=LEGIT_SERVERS,
-                   description="Wykonaj rzut w grze z Liebwinem")
-    async def player_roll_dices_in_liebwin_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
-            if self.is_not_liebwin_busy or (not self.is_not_liebwin_busy and self.liebwin_enemy_id != ctx.author.id):
-                await self.__cannot_roll(ctx)
-                return
-
-            player_liebwin_roll_result = await self.__perform_roll(self.player_liebwin_dices, ctx, ctx.author.display_name)
-
-            self.__save_roll_log({
-                "id_game": self.id_liebwin_game,
-                "roller": ctx.author.display_name,
-                "result": player_liebwin_roll_result
-            })
-
-            if "9" in player_liebwin_roll_result:
-                self.__save_winning_log({
-                    "id_game": self.id_liebwin_game,
-                    "roller": ctx.author.display_name,
-                    "bid": self.liebwin_bid,
-                    "result": player_liebwin_roll_result
-                })
-
-                liebwin_reaction = self.translation.translate("GAMES.EYE.LIEBWIN.REACTION_ON_SUCCESS_PLAYER")
-                game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.liebwin_bid}])
-
-                await ctx.respond(f"**Liebwin:**\n{liebwin_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
-
-                self.__add_to_already_played_file({
-                    "bot": "liebwin",
-                    "player": ctx.author.id
-                })
-                self.is_not_liebwin_busy = True
-            else:
-                liebwin_reaction = self.translation.translate("GAMES.EYE.LIEBWIN.REACTION_ON_FAIL_PLAYER")
-                await ctx.respond(f"**Liebwin:**\n{liebwin_reaction}")
-
-                await self.__perform_liebwin_action(ctx)
+    # @slash_command(name="dobieram-liebwin", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Liebwinem")
+    # async def player_draw_die_in_liebwin_game(self, ctx):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #         if self.is_not_liebwin_busy or (not self.is_not_liebwin_busy and self.liebwin_enemy_id != ctx.author.id):
+    #             await self.__cannot_draw(ctx)
+    #             return
+    #
+    #         self.player_liebwin_dices += 1
+    #
+    #         self.__save_draw_log({
+    #             "id_game": self.id_liebwin_game,
+    #             "bot": ctx.author.display_name,
+    #             "amount": self.player_liebwin_dices
+    #         })
+    #
+    #         draw_response = self.translation.translate("GAMES.EYE.DRAW_PLAYER", [{"amount": str(self.player_liebwin_dices)}])
+    #
+    #         await ctx.respond(f"**Głos z Eteru:**\n{draw_response}")
+    #
+    #         await self.__perform_liebwin_action(ctx)
+    #
+    # @slash_command(name="rzucam-liebwin", guild_ids=LEGIT_SERVERS,
+    #                description="Wykonaj rzut w grze z Liebwinem")
+    # async def player_roll_dices_in_liebwin_game(self, ctx):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #         if self.is_not_liebwin_busy or (not self.is_not_liebwin_busy and self.liebwin_enemy_id != ctx.author.id):
+    #             await self.__cannot_roll(ctx)
+    #             return
+    #
+    #         player_liebwin_roll_result = await self.__perform_roll(self.player_liebwin_dices, ctx, ctx.author.display_name)
+    #
+    #         self.__save_roll_log({
+    #             "id_game": self.id_liebwin_game,
+    #             "roller": ctx.author.display_name,
+    #             "result": player_liebwin_roll_result
+    #         })
+    #
+    #         if "9" in player_liebwin_roll_result:
+    #             self.__save_winning_log({
+    #                 "id_game": self.id_liebwin_game,
+    #                 "roller": ctx.author.display_name,
+    #                 "bid": self.liebwin_bid,
+    #                 "result": player_liebwin_roll_result
+    #             })
+    #
+    #             liebwin_reaction = self.translation.translate("GAMES.EYE.LIEBWIN.REACTION_ON_SUCCESS_PLAYER")
+    #             game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.liebwin_bid}])
+    #
+    #             await ctx.respond(f"**Liebwin:**\n{liebwin_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
+    #
+    #             self.__add_to_already_played_file({
+    #                 "bot": "liebwin",
+    #                 "player": ctx.author.id
+    #             })
+    #             self.is_not_liebwin_busy = True
+    #         else:
+    #             liebwin_reaction = self.translation.translate("GAMES.EYE.LIEBWIN.REACTION_ON_FAIL_PLAYER")
+    #             await ctx.respond(f"**Liebwin:**\n{liebwin_reaction}")
+    #
+    #             await self.__perform_liebwin_action(ctx)
 
     async def __perform_liebwin_action(self, ctx):
         if self.liebwin_dices >= self.liebwin_game_strategy:
@@ -2079,66 +2079,66 @@ class EyeGame(commands.Cog):
 
             await ctx.respond(f"**Liebwin:**\n{failure_liebwin_log}\n{self.GENERAL_COMMANDS}")
 
-    @slash_command(name="dobieram-guerino", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Guerino")
-    async def player_draw_die_in_guerino_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
-            if self.is_not_guerino_busy or (not self.is_not_guerino_busy and self.guerino_enemy_id != ctx.author.id):
-                await self.__cannot_draw(ctx)
-                return
-
-            self.player_guerino_dices += 1
-
-            self.__save_draw_log({
-                "id_game": self.id_guerino_game,
-                "bot": ctx.author.display_name,
-                "amount": self.player_guerino_dices
-            })
-
-            draw_response = self.translation.translate("GAMES.EYE.DRAW_PLAYER", [{"amount": str(self.player_guerino_dices)}])
-
-            await ctx.respond(f"**Głos z Eteru:**\n{draw_response}")
-
-            await self.__perform_guerino_action(ctx)
-
-    @slash_command(name="rzucam-guerino", guild_ids=LEGIT_SERVERS,
-                   description="Wykonaj rzut w grze z Guerino")
-    async def player_roll_dices_in_guerino_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
-            if self.is_not_guerino_busy or (not self.is_not_guerino_busy and self.guerino_enemy_id != ctx.author.id):
-                await self.__cannot_roll(ctx)
-                return
-
-            player_guerino_roll_result = await self.__perform_roll(self.player_guerino_dices, ctx, ctx.author.display_name)
-
-            self.__save_roll_log({
-                "id_game": self.id_guerino_game,
-                "roller": ctx.author.display_name,
-                "result": player_guerino_roll_result
-            })
-
-            if "9" in player_guerino_roll_result:
-                self.__save_winning_log({
-                    "id_game": self.id_guerino_game,
-                    "roller": ctx.author.display_name,
-                    "bid": self.guerino_bid,
-                    "result": player_guerino_roll_result
-                })
-
-                guerino_reaction = self.translation.translate("GAMES.EYE.GUERINO.REACTION_ON_SUCCESS_PLAYER")
-                game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.guerino_bid}])
-
-                await ctx.respond(f"**Guerino:**\n{guerino_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
-
-                self.__add_to_already_played_file({
-                    "bot": "guerino",
-                    "player": ctx.author.id
-                })
-                self.is_not_guerino_busy = True
-            else:
-                guerino_reaction = self.translation.translate("GAMES.EYE.GUERINO.REACTION_ON_FAIL_PLAYER")
-                await ctx.respond(f"**Guerino:**\n{guerino_reaction}")
-
-                await self.__perform_guerino_action(ctx)
+    # @slash_command(name="dobieram-guerino", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Guerino")
+    # async def player_draw_die_in_guerino_game(self, ctx):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #         if self.is_not_guerino_busy or (not self.is_not_guerino_busy and self.guerino_enemy_id != ctx.author.id):
+    #             await self.__cannot_draw(ctx)
+    #             return
+    #
+    #         self.player_guerino_dices += 1
+    #
+    #         self.__save_draw_log({
+    #             "id_game": self.id_guerino_game,
+    #             "bot": ctx.author.display_name,
+    #             "amount": self.player_guerino_dices
+    #         })
+    #
+    #         draw_response = self.translation.translate("GAMES.EYE.DRAW_PLAYER", [{"amount": str(self.player_guerino_dices)}])
+    #
+    #         await ctx.respond(f"**Głos z Eteru:**\n{draw_response}")
+    #
+    #         await self.__perform_guerino_action(ctx)
+    #
+    # @slash_command(name="rzucam-guerino", guild_ids=LEGIT_SERVERS,
+    #                description="Wykonaj rzut w grze z Guerino")
+    # async def player_roll_dices_in_guerino_game(self, ctx):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #         if self.is_not_guerino_busy or (not self.is_not_guerino_busy and self.guerino_enemy_id != ctx.author.id):
+    #             await self.__cannot_roll(ctx)
+    #             return
+    #
+    #         player_guerino_roll_result = await self.__perform_roll(self.player_guerino_dices, ctx, ctx.author.display_name)
+    #
+    #         self.__save_roll_log({
+    #             "id_game": self.id_guerino_game,
+    #             "roller": ctx.author.display_name,
+    #             "result": player_guerino_roll_result
+    #         })
+    #
+    #         if "9" in player_guerino_roll_result:
+    #             self.__save_winning_log({
+    #                 "id_game": self.id_guerino_game,
+    #                 "roller": ctx.author.display_name,
+    #                 "bid": self.guerino_bid,
+    #                 "result": player_guerino_roll_result
+    #             })
+    #
+    #             guerino_reaction = self.translation.translate("GAMES.EYE.GUERINO.REACTION_ON_SUCCESS_PLAYER")
+    #             game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.guerino_bid}])
+    #
+    #             await ctx.respond(f"**Guerino:**\n{guerino_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
+    #
+    #             self.__add_to_already_played_file({
+    #                 "bot": "guerino",
+    #                 "player": ctx.author.id
+    #             })
+    #             self.is_not_guerino_busy = True
+    #         else:
+    #             guerino_reaction = self.translation.translate("GAMES.EYE.GUERINO.REACTION_ON_FAIL_PLAYER")
+    #             await ctx.respond(f"**Guerino:**\n{guerino_reaction}")
+    #
+    #             await self.__perform_guerino_action(ctx)
 
     async def __perform_guerino_action(self, ctx):
         if self.guerino_dices >= self.guerino_game_strategy:

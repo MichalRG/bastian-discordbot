@@ -27,7 +27,7 @@
       "DRAW_PLAYER": "Sięgasz po kość ze stosika na środku i dorzucasz do swojej puli (posiadasz {{amount}} kości).",
       "LACK_OF_PLAYER": "Hmm… Wygląda na to, że przeciwnik, którego szukasz jest zajęty. Może z kimś gra, a może dłubanie w nosie aż nadto go zajmuje.",
       "ROLL_RESULT": "{{name}} sięga po kości, mieszając je w dłoniach i turla po stole. Kości toczą się, 🎲 ukazując: {{result}}",
-      "GAME_IS_DONE": "**Gra zakończyła się zwycięstwem {{name}}. Zwycięzca zgarnia {{bid}} **\n(kwoty zostaną odpisane/ przypisane przez adminów w odpowiednim czasie ⌚)",
+      "GAME_IS_DONE": "**Gra zakończyła się zwycięstwem {{name}}. Zwycięzca zgarnia {{bid}} marnych miedziaków.**\n(kwoty zostaną odpisane/ przypisane przez adminów w odpowiednim czasie ⌚)",
       "CURRENT_IN_GAME_WITH_THIS_OPONENET": "Zastanawiasz się gdzie jest {{name}}, zdajesz sobie sprawę, że czeka on na Ciebie :person_facepalming:",
       "THROGNIK": {
         "WE_PLAYED": "A to Ty... My już graliśmy dziś, wypieprzaj nie grywam więcej niż raz z każdym w ciągu dnia ",
