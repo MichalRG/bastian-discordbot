@@ -144,12 +144,12 @@ class EyeGame(commands.Cog):
             await ctx.respond(f"**Głos z Eteru**:\n{success_translation}")
 
     @slash_command(name="kill-bastian", guild_ids=LEGIT_SERVERS, description="[Admin command]: turn off the bot")
-    async def get_logs(self, ctx):
+    async def kill_bastian(self, ctx):
         if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
             exit(0)
 
     @slash_command(name="get-bot-full-logs", guild_ids=LEGIT_SERVERS, description="[Admin command]: get logs file")
-    async def get_logs(self, ctx):
+    async def get_logs_full(self, ctx):
         if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
             path_to_logs = "./localLogs/oko/eye-game-logs.txt"
 
@@ -159,7 +159,7 @@ class EyeGame(commands.Cog):
             await ctx.respond(f"**Głos z Eteru**:\n{here_are_logs}", file=file)
 
     @slash_command(name="get-bot-sumup-logs", guild_ids=LEGIT_SERVERS, description="[Admin command]: get sumup log file")
-    async def get_logs(self, ctx):
+    async def get_logs_sumup(self, ctx):
         if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
             path_to_logs = "./localLogs/oko/eye-game-sumup-logs.txt"
 
@@ -1192,7 +1192,7 @@ class EyeGame(commands.Cog):
 
             await ctx.respond(f"**Hubert:**\n{failure_hubert_log}\n{self.GENERAL_COMMANDS}")
 
-    @slash_command(name="wyzwij-kaie", guild_ids=LEGIT_SERVERS, description="Wyzwij Kaie na potyczkę w Oko")
+    @slash_command(name="wyzwij-kaia", guild_ids=LEGIT_SERVERS, description="Wyzwij Kaie na potyczkę w Oko")
     async def challenge_kaia(self, ctx, number: Option(int, "Enter a number")):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
             if await self.__is_rupella_in_action(ctx):
@@ -1321,7 +1321,7 @@ class EyeGame(commands.Cog):
         else:
             await self.__kaia_draw_die(ctx)
 
-    async def __aubrey_kaia_die(self, ctx):
+    async def __kaia_draw_die(self, ctx):
         self.kaia_dices += 1
 
         draw_kaia = self.translation.translate('GAMES.EYE.KAIA.DRAW', [{"dices": str(self.kaia_dices)}])
