@@ -1275,7 +1275,7 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="rzucam-kaia", guild_ids=LEGIT_SERVERS,
                    description="Wykonaj rzut w grze z Kaią")
-    async def player_roll_dices_in_aubrey_game(self, ctx):
+    async def player_roll_dices_in_kaia_game(self, ctx):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
             if self.is_not_kaia_busy or (not self.is_not_kaia_busy and self.kaia_enemy_id != ctx.author.id):
                 await self.__cannot_roll(ctx)
