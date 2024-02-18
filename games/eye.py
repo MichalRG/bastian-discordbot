@@ -1500,27 +1500,27 @@ class EyeGame(commands.Cog):
 
             await ctx.respond(f"**Kaia:**\n{failure_kaia_log}\n{self.GENERAL_COMMANDS}")
 
-    @slash_command(name="dobieram-thrognik", guild_ids=LEGIT_SERVERS,
-                   description="Dobierz kość w grze z Thrognikiem")
-    async def player_draw_die_in_thrognik_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
-            if self.is_not_thrognik_busy or (not self.is_not_thrognik_busy and self.thrognik_enemy_id != ctx.author.id):
-                await self.__cannot_draw(ctx)
-                return
-
-            self.player_thrognik_dices += 1
-
-            self.__save_draw_log({
-                "id_game": self.id_thrognik_game,
-                "bot": ctx.author.display_name,
-                "amount": self.player_thrognik_dices
-            })
-
-            draw_response = self.translation.translate("GAMES.EYE.DRAW_PLAYER", [{"amount": str(self.player_thrognik_dices)}])
-
-            await ctx.respond(f"**Głos z Eteru:**\n{draw_response}")
-
-            await self.__perform_thrognik_action(ctx)
+    # @slash_command(name="dobieram-thrognik", guild_ids=LEGIT_SERVERS,
+    #                description="Dobierz kość w grze z Thrognikiem")
+    # async def player_draw_die_in_thrognik_game(self, ctx):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #         if self.is_not_thrognik_busy or (not self.is_not_thrognik_busy and self.thrognik_enemy_id != ctx.author.id):
+    #             await self.__cannot_draw(ctx)
+    #             return
+    #
+    #         self.player_thrognik_dices += 1
+    #
+    #         self.__save_draw_log({
+    #             "id_game": self.id_thrognik_game,
+    #             "bot": ctx.author.display_name,
+    #             "amount": self.player_thrognik_dices
+    #         })
+    #
+    #         draw_response = self.translation.translate("GAMES.EYE.DRAW_PLAYER", [{"amount": str(self.player_thrognik_dices)}])
+    #
+    #         await ctx.respond(f"**Głos z Eteru:**\n{draw_response}")
+    #
+    #         await self.__perform_thrognik_action(ctx)
 
     # @slash_command(name="rzucam-thrognik", guild_ids=LEGIT_SERVERS,
     #                description="Wykonaj rzut w grze z Thrognikiem")
