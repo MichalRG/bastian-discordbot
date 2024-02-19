@@ -9,7 +9,7 @@
     "process": true
   },
   "welcome": {
-    "process": true,
+    "process": false,
     "come_in": {
       "process": true
     },

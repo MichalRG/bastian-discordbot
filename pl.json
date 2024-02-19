@@ -42,7 +42,7 @@
       },
        "TALAN": {
         "WE_PLAYED": ["Talan BUŁECZKA nie ma dla ciebie czasu! Co? Myślałeś, że nie wiem o twoich żarcikach za moimi plecami?","Graliśmy. Już. Dziś. Czego nie rozumiesz?”,“Nie mam czasu dla ciebie."],
-        "NOT_ENOUGH": ["Sypnij więcej i gramy! Nie bądź leszcz jak Jodokus!","Dawaj więcej! Wygrzmocę cię jak Alrik Fennę!”,“Masz tylko tyle? Kpina! Na pewno coś tam chowasz!"],
+        "NOT_ENOUGH": ["Sypnij więcej i gramy! Nie bądź leszcz jak Jodokus!","Dawaj więcej! Wygrzmocę cię jak Alrik Fennę!","Masz tylko tyle? Kpina! Na pewno coś tam chowasz!"],
         "TOO_MUCH": ["Wiesz ile Bańka mnie kosztowała?! Nie mam tyle! Resztę miedziaków wydałem na spłatę frajerów z ostatniej wyprawy!","Nie… A może? Nie… Nie! Nie gram o tyle! Muszę się pilnować!","Mam trochę monet, ale nie wszystkie są do PRZEJEBANIA! Grajmy o mniej!"],
         "START": "*Dosiadasz się do stolika, przy którym siedzi... gnom! Istota zwęża oczka i marszczy nos, patrząc na ciebie.* Grajmy, szkoda czasu! *- woła, po czym chwyta jedną z kości i rzuca, by ustalić kto zaczyna. Wynik Talana to:* {{bot_value}} {{player_name}}: {{player_value}}",
         "DRAW": ["Z kośćmi jest jak z talanami. Im więcej, tym lepiej! *Talan sięga po kość.* (Aktualnie posiada: {{dices}})","Kolejna kosteczka nie zaszkodzi! *Talan sięga po kość.* (Aktualnie posiada: {{dices}})","Dobra, rzucam! Albo… Chuj, dobieram! *Talan sięga po kość.* (Aktualnie posiada: {{dices}})"],
@@ -86,8 +86,8 @@
       },
       "KAIA": {
         "WE_PLAYED": "Nie, nie… Dziś wystarczy. Pójdę do swojej kajuty. Boję się, że tu jest ten Kastner. Nie wierzę, że zginął.",
-        "NOT_ENOUGH": "Może dorzuciłbyś więcej? Zbieram na powrót do Nuln.",
-        "TOO_MUCH": "To dla mnie za dużo… Zostałam prawie z niczym.",
+        "NOT_ENOUGH": "Wiesz, dobrze mi idzie… Może zagramy o więcej?",
+        "TOO_MUCH": "Uzbierałam już trochę na powrót do Nuln. Nie chcę tego stracić.",
         "START": "*Dosiadasz się do stolika, przy którym siedzi rosła kobieta o małych i niepokojących oczkach.* Naprawdę? Chcesz ze mną zagrać? No dobrze… *- mówi, po czym rzuca jedną z kości, by ustalić kto zaczyna. Wynik Kai to:* {{bot_value}} {{player_name}}: {{player_value}}",
         "DRAW": "Ivo podarował mi takie kości na urodziny. Są prześliczne… *Kaia sięga po kość, ale zamiast zaczerpnąć z dostępnej kupki, sięga do własnej kieszonki.* (Aktualnie posiada: {{dices}})",
         "REACTION_ON_SUCCESS_PLAYER": "Wiedziałam, że tak będzie… Każdy chce mojej krzywdy! Ivo… Ivo, pomóż! Ivo? *Rozgląda się, bełkocząc niewyraźnie, po czym wstaje i odchodzi.*",

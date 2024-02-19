@@ -374,7 +374,7 @@ class EyeGame(commands.Cog):
                 self.talan_enemy_id = ctx.author.id
                 self.player_talan_dices = 1
                 self.talan_dices = 1
-                self.talan_game_strategy = random.randint(3, 4)
+                self.talan_game_strategy = random.randint(2, 3)
 
                 talan_initiative, player_initiative = self.__roll_initiative()
                 self.__generate_initiative_log({
@@ -1337,7 +1337,7 @@ class EyeGame(commands.Cog):
                 await ctx.respond(f"**Kaia:**\n{we_played_log}")
                 return
 
-            if 1 < number < 6:
+            if 4 < number < 11:
                 self.is_not_kaia_busy = False
                 self.kaia_bid = number
                 self.id_kaia_game = uuid.uuid4()
@@ -1374,8 +1374,8 @@ class EyeGame(commands.Cog):
                 await self.__display_wrong_thresold_message(
                     ctx=ctx,
                     name="kaia",
-                    lower_limit=2,
-                    upper_limit=5,
+                    lower_limit=5,
+                    upper_limit=10,
                     bid=number
                 )
 
@@ -1699,10 +1699,11 @@ class EyeGame(commands.Cog):
         })
 
     async def __talan_roll_dices(self, ctx):
-        results = await self.__perform_roll(
+        results = await self.__perform_cheat_roll(
             self.talan_dices,
             ctx,
-            "Talan"
+            "Talan",
+            "LOW"
         )
 
         if "9" in results:
@@ -2249,10 +2250,13 @@ class EyeGame(commands.Cog):
 
         return result
 
-    async def __perform_cheat_roll(self, dices: int, ctx, name: str) -> List[str]:
-        result = [random.randint(1, 14) for _ in range(dices)]
+    async def __perform_cheat_roll(self, dices: int, ctx, name: str, cheat_strength="STRONG") -> List[str]:
+        result = [random.randint(1, 14 if cheat_strength == "STRONG" else 12) for _ in range(dices)]
 
-        result = self.__transform_values(result)
+        if cheat_strength == "STRONG":
+            result = self.__transform_hard_chat_values(result)
+        elif cheat_strength == "LOW":
+            result = self.__transform_low_chat_values(result)
 
         comment_to_roll_result = \
             self.translation.translate("GAMES.EYE.ROLL_RESULT", [{"name": name}, {"result": ",".join(result)}])
@@ -2277,7 +2281,7 @@ class EyeGame(commands.Cog):
 
         return False
 
-    def __transform_values(self, arr: List[int]) -> List[str]:
+    def __transform_hard_chat_values(self, arr: List[int]) -> List[str]:
         for i in range(len(arr)):
             if 7 <= arr[i] <= 8:
                 arr[i] = "7"
@@ -2286,6 +2290,18 @@ class EyeGame(commands.Cog):
             elif 11 <= arr[i] <= 13:
                 arr[i] = "9"
             elif arr[i] == 14:
+                arr[i] = "10"
+            else:
+                arr[i] = str(arr[i])
+        return arr
+
+    def __transform_low_chat_values(self, arr: List[int]) -> List[str]:
+        for i in range(len(arr)):
+            if 7 <= arr[i] <= 8:
+                arr[i] = "8"
+            elif 9 <= arr[i] <= 10:
+                arr[i] = "9"
+            elif 11 <= arr[i] <= 12:
                 arr[i] = "10"
             else:
                 arr[i] = str(arr[i])
