@@ -257,7 +257,11 @@ class EyeGame(commands.Cog):
                 return
 
             success_translation = self.translation.translate("ADMINS.RESET_LOGS_SUCCESSFULLY_PASSED")
-            await ctx.respond(f"**Głos z Eteru**:\n{success_translation}")
+
+            path_to_log = "./imgs/log.jpg"
+            log = discord.File(path_to_log, filename="log.jpg")
+
+            await ctx.respond(f"**Głos z Eteru**:\n{success_translation}", file=log)
 
     @slash_command(name="oko-pomoc", guild_ids=LEGIT_SERVERS, description="Sprawdź dostępne komendy do gry w oko")
     async def available_commands(self, ctx):
@@ -1337,7 +1341,7 @@ class EyeGame(commands.Cog):
                 await ctx.respond(f"**Kaia:**\n{we_played_log}")
                 return
 
-            if 4 < number < 11:
+            if 4 < number < 16:
                 self.is_not_kaia_busy = False
                 self.kaia_bid = number
                 self.id_kaia_game = uuid.uuid4()
@@ -1375,7 +1379,7 @@ class EyeGame(commands.Cog):
                     ctx=ctx,
                     name="kaia",
                     lower_limit=5,
-                    upper_limit=10,
+                    upper_limit=15,
                     bid=number
                 )
 

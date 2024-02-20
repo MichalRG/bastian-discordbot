@@ -51,49 +51,49 @@
         "VICTORY": ["Było miło, ale się skończyło! A za wygrane miedziaki zakupię więcej sprzętu. Gratulacje, właśnie podreperowałeś budżet Mercatores… frajerze!","Ha, dziewiątka! Widzisz?! Widzisz?! No właśnie… Nie wiesz czy widzisz! Wszystko może być iluzją… A jaka jest prawda? Prawda jest taka, że tracisz monety, kmiocie!","HA! Weszło gładko jak Alrik w krasnoludzką cipę!"],
         "FAIL": ["Kurwaaa!", "Następnym razem wejdzie, czuję to w kościach!","Clevios Aleinsh… Ach, nieważne. Nie będę taki…"]
       },
-       "JODOKUS": {
-        "WE_PLAYED": "Wybacz, ale na jednej potyczce powinniśmy dziś poprzestać. Hazard budzi skrajne emocje, a każda skrajna emocja cieszy Mroczne Potęgi.",
-        "NOT_ENOUGH": "Zagrajmy o odrobinę większą kwotę. Moja praca w Averheim została przerwana, więc nie pogardzę szansą na większy zarobek.",
-        "TOO_MUCH": "Tak wysoka kwota wzniesie nasze emocje na wyżyny, a skrajne emocje są mi obce. Zagrajmy o maksymalnie dwadzieścia pensów.",
+      "JODOKUS": {
+        "WE_PLAYED": ["Wybacz, ale na jednej potyczce powinniśmy dziś poprzestać. Hazard budzi skrajne emocje, a każda skrajna emocja cieszy Mroczne Potęgi.","Już dziś graliśmy. Miło spędziłem czas, ale teraz muszę pomagać Talanowi.","Zagrajmy jutro. Chciałbym jeszcze przeczytać chociaż jeden esej."],
+        "NOT_ENOUGH": ["Zagrajmy o odrobinę większą kwotę. Moja praca w Averheim została przerwana, więc nie pogardzę szansą na większy zarobek.","Jeśli już mam ponieść się grzesznemu hazardowi, niech będzie to większa kwota","Grać o zaledwie kilka pensów? To nie przystoi zamożnemu człowiekowi z Altdorfu."],
+        "TOO_MUCH": ["Tak wysoka kwota wzniesie nasze emocje na wyżyny, a skrajne emocje są mi obce. Zagrajmy o maksymalnie dwadzieścia pensów.","Wybacz, ale nie zamierzam ryzykować utraty tak dużej kwoty.","Chcesz grać aż o tyle? Kusisz los, a ja wiem najlepiej, że los bywa przewrotny."],
         "START": "*Dosiadasz się do stolika, przy którym siedzi czarodziej w lśniącej szacie. Kilka osób spogląda w waszą stronę z obawą i zaciekawieniem, zupełnie jakbyście mieli spiskować.* Nie przejmuj się nimi. W końcu udowodnię im swoją wartość *- mówi, po czym chwyta jedną z kości i rzuca, by ustalić kto zaczyna. Wynik Jodokusa to:* {{bot_value}} {{player_name}}: {{player_value}}",
-        "DRAW": "Można splatać skomplikowane zaklęcia, ale bez pomocy wiatrów magii niewiele jest się w stanie osiągnąć. Chcę przez to powiedzieć, że zasoby są kluczowe. *Jodokus sięga po kość.* (Aktualnie posiada: {{dices}})",
-        "REACTION_ON_SUCCESS_PLAYER": "Każda przegrana nadaje wartości innym zwycięstwom. Dziękuję za to doświadczenie i gratuluję.",
-        "REACTION_ON_FAIL_PLAYER": "Nie martw się, prawdopodobieństwo i tak nie było po twojej stronie. Teraz moja kolej.",
-        "VICTORY": "Noc jest najczarniejsza tuż przed świtem. Być może to zwycięstwo jest pierwszym zwiastunem mojego odkupienia. Rad jestem, że przyjąłeś porażkę z klasą.",
-        "FAIL": "Los jest dla mnie niewdzięczny. Przywykłem."
+        "DRAW": ["Można splatać skomplikowane zaklęcia, ale bez pomocy wiatrów magii niewiele jest się w stanie osiągnąć. Chcę przez to powiedzieć, że zasoby są kluczowe. *Jodokus sięga po kość.* (Aktualnie posiada: {{dices}})","Nie wiem po czyjej stronie jest mityczne szczęście. Ale wiem, że szczęściu trzeba pomóc. *Jodokus sięga po kość.* (Aktualnie posiada: {{dices}})","Profesjonaliści minimalizują ryzyko. *Jodokus sięga po kość.* (Aktualnie posiada: {{dices}})"],
+        "REACTION_ON_SUCCESS_PLAYER": ["Każda przegrana nadaje wartości innym zwycięstwom. Dziękuję za to doświadczenie i gratuluję.","Czułem, że hazard nie był najlepszym pomysłem na dziś. Mam nadzieję, że przynajmniej ty się dobrze bawisz.","Może i przegrałem, ale muszę przyznać, że miło spędziłem czas. To miła odmiana od wiecznego nazywania mnie GĘSINĄ."],
+        "REACTION_ON_FAIL_PLAYER": ["Nie martw się, prawdopodobieństwo i tak nie było po twojej stronie. Teraz moja kolej.","Widziałem nadzieję w twoich oczach. Nie sądzisz, że zbyt mocno emocjonujesz się tym pojedynkiem?","A mogłeś dobrać… Popełniłeś błąd i ośmielę się go wykorzystać."],
+        "VICTORY": ["Noc jest najczarniejsza tuż przed świtem. Być może to zwycięstwo jest pierwszym zwiastunem mojego odkupienia. Rad jestem, że przyjąłeś porażkę z klasą.","Chociaż to prymitywne, jestem zmuszony stwierdzić, że to zwycięstwo wywołało uśmiech na mojej twarzy. Hmm… Być może to ostateczny dowód mojego upadku.","Przegrana, wygrana… to tylko składowe istnienia. Dualizm życia fascynuje mnie i przeraża… Ha, i znów ten dualizm się we mnie wkrada!"],
+        "FAIL": ["Los jest dla mnie niewdzięczny. Przywykłem.","Może i dobrze, że nie wyszło. Powinienem unikać dziewiątek, nie sądzisz?","Mogłem lepiej oszacować prawdopodobieństwo. Trzeba było dobrać."]
       },
-      "AUBREY": {
-        "WE_PLAYED": "Na dziś nam wystarczy. Mam kilka spraw na głowie. Ktoś musi trzymać tę misję w ryzach.",
-        "NOT_ENOUGH": "Jeśli mam poświęcić ci czas, musisz się bardziej postarać.",
-        "TOO_MUCH": "Strata takiej kwoty w prymitywnej potyczce hazardowej byłaby żałosna. Zaproponuj mniejszą wartość.",
+       "AUBREY": {
+        "WE_PLAYED": ["Na dziś nam wystarczy. Mam kilka spraw na głowie. Ktoś musi trzymać tę misję w ryzach.","Chcesz zagrać jeszcze raz? Chyba nie lubisz swoich pieniędzy. Pozwól, że ci pomogę, kulturalnie odmawiając.","Przestań mnie zaczepiać."],
+        "NOT_ENOUGH": ["Jeśli mam poświęcić ci czas, musisz się bardziej postarać.","Mam tylko chwilę, dlatego zagrajmy o więcej.","Drobne zachowaj dla pozostałych. Mnie interesują większe sumy."],
+        "TOO_MUCH": ["Strata takiej kwoty w prymitywnej potyczce hazardowej byłaby żałosna. Zaproponuj mniejszą wartość.","Naprawdę zamierzasz o tyle grać? Jesteś prymitywnym hazardzistą.","Ledwo zdobyłeś cokolwiek na wyprawach i już zamierzasz się tego pozbyć? Dobrze wiedzieć, że głowę masz tylko od parady."],
         "START": "*Dosiadasz się do stolika, przy którym siedzi kobieta w obcisłym skórzanym stroju.* Postaram się, żeby było szybko i bezboleśnie *- mówi, po czym chwyta jedną z kości i rzuca, by ustalić kto zaczyna. Wynik Aubrey to:* {{bot_value}} {{player_name}}: {{player_value}}",
-        "DRAW": "Przed ostatecznym uderzeniem należy zebrać wszystkie możliwe informacje i zasoby. *Aubrey sięga po kość.* (Aktualnie posiada: {{dices}})",
-        "REACTION_ON_SUCCESS_PLAYER": "W prawdziwym świecie liczy się coś więcej niż złudne szczęście. A jeśli chodzi o tę nieistotną potyczkę… Gratulacje.",
-        "REACTION_ON_FAIL_PLAYER": "Dokładnie tego się spodziewałam.",
-        "VICTORY": "Najcenniejsza w świecie jest informacja, ale pieniądzem nie pogardzę. W końcu za garść złota można posiąść niemal każdą wiedzę. Powodzenia w dalszych pojedynkach. Wiem, że to nie był twój ostatni.",
-        "FAIL": "Byłabym zdziwiona, gdyby udało się na tym etapie."
+        "DRAW": ["Przed ostatecznym uderzeniem należy zebrać wszystkie możliwe informacje i zasoby. *Aubrey sięga po kość.* (Aktualnie posiada: {{dices}})","Dobieram. *Aubrey sięga po kość.* (Aktualnie posiada: {{dices}})","Muszę mieć pewność. *Aubrey sięga po kość.* (Aktualnie posiada: {{dices}})"],
+        "REACTION_ON_SUCCESS_PLAYER": ["W prawdziwym świecie liczy się coś więcej niż złudne szczęście. A jeśli chodzi o tę nieistotną potyczkę… Gratulacje.","Nie wiem skąd twoje zdziwienie. Nawet ja nie jestem nieomylna. Gratulacje.","Wiem gdzie popełniłam błąd. Następnym razem nie będzie tak łatwo. Ale póki co… gratulacje."],
+        "REACTION_ON_FAIL_PLAYER": ["Dokładnie tego się spodziewałam.","*Unosi kąciki ust delikatnie w górę.*","To było do przewidzenia. Ja na twoim miejscu bym dobrała."] ,
+        "VICTORY": ["Najcenniejsza w świecie jest informacja, ale pieniądzem nie pogardzę. W końcu za garść złota można posiąść niemal każdą wiedzę. Powodzenia w dalszych pojedynkach. Wiem, że to nie był twój ostatni.","Przepełnia cię śmiałość i w tym przypominasz mi mojego brata. Na ten moment zaprowadziło cię to tam, gdzie jego. Na ten moment tylko w kościach. I oby tak pozostało.","Słyszałam, że nie lubisz mieć problemów. Nie martw się, już nie będziesz się martwić na co wydasz te monety."],
+        "FAIL": ["Byłabym zdziwiona, gdyby udało się na tym etapie.","*Zachowuje kamienną twarz.*","Przegrałam bitwę, ale wojna trwa."]
       },
-      "HUBERT": {
-        "WE_PLAYED": "Jeszcze raz? Nie… We łbie mi się już kręci!",
-        "NOT_ENOUGH": "O więcej grajmy! Kto nie ryzykuje ten piwa nie pije!",
-        "TOO_MUCH": "Hoho! Ktoś tu ma miedziaków za dużo! Za dobrze Mercatores płaci, za dobrze!",
+       "HUBERT": {
+        "WE_PLAYED": ["Jeszcze raz? Nie… We łbie mi się już kręci!","Możemy wypić bez grania. Zdrowie!","Jutro zagramy, obiecuję!"],
+        "NOT_ENOUGH": ["O więcej grajmy! Kto nie ryzykuje ten piwa nie pije!","Więcej monet, więcej piwa!","Porzucamy rzeki dziś i idziemy w góry! W sensie, że na wyżyny bogactwa! W sensie, że zagrajmy o więcej, kamracie!"],
+        "TOO_MUCH": ["Hoho! Ktoś tu ma miedziaków za dużo! Za dobrze Mercatores płaci, za dobrze!","Aż tyle? Nie mogę… Aubrey patrzy.","Jakbym zawsze grał o tyle to bym już dawno przegrał ten statek! Uspokój się z tymi kwotami!"],
         "START": "*Dosiadasz się do stolika, przy którym siedzi potężny mężczyzna o gęstej czarnej brodzie.* Gra to tylko dodatek do smakowitego piwa. Zdrowie Oddona! *- mówi, po czym chwyta kufel i szturcha nim jedną z kości, by ustalić kto zaczyna. Wynik Huberta to:* {{bot_value}} {{player_name}}: {{player_value}}",
-        "DRAW": "Nie ma co ryzykować… Dobieram! *Kapitan Hubert sięga po kość.* (Aktualnie posiada: {{dices}})",
-        "REACTION_ON_SUCCESS_PLAYER": "Pięknie rozegrane! Aż duma rozpiera, że tu tacy kamraci zaradni! Twoje zdrowie!",
-        "REACTION_ON_FAIL_PLAYER": "Hoho! Mam szansę!",
-        "VICTORY": "Tym razem szczęście po mojej stronie! Przyjdź jutro to może się odkujesz. Twoje zdrowie!",
-        "FAIL": "Figlarne te kości, figlarne! Hohoho!"
+        "DRAW": ["Nie ma co ryzykować… Dobieram! *Kapitan Hubert sięga po kość.* (Aktualnie posiada: {{dices}})","Jeszcze jedno piwo, jeszcze jedna kość! *Kapitan Hubert sięga po kość.* (Aktualnie posiada: {{dices}})","Zdrowie Oddona! *Kapitan Hubert sięga po kość.* (Aktualnie posiada: {{dices}})"],
+        "REACTION_ON_SUCCESS_PLAYER": ["Pięknie rozegrane! Aż duma rozpiera, że tu tacy kamraci zaradni! Twoje zdrowie!","Hoho! To pewnie przez to, że już mi we łbie szumi! Ale jak się łajba nie buja to łajbą nie jest! Zdrooowieee!","Gdzie tak grać uczą? Niebywałe!"],
+        "REACTION_ON_FAIL_PLAYER": ["Hoho! Mam szansę!","Przynajmniej wiadomo, że kości nie są lewe!","Hoho!"],
+        "VICTORY": ["Tym razem szczęście po mojej stronie! Przyjdź jutro to może się odkujesz. Twoje zdrowie!","Wiatr zawiał w dobrą stronę! Niech nas niesie, niech nas niesie! Zdrowie!","Pożyczyłem od Kai kości i nagle wygrałem, niebywałe! Ha! No co tak patrzysz? Żartuję przeca! Ale Kaia… współczuję jej, ale oszukiwać nie powinna, nie godzi się! Nie graj z nią, bo tylko stracisz!"],
+        "FAIL": ["Figlarne te kości, figlarne! Hohoho!","Wiatr nie taki, wiatr nie taki!","Niech to!"]
       },
       "KAIA": {
-        "WE_PLAYED": "Nie, nie… Dziś wystarczy. Pójdę do swojej kajuty. Boję się, że tu jest ten Kastner. Nie wierzę, że zginął.",
-        "NOT_ENOUGH": "Wiesz, dobrze mi idzie… Może zagramy o więcej?",
-        "TOO_MUCH": "Uzbierałam już trochę na powrót do Nuln. Nie chcę tego stracić.",
+        "WE_PLAYED": ["Nie, nie… Dziś wystarczy. Pójdę do swojej kajuty. Boję się, że tu jest ten Kastner. Nie wierzę, że zginął.","Słyszałam jak mówiłeś, że oszukuję… Jest mi przykro, wiesz?","Nie nadaję się już dziś do gry…"],
+        "NOT_ENOUGH": ["Wiesz, dobrze mi idzie… Może zagramy o więcej?","Chciałabym wrócić do Nuln jak najszybciej. Dorzucisz troszkę?","Ivo mówił, że z życia trzeba czerpać garściami. Może miał rację i powinniśmy… zagrać o więcej?"],
+        "TOO_MUCH": ["Uzbierałam już trochę na powrót do Nuln. Nie chcę tego stracić.","To dla mnie za dużo…","A może… Nie, nie, nie powinnam!"],
         "START": "*Dosiadasz się do stolika, przy którym siedzi rosła kobieta o małych i niepokojących oczkach.* Naprawdę? Chcesz ze mną zagrać? No dobrze… *- mówi, po czym rzuca jedną z kości, by ustalić kto zaczyna. Wynik Kai to:* {{bot_value}} {{player_name}}: {{player_value}}",
-        "DRAW": "Ivo podarował mi takie kości na urodziny. Są prześliczne… *Kaia sięga po kość, ale zamiast zaczerpnąć z dostępnej kupki, sięga do własnej kieszonki.* (Aktualnie posiada: {{dices}})",
-        "REACTION_ON_SUCCESS_PLAYER": "Wiedziałam, że tak będzie… Każdy chce mojej krzywdy! Ivo… Ivo, pomóż! Ivo? *Rozgląda się, bełkocząc niewyraźnie, po czym wstaje i odchodzi.*",
-        "REACTION_ON_FAIL_PLAYER": "Pewnie następnym razem ci się uda…",
-        "VICTORY": "Ja… Ja… Wygrałam? Naprawdę? I te wszystkie miedziaki… moje?!",
-        "FAIL": "Nie nadaję się do tego… Mój braciszek to dopiero ma głowę do takich rzeczy!"
+        "DRAW": ["Ivo podarował mi takie kości na urodziny. Są prześliczne… *Kaia sięga po kość, ale zamiast zaczerpnąć z dostępnej kupki, sięga do własnej kieszonki.* (Aktualnie posiada: {{dices}})","Trzymanie kostek poprawia mi humor. Też tak masz? *Kaia sięga po kość, ale zamiast zaczerpnąć z dostępnej kupki, sięga do własnej kieszonki.* (Aktualnie posiada: {{dices}})","Te kostki są przepiękne. *Kaia sięga po kość, ale zamiast zaczerpnąć z dostępnej kupki, sięga do własnej kieszonki.* (Aktualnie posiada: {{dices}})"],
+        "REACTION_ON_SUCCESS_PLAYER": ["Wiedziałam, że tak będzie… Każdy chce mojej krzywdy! Ivo… Ivo, pomóż! Ivo? *Rozgląda się, bełkocząc niewyraźnie, po czym wstaje i odchodzi.*","Dawno nic mi tak nie szło jak granie w kości… Widać to było tylko na chwilę.","Ale… Ale… Gdybym tylko teraz rzuciła… Ach."],
+        "REACTION_ON_FAIL_PLAYER": ["Pewnie następnym razem ci się uda…","Wiem jakie to uczucie jak nie wychodzi…","Ach… Może mi się uda?"],
+        "VICTORY": ["Ja… Ja… Wygrałam? Naprawdę? I te wszystkie miedziaki… moje?!","Każdy kolejny miedziak jakby znaczył mniej… Chyba już wiem jak czuje się Ivo. Ivo ma wszystko, wiesz?","Już prawie mnie stać na powrót do Nuln. Tylko kto mnie tam zabierze… I czy braciszek się ucieszy na mój widok?"],
+        "FAIL": ["Nie nadaję się do tego… Mój braciszek to dopiero ma głowę do takich rzeczy!","Oj!","Chyba szczęście mnie opuściło…"]
       },
       "GUERINO": {
         "WE_PLAYED": "Aj, no my już graliśmy, a ja to tak miedziaczków ledwo na hazard mam, wystarczy na dziś wspólnej gry.",
