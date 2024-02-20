@@ -92,7 +92,7 @@
         "DRAW": ["Ivo podarował mi takie kości na urodziny. Są prześliczne… *Kaia sięga po kość, ale zamiast zaczerpnąć z dostępnej kupki, sięga do własnej kieszonki.* (Aktualnie posiada: {{dices}})","Trzymanie kostek poprawia mi humor. Też tak masz? *Kaia sięga po kość, ale zamiast zaczerpnąć z dostępnej kupki, sięga do własnej kieszonki.* (Aktualnie posiada: {{dices}})","Te kostki są przepiękne. *Kaia sięga po kość, ale zamiast zaczerpnąć z dostępnej kupki, sięga do własnej kieszonki.* (Aktualnie posiada: {{dices}})"],
         "REACTION_ON_SUCCESS_PLAYER": ["Wiedziałam, że tak będzie… Każdy chce mojej krzywdy! Ivo… Ivo, pomóż! Ivo? *Rozgląda się, bełkocząc niewyraźnie, po czym wstaje i odchodzi.*","Dawno nic mi tak nie szło jak granie w kości… Widać to było tylko na chwilę.","Ale… Ale… Gdybym tylko teraz rzuciła… Ach."],
         "REACTION_ON_FAIL_PLAYER": ["Pewnie następnym razem ci się uda…","Wiem jakie to uczucie jak nie wychodzi…","Ach… Może mi się uda?"],
-        "VICTORY": ["Ja… Ja… Wygrałam? Naprawdę? I te wszystkie miedziaki… moje?!","Każdy kolejny miedziak jakby znaczył mniej… Chyba już wiem jak czuje się Ivo. Ivo ma wszystko, wiesz?","Już prawie mnie stać na powrót do Nuln. Tylko kto mnie tam zabierze… I czy braciszek się ucieszy na mój widok?"],
+        "VICTORY": ["Ja… Ja… Wygrałam? Naprawdę? I te wszystkie miedziaki… moje?!","Każdy kolejny miedziak jakby znaczył mniej… Chyba już wiem jak czuje się mój brat. Ivo ma wszystko, wiesz?","Już prawie stać mnie na powrót do Nuln. Tylko czy braciszek się ucieszy na mój widok?"],
         "FAIL": ["Nie nadaję się do tego… Mój braciszek to dopiero ma głowę do takich rzeczy!","Oj!","Chyba szczęście mnie opuściło…"]
       },
       "GUERINO": {
