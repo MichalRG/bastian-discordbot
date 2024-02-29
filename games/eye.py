@@ -371,7 +371,7 @@ class EyeGame(commands.Cog):
                 await ctx.respond(f"**🍞Talan🍞:**\n{we_played_log}")
                 return
 
-            if 19 < number < 41:
+            if 39 < number < 81:
                 self.is_not_talan_busy = False
                 self.talan_bid = number
                 self.id_talan_game = uuid.uuid4()
@@ -408,8 +408,8 @@ class EyeGame(commands.Cog):
                 await self.__display_wrong_thresold_message(
                     ctx=ctx,
                     name="talan",
-                    lower_limit=20,
-                    upper_limit=40,
+                    lower_limit=40,
+                    upper_limit=80,
                     bid=number
                 )
 
@@ -754,7 +754,7 @@ class EyeGame(commands.Cog):
                 await ctx.respond(f"**Jodokus:**\n{we_played_log}")
                 return
 
-            if 9 < number < 21:
+            if 19 < number < 41:
                 self.is_not_jodokus_busy = False
                 self.jodokus_bid = number
                 self.id_jodokus_game = uuid.uuid4()
@@ -791,8 +791,8 @@ class EyeGame(commands.Cog):
                 await self.__display_wrong_thresold_message(
                     ctx=ctx,
                     name="jodokus",
-                    lower_limit=10,
-                    upper_limit=20,
+                    lower_limit=20,
+                    upper_limit=40,
                     bid=number
                 )
 
@@ -936,7 +936,7 @@ class EyeGame(commands.Cog):
                 await ctx.respond(f"**Aubrey:**\n{we_played_log}")
                 return
 
-            if 9 < number < 31:
+            if 19 < number < 61:
                 self.is_not_aubrey_busy = False
                 self.aubrey_bid = number
                 self.id_aubrey_game = uuid.uuid4()
@@ -973,8 +973,8 @@ class EyeGame(commands.Cog):
                 await self.__display_wrong_thresold_message(
                     ctx=ctx,
                     name="aubrey",
-                    lower_limit=10,
-                    upper_limit=30,
+                    lower_limit=20,
+                    upper_limit=60,
                     bid=number
                 )
 
@@ -1119,7 +1119,7 @@ class EyeGame(commands.Cog):
                 await ctx.respond(f"**Hubert:**\n{we_played_log}")
                 return
 
-            if 9 < number < 21:
+            if 19 < number < 41:
                 self.is_not_hubert_busy = False
                 self.hubert_bid = number
                 self.id_hubert_game = uuid.uuid4()
@@ -1195,8 +1195,8 @@ class EyeGame(commands.Cog):
                 await self.__display_wrong_thresold_message(
                     ctx=ctx,
                     name="hubert",
-                    lower_limit=10,
-                    upper_limit=20,
+                    lower_limit=20,
+                    upper_limit=40,
                     bid=number
                 )
 
@@ -1341,7 +1341,7 @@ class EyeGame(commands.Cog):
                 await ctx.respond(f"**Kaia:**\n{we_played_log}")
                 return
 
-            if 4 < number < 16:
+            if 9 < number < 31:
                 self.is_not_kaia_busy = False
                 self.kaia_bid = number
                 self.id_kaia_game = uuid.uuid4()
@@ -1378,8 +1378,8 @@ class EyeGame(commands.Cog):
                 await self.__display_wrong_thresold_message(
                     ctx=ctx,
                     name="kaia",
-                    lower_limit=5,
-                    upper_limit=15,
+                    lower_limit=10,
+                    upper_limit=30,
                     bid=number
                 )
 
