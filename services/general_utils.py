@@ -57,12 +57,12 @@ def get_key_in_dict(keys: List, dictionary: Dict) -> Union[str, bool]:
 
 def role_and_channel_valid(data):
     author_roles = data.get("author_roles", "")
-    channel_name = data.get("channel_source", "")
-    allowed_roles = data.get("allowed_roles", [])
-    allowed_channels_names = data.get("allowed_channel_names", [])
+    channel_id = data.get("channel_source", "")
+    allowed_role_ids = data.get("allowed_roles", [])
+    allowed_channels_ids = data.get("allowed_channel_ids", [])
 
-    return any(discord.utils.get(author_roles, name=role) for role in allowed_roles) and \
-           channel_name in allowed_channels_names
+    return any(discord.utils.get(author_roles, id=role_id) for role_id in allowed_role_ids) and \
+           channel_id in allowed_channels_ids
 
 def reset_localLogs_file(path):
     try:

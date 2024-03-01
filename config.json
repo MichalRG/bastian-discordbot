@@ -24,9 +24,9 @@
     "rupella": {
       "process": false,
       "roles": [
-        "Test-1",
-        "Wstęp na zaplecze \"Gardła Gustava\"",
-        "SUPER DUPER"
+        1195438414951104522,
+        1121405788150317146,
+        1202359826475401267
       ]
     }
   },
@@ -35,12 +35,12 @@
       "process": true,
       "bot_names": ["talan", "jodokus", "aubrey", "hubert", "kaia"],
       "roles": [
-        "Test-1",
-        "Strażnik Porządku",
-        "Strażnik Chaosu",
-        "Mieszkaniec",
-        "Ten, co Wam prowadzi",
-        "SUPER DUPER"
+        1195438414951104522,
+        1109232717142446211,
+        1191405214553620570,
+        1121531276344709234,
+        1193701620819710002,
+        1202359826475401267
       ],
       "players": {
         "Talan": {
@@ -93,19 +93,19 @@
   },
   "legit": {
     "guilds": [
-      "AWANTURNICY: Widmo nad Versmold",
-      "Test-Server",
-      "Testcior-2"
+      1109232371666014310,
+      1192852545501139044,
+      1198002006481178805
     ],
     "channels": [
-      "kanał-drugi-⚓",
-      "🎲┇stół-do-gry-1",
-      "🎲┇stół-do-gry-2",
-      "🎲┇stół-do-gry-3",
-      "🎲┇stół-do-gry-testowy"
+      1192950891691647056,
+      1208843074176946227,
+      1208843666949672970,
+      1208843735094272020,
+      1209534640990457896
     ],
     "admin_channels": [
-      "🤖┇bastian-logs"
+      1203681823469604885
     ]
   }
 }
