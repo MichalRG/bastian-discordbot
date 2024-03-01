@@ -39,7 +39,7 @@ Kolejnośc parametrów w config.json dla legit guilds ma znaczenie!!!
 
 # DEV Section
 ## TODO:
-1. - [ ] Change names into ids
+1. - [x] Change names into ids
 2. - [ ] Separate guilds and channels somehow currently it randomly choose one channel which use it's not desired action
 3. - [ ] Sync - I solve the problem by adding new guild id but it didnt want to update it by itselfs.
 4. commands for admins:

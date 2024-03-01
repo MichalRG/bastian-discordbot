@@ -11,7 +11,7 @@ from discord.ext import commands
 from games.eye import EyeGame
 from sections.DevTest import DevTestCommands
 from sections.Rupella import RupellaGuard
-from sections.welcome import Welcome
+from sections.Welcome import Welcome
 from services.config import Config
 
 token = os.environ['bastian']
