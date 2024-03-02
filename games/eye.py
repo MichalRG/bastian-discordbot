@@ -217,11 +217,6 @@ class EyeGame(commands.Cog):
             success_translation = self.translation.translate("ADMINS.RESET_LOGS_SUCCESSFULLY_PASSED")
             await ctx.respond(f"**Głos z Eteru**:\n{success_translation}")
 
-    @slash_command(name="kill-bastian", guild_ids=LEGIT_SERVERS, description="[Admin command]: turn off the bot")
-    async def kill_bastian(self, ctx):
-        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel):
-            exit(0)
-
     @slash_command(name="get-bot-full-logs", guild_ids=LEGIT_SERVERS, description="[Admin command]: get logs file")
     async def get_logs_full(self, ctx):
         if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel):
