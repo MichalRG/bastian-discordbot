@@ -18,10 +18,10 @@ class EyeGame(commands.Cog):
         self.config = config or Config()
         self.translation = translation or Translation()
         self.allowed_channels = channels  # TODO: Consider to not reply just use this channels or in this game just single channel
-        self.allowed_channels_names = [channel.name for channel in channels]
+        self.allowed_channels_ids = [channel.id for channel in channels]
         self.allowed_admin_channels = admin_channel_allowed_tou_use
-        self.admin_channel_allowed_to_use_names = [channel.name for channel in admin_channel_allowed_tou_use]
-        self.allowed_roles = roles
+        self.admin_channel_allowed_to_use_ids = [channel.id for channel in admin_channel_allowed_tou_use]
+        self.allowed_id_roles = roles
         self.GENERAL_COMMANDS = self.translation.translate("GAMES.EYE.GENERAL_COMMANDS")
         self.blacklisted_by_Rupella = None
         self.admins = admins
@@ -167,7 +167,7 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="reset-bots-status", guild_ids=LEGIT_SERVERS, description="[Admin command]: reset status of all players for all bots")
     async def rest_stats(self, ctx, name: Option(str, "Enter a bot name")):
-        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
+        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel):
             if name == 'all':
                 for name in self.bot_names:
                     reset_localLogs_file(f"oko/{name}.txt")
@@ -180,7 +180,7 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="get-oponents-of-bot", guild_ids=LEGIT_SERVERS, description="[Admin command]: get players who played with bot")
     async def get_oponenets_of_bot(self, ctx, name: Option(str, "Enter a bot name")):
-        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
+        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel):
             bot_name = name.lower().strip()
 
             if bot_name not in self.bot_names:
@@ -203,7 +203,7 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="clean-logs", guild_ids=LEGIT_SERVERS, description="[Admin command]: it cleans logs! DONT DO IT IF U'RE NOT SURE!!")
     async def clean_logs(self, ctx):
-        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
+        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel):
             try:
                 with open("./localLogs/oko/eye-game-logs.txt", "w"):
                     pass
@@ -219,12 +219,12 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="kill-bastian", guild_ids=LEGIT_SERVERS, description="[Admin command]: turn off the bot")
     async def kill_bastian(self, ctx):
-        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
+        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel):
             exit(0)
 
     @slash_command(name="get-bot-full-logs", guild_ids=LEGIT_SERVERS, description="[Admin command]: get logs file")
     async def get_logs_full(self, ctx):
-        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
+        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel):
             path_to_logs = "./localLogs/oko/eye-game-logs.txt"
 
             file = discord.File(path_to_logs, filename="eye-game-logs.txt")
@@ -234,7 +234,7 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="get-bot-sumup-logs", guild_ids=LEGIT_SERVERS, description="[Admin command]: get sumup log file")
     async def get_logs_sumup(self, ctx):
-        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
+        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel):
             path_to_logs = "./localLogs/oko/eye-game-sumup-logs.txt"
 
             file = discord.File(path_to_logs, filename="eye-game-sumup-logs.txt")
@@ -245,7 +245,7 @@ class EyeGame(commands.Cog):
     @slash_command(name="clean-sumup-logs", guild_ids=LEGIT_SERVERS,
                    description="[Admin command]: it cleans sumup logs! DONT DO IT IF U'RE NOT SURE!!")
     async def clean_logs(self, ctx):
-        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel.name):
+        if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel):
             try:
                 with open("./localLogs/oko/eye-game-sumup-logs.txt", "w"):
                     pass
@@ -265,7 +265,7 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="oko-pomoc", guild_ids=LEGIT_SERVERS, description="Sprawdź dostępne komendy do gry w oko")
     async def available_commands(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             rules = self.translation.translate("WELCOME.EYE.RULES")
             commands = self.translation.translate("GAMES.EYE.HELP_COMMANDS")
 
@@ -273,7 +273,7 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="oko-gracze", guild_ids=LEGIT_SERVERS, description="Sprawdź dostępnych graczy")
     async def display_available_player(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             ready_players = self.__get_available_players()
 
             if not ready_players:
@@ -291,7 +291,7 @@ class EyeGame(commands.Cog):
 
     # @slash_command(name="wyzwij-thrognik", guild_ids=LEGIT_SERVERS, description="Wyzwij Thrognika na potyczkę w Oko")
     # async def challenge_thrognik(self, ctx, number: Option(int, "Enter a number")):
-    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
     #         if await self.__is_rupella_in_action(ctx):
     #             return
     #
@@ -353,7 +353,7 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="wyzwij-talan", guild_ids=LEGIT_SERVERS, description="Wyzwij Talana na potyczkę w Oko")
     async def challenge_talan(self, ctx, number: Option(int, "Enter a number")):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             if await self.__is_rupella_in_action(ctx):
                 return
 
@@ -415,7 +415,7 @@ class EyeGame(commands.Cog):
 
     # @slash_command(name="wyzwij-guerino", guild_ids=LEGIT_SERVERS, description="Wyzwij Guerino na potyczkę w Oko")
     # async def challenge_guerino(self, ctx, number: Option(int, "Enter a number")):
-    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
     #         if await self.__is_rupella_in_action(ctx):
     #             return
     #
@@ -514,7 +514,7 @@ class EyeGame(commands.Cog):
 
     # @slash_command(name="wyzwij-liebwin", guild_ids=LEGIT_SERVERS, description="Wyzwij Liebwina na potyczkę w Oko")
     # async def challenge_liebwin(self, ctx, number: Option(int, "Enter a number")):
-    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
     #         if await self.__is_rupella_in_action(ctx):
     #             return
     #
@@ -612,7 +612,7 @@ class EyeGame(commands.Cog):
 
     # @slash_command(name="wyzwij-gerald", guild_ids=LEGIT_SERVERS, description="Wyzwij Geralda na potyczkę w Oko")
     # async def challenge_gerald(self, ctx, number: Option(int, "Enter a number")):
-    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
     #         if await self.__is_rupella_in_action(ctx):
     #             return
     #
@@ -674,7 +674,7 @@ class EyeGame(commands.Cog):
 
     # @slash_command(name="wyzwij-amalberg", guild_ids=LEGIT_SERVERS, description="Wyzwij Amalberg na potyczkę w Oko")
     # async def challenge_amalberg(self, ctx, number: Option(int, "Enter a number")):
-    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
     #         if await self.__is_rupella_in_action(ctx):
     #             return
     #
@@ -736,7 +736,7 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="wyzwij-jodokus", guild_ids=LEGIT_SERVERS, description="Wyzwij Jodokusa na potyczkę w Oko")
     async def challenge_jodokus(self, ctx, number: Option(int, "Enter a number")):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             if await self.__is_rupella_in_action(ctx):
                 return
 
@@ -799,7 +799,7 @@ class EyeGame(commands.Cog):
     @slash_command(name="dobieram-jodokus", guild_ids=LEGIT_SERVERS,
                    description="Dobierz kość w grze z Jodokusem")
     async def player_draw_die_in_jodokus_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             if self.is_not_jodokus_busy or (not self.is_not_jodokus_busy and self.jodokus_enemy_id != ctx.author.id):
                 await self.__cannot_draw(ctx)
                 return
@@ -822,7 +822,7 @@ class EyeGame(commands.Cog):
     @slash_command(name="rzucam-jodokus", guild_ids=LEGIT_SERVERS,
                    description="Wykonaj rzut w grze z Jodokusem")
     async def player_roll_dices_in_jodokus_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             if self.is_not_jodokus_busy or (not self.is_not_jodokus_busy and self.jodokus_enemy_id != ctx.author.id):
                 await self.__cannot_roll(ctx)
                 return
@@ -918,7 +918,7 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="wyzwij-aubrey", guild_ids=LEGIT_SERVERS, description="Wyzwij Aubrey na potyczkę w Oko")
     async def challenge_aubrey(self, ctx, number: Option(int, "Enter a number")):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             if await self.__is_rupella_in_action(ctx):
                 return
 
@@ -981,7 +981,7 @@ class EyeGame(commands.Cog):
     @slash_command(name="dobieram-aubrey", guild_ids=LEGIT_SERVERS,
                    description="Dobierz kość w grze z Aubrey")
     async def player_draw_die_in_aubrey_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             if self.is_not_aubrey_busy or (not self.is_not_aubrey_busy and self.aubrey_enemy_id != ctx.author.id):
                 await self.__cannot_draw(ctx)
                 return
@@ -1004,7 +1004,7 @@ class EyeGame(commands.Cog):
     @slash_command(name="rzucam-aubrey", guild_ids=LEGIT_SERVERS,
                    description="Wykonaj rzut w grze z Aubrey")
     async def player_roll_dices_in_aubrey_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             if self.is_not_aubrey_busy or (not self.is_not_aubrey_busy and self.aubrey_enemy_id != ctx.author.id):
                 await self.__cannot_roll(ctx)
                 return
@@ -1101,7 +1101,7 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="wyzwij-hubert", guild_ids=LEGIT_SERVERS, description="Wyzwij Hubert na potyczkę w Oko")
     async def challenge_hubert(self, ctx, number: Option(int, "Enter a number")):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             if await self.__is_rupella_in_action(ctx):
                 return
 
@@ -1203,7 +1203,7 @@ class EyeGame(commands.Cog):
     @slash_command(name="dobieram-hubert", guild_ids=LEGIT_SERVERS,
                    description="Dobierz kość w grze z Hubertem")
     async def player_draw_die_in_hubert_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             if self.is_not_hubert_busy or (not self.is_not_hubert_busy and self.hubert_enemy_id != ctx.author.id):
                 await self.__cannot_draw(ctx)
                 return
@@ -1226,7 +1226,7 @@ class EyeGame(commands.Cog):
     @slash_command(name="rzucam-hubert", guild_ids=LEGIT_SERVERS,
                    description="Wykonaj rzut w grze z Hubertem")
     async def player_roll_dices_in_hubert_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             if self.is_not_hubert_busy or (not self.is_not_hubert_busy and self.hubert_enemy_id != ctx.author.id):
                 await self.__cannot_roll(ctx)
                 return
@@ -1323,7 +1323,7 @@ class EyeGame(commands.Cog):
 
     @slash_command(name="wyzwij-kaia", guild_ids=LEGIT_SERVERS, description="Wyzwij Kaie na potyczkę w Oko")
     async def challenge_kaia(self, ctx, number: Option(int, "Enter a number")):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             if await self.__is_rupella_in_action(ctx):
                 return
 
@@ -1386,7 +1386,7 @@ class EyeGame(commands.Cog):
     @slash_command(name="dobieram-kaia", guild_ids=LEGIT_SERVERS,
                    description="Dobierz kość w grze z Kaią")
     async def player_draw_die_in_kaia_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             if self.is_not_kaia_busy or (not self.is_not_kaia_busy and self.kaia_enemy_id != ctx.author.id):
                 await self.__cannot_draw(ctx)
                 return
@@ -1409,7 +1409,7 @@ class EyeGame(commands.Cog):
     @slash_command(name="rzucam-kaia", guild_ids=LEGIT_SERVERS,
                    description="Wykonaj rzut w grze z Kaią")
     async def player_roll_dices_in_kaia_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             if self.is_not_kaia_busy or (not self.is_not_kaia_busy and self.kaia_enemy_id != ctx.author.id):
                 await self.__cannot_roll(ctx)
                 return
@@ -1507,7 +1507,7 @@ class EyeGame(commands.Cog):
     # @slash_command(name="dobieram-thrognik", guild_ids=LEGIT_SERVERS,
     #                description="Dobierz kość w grze z Thrognikiem")
     # async def player_draw_die_in_thrognik_game(self, ctx):
-    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
     #         if self.is_not_thrognik_busy or (not self.is_not_thrognik_busy and self.thrognik_enemy_id != ctx.author.id):
     #             await self.__cannot_draw(ctx)
     #             return
@@ -1529,7 +1529,7 @@ class EyeGame(commands.Cog):
     # @slash_command(name="rzucam-thrognik", guild_ids=LEGIT_SERVERS,
     #                description="Wykonaj rzut w grze z Thrognikiem")
     # async def player_roll_dices_in_thrognik_game(self, ctx):
-    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
     #         if self.is_not_thrognik_busy or (not self.is_not_thrognik_busy and self.thrognik_enemy_id != ctx.author.id):
     #             await self.__cannot_roll(ctx)
     #             return
@@ -1623,7 +1623,7 @@ class EyeGame(commands.Cog):
     @slash_command(name="rzucam-talan", guild_ids=LEGIT_SERVERS,
                    description="Wykonaj rzut w grze z Talanem")
     async def player_roll_dices_in_talan_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             if self.is_not_talan_busy or (not self.is_not_talan_busy and self.talan_enemy_id != ctx.author.id):
                 await self.__cannot_roll(ctx)
                 return
@@ -1664,7 +1664,7 @@ class EyeGame(commands.Cog):
     @slash_command(name="dobieram-talan", guild_ids=LEGIT_SERVERS,
                    description="Dobierz kość w grze z Talanem")
     async def player_draw_die_in_talan_game(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
             if self.is_not_talan_busy or (not self.is_not_talan_busy and self.talan_enemy_id != ctx.author.id):
                 await self.__cannot_draw(ctx)
                 return
@@ -1741,7 +1741,7 @@ class EyeGame(commands.Cog):
 
     # @slash_command(name="dobieram-gerald", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Geraldem")
     # async def player_draw_die_in_gerald_game(self, ctx):
-    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
     #         if self.is_not_gerald_busy or (not self.is_not_gerald_busy and self.gerald_enemy_id != ctx.author.id):
     #             await self.__cannot_draw(ctx)
     #             return
@@ -1763,7 +1763,7 @@ class EyeGame(commands.Cog):
     # @slash_command(name="rzucam-gerald", guild_ids=LEGIT_SERVERS,
     #                description="Wykonaj rzut w grze z Geraldem")
     # async def player_roll_dices_in_gerald_game(self, ctx):
-    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
     #         if self.is_not_gerald_busy or (not self.is_not_gerald_busy and self.gerald_enemy_id != ctx.author.id):
     #             await self.__cannot_roll(ctx)
     #             return
@@ -1856,7 +1856,7 @@ class EyeGame(commands.Cog):
 
     # @slash_command(name="dobieram-amalberg", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Amalberg")
     # async def player_draw_die_in_amalberg_game(self, ctx):
-    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
     #         if self.is_not_amalberga_busy or (not self.is_not_amalberga_busy and self.amalberg_enemy_id != ctx.author.id):
     #             await self.__cannot_draw(ctx)
     #             return
@@ -1878,7 +1878,7 @@ class EyeGame(commands.Cog):
     # @slash_command(name="rzucam-amalberg", guild_ids=LEGIT_SERVERS,
     #                description="Wykonaj rzut w grze z Amalberg")
     # async def player_roll_dices_in_amalberg_game(self, ctx):
-    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
     #         if self.is_not_amalberga_busy or (not self.is_not_amalberga_busy and self.amalberg_enemy_id != ctx.author.id):
     #             await self.__cannot_roll(ctx)
     #             return
@@ -1971,7 +1971,7 @@ class EyeGame(commands.Cog):
 
     # @slash_command(name="dobieram-liebwin", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Liebwinem")
     # async def player_draw_die_in_liebwin_game(self, ctx):
-    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
     #         if self.is_not_liebwin_busy or (not self.is_not_liebwin_busy and self.liebwin_enemy_id != ctx.author.id):
     #             await self.__cannot_draw(ctx)
     #             return
@@ -1993,7 +1993,7 @@ class EyeGame(commands.Cog):
     # @slash_command(name="rzucam-liebwin", guild_ids=LEGIT_SERVERS,
     #                description="Wykonaj rzut w grze z Liebwinem")
     # async def player_roll_dices_in_liebwin_game(self, ctx):
-    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
     #         if self.is_not_liebwin_busy or (not self.is_not_liebwin_busy and self.liebwin_enemy_id != ctx.author.id):
     #             await self.__cannot_roll(ctx)
     #             return
@@ -2086,7 +2086,7 @@ class EyeGame(commands.Cog):
 
     # @slash_command(name="dobieram-guerino", guild_ids=LEGIT_SERVERS, description="Dobierz kość w grze z Guerino")
     # async def player_draw_die_in_guerino_game(self, ctx):
-    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
     #         if self.is_not_guerino_busy or (not self.is_not_guerino_busy and self.guerino_enemy_id != ctx.author.id):
     #             await self.__cannot_draw(ctx)
     #             return
@@ -2108,7 +2108,7 @@ class EyeGame(commands.Cog):
     # @slash_command(name="rzucam-guerino", guild_ids=LEGIT_SERVERS,
     #                description="Wykonaj rzut w grze z Guerino")
     # async def player_roll_dices_in_guerino_game(self, ctx):
-    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel.name):
+    #     if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
     #         if self.is_not_guerino_busy or (not self.is_not_guerino_busy and self.guerino_enemy_id != ctx.author.id):
     #             await self.__cannot_roll(ctx)
     #             return
@@ -2353,12 +2353,12 @@ class EyeGame(commands.Cog):
 
         return cleaned_list_of_blacklisted_players
 
-    def __role_and_channel_valid(self, rolesAuthor, channelName):
-        return any(discord.utils.get(rolesAuthor, name=role) for role in self.allowed_roles) and \
-               channelName in self.allowed_channels_names
+    def __role_and_channel_valid(self, rolesAuthor, channel):
+        return any(discord.utils.get(rolesAuthor, id=role_id) for role_id in self.allowed_id_roles) and \
+               channel.id in self.allowed_channels_ids
 
-    def __id_admin_and_channel_valid(self, id, channelName):
-        return id in self.admins and channelName in self.admin_channel_allowed_to_use_names
+    def __id_admin_and_channel_valid(self, id, channel):
+        return id in self.admins and channel.id in self.admin_channel_allowed_to_use_ids
 
     async def __display_u_play_with_him(self, name: str, ctx):
         u_play_with_this_oponent = self.translation.translate("GAMES.EYE.CURRENT_IN_GAME_WITH_THIS_OPONENET", [{"name": name}])

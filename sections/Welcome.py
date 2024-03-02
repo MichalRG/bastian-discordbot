@@ -28,7 +28,6 @@ class Welcome:
             embed = discord.Embed(title="Kajuta Hazardzistów Wita!", description=chosen_message,
                                   color=0x47bbd6)
             embed.set_image(url="attachment://KajutaHazardzistow.png")
-
             file = discord.File("./imgs/KajutaHazardzistow.png", filename="KajutaHazardzistow.png")
             await channel.send(file=file, embed=embed)
 
