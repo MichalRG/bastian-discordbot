@@ -1,12 +1,12 @@
 import random
 
-from discord import slash_command, Option
+from discord import slash_command
 from discord.ext import commands
 
-from helpers.constants import LEGIT_SERVERS
-from services.config import Config
-from services.general_utils import write_to_actions_logs, read_json_file, role_and_channel_valid, reset_localLogs_file
-from services.translation import Translation
+from src.helpers.constants import LEGIT_SERVERS
+from src.services.config import Config
+from src.services.general_utils import write_to_actions_logs, read_json_file, role_and_channel_valid, reset_localLogs_file
+from src.services.translation import Translation
 
 
 class RupellaGuard(commands.Cog):

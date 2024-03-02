@@ -8,12 +8,12 @@ import os
 
 from discord.ext import commands
 
-from games.eye import EyeGame
-from sections.Admin import AdminCommands
-from sections.DevTest import DevTestCommands
-from sections.Rupella import RupellaGuard
-from sections.WelcomeCommends import WelcomeCommends
-from services.config import Config
+from src.games.eye import EyeGame
+from src.sections.Admin import AdminCommands
+from src.sections.DevTest import DevTestCommands
+from src.sections.Rupella import RupellaGuard
+from src.sections.WelcomeCommends import WelcomeCommends
+from src.services.config import Config
 
 token = os.environ['bastian']
 

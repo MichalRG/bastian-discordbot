@@ -2,7 +2,7 @@ import discord
 from discord import slash_command
 from discord.ext import commands
 
-from helpers.constants import LEGIT_SERVERS
+from src.helpers.constants import LEGIT_SERVERS
 
 
 class DevTestCommands(commands.Cog):

@@ -7,10 +7,10 @@ import discord
 from discord.ext import commands
 from discord.commands import slash_command, Option
 
-from helpers.constants import LEGIT_SERVERS
-from services.config import Config
-from services.general_utils import write_to_game_logs, read_file_lines, reset_localLogs_file
-from services.translation import Translation
+from src.helpers.constants import LEGIT_SERVERS
+from src.services.config import Config
+from src.services.general_utils import write_to_game_logs, read_file_lines, reset_localLogs_file
+from src.services.translation import Translation
 
 
 class EyeGame(commands.Cog):

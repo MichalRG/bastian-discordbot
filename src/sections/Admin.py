@@ -1,8 +1,8 @@
 from discord import slash_command, Object
 from discord.ext import commands
 
-from helpers.constants import LEGIT_SERVERS
-from services.general_utils import role_and_channel_valid
+from src.helpers.constants import LEGIT_SERVERS
+from src.services.general_utils import role_and_channel_valid
 
 
 class AdminCommands(commands.Cog):

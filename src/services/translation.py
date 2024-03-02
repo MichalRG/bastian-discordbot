@@ -1,7 +1,7 @@
 import random
 from typing import List, Dict
 
-from services.general_utils import read_json_file, get_key_in_dict, split_by_dots
+from src.services.general_utils import read_json_file, get_key_in_dict, split_by_dots
 
 
 class Translation:

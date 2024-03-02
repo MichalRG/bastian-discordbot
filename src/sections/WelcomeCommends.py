@@ -2,8 +2,8 @@ from typing import List
 
 import discord
 
-from services.config import Config
-from services.translation import Translation
+from src.services.config import Config
+from src.services.translation import Translation
 
 
 class WelcomeCommends:
