@@ -25,7 +25,7 @@ class AdminCommands(commands.Cog):
             await ctx.respond("Commands synced successfully! 🔄️")
 
     @slash_command(name="kill-bot-process", guild_ids=LEGIT_SERVERS, description="[Admin command]: Turn off the bot")
-    async def kill_bastian(self, ctx):
+    async def kill_bot(self, ctx):
         data = {
             "author_roles": ctx.author.roles,
             "channel_source": ctx.channel.id,

@@ -41,7 +41,7 @@ Kolejnośc parametrów w config.json dla legit guilds ma znaczenie!!!
 ## TODO:
 1. - [x] Change names into ids
 2. - [ ] Separate guilds and channels somehow currently it randomly choose one channel which use it's not desired action
-3. - [ ] Sync - I solve the problem by adding new guild id but it didnt want to update it by itselfs.
+3. - [x] Sync - I solve the problem by adding new guild id but it didnt want to update it by itselfs.
 4. commands for admins:
      - [x] to clean players who played with bot
      - [x] get players who played with bot
