@@ -38,6 +38,22 @@ Kolejnośc parametrów w config.json dla legit guilds ma znaczenie!!!
 * If system will go into sleep mode/ snooze mode/ watch mode it will stop bot in the background and it will reset when u resume your system.
 
 # DEV Section
+
+## COMMANDS:
+### pylint
+- sh
+```shell
+pylint $(find . -name "*.py")
+```
+- ps
+```shell
+Get-ChildItem -Recurse -Filter "*.py" | ForEach-Object { pylint $_.FullName }
+```
+- ps
+```shell
+pylint --rcfile=./.pylintrc src
+```
+
 ## TODO:
 1. - [x] Change names into ids
 2. - [ ] Separate guilds and channels somehow currently it randomly choose one channel which use it's not desired action
@@ -51,6 +67,7 @@ Kolejnośc parametrów w config.json dla legit guilds ma znaczenie!!!
 5. - [ ] expiring game when player doesnt react/ respond
 6. - [ ] refactor for players, it requires to rewrite player methods to more abstract level
 7. - [ ] get-sumuplogs returns commends
+
 ## Synhronizing bots
 1. Shared Backend or Database
 If both bots have access to a shared backend service or database, Bot1 can update a shared resource, which Bot2 regularly checks. For example:

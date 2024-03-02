@@ -17,7 +17,8 @@ class EyeGame(commands.Cog):
     def __init__(self, config, translation, roles, channels, admins, admin_channel_allowed_tou_use):
         self.config = config or Config()
         self.translation = translation or Translation()
-        self.allowed_channels = channels  # TODO: Consider to not reply just use this channels or in this game just single channel
+        # TODO: Consider to not reply just use this channels or in this game just single channel
+        self.allowed_channels = channels
         self.allowed_channels_ids = [channel.id for channel in channels]
         self.allowed_admin_channels = admin_channel_allowed_tou_use
         self.admin_channel_allowed_to_use_ids = [channel.id for channel in admin_channel_allowed_tou_use]
@@ -165,7 +166,11 @@ class EyeGame(commands.Cog):
 
         return players
 
-    @slash_command(name="reset-bots-status", guild_ids=LEGIT_SERVERS, description="[Admin command]: reset status of all players for all bots")
+    @slash_command(
+        name="reset-bots-status",
+        guild_ids=LEGIT_SERVERS,
+        description="[Admin command]: reset status of all players for all bots"
+    )
     async def rest_stats(self, ctx, name: Option(str, "Enter a bot name")):
         if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel):
             if name == 'all':
@@ -175,10 +180,15 @@ class EyeGame(commands.Cog):
                 reset_localLogs_file(f"oko/{name}.txt")
             else:
                 return
-            success_translation = self.translation.translate("ADMINS.RESET_BOTS_SUCCESSFULLY_PASSED")
+            success_translation = \
+                self.translation.translate("ADMINS.RESET_BOTS_SUCCESSFULLY_PASSED")
             await ctx.respond(f"**Głos z Eteru**:\n{success_translation}")
 
-    @slash_command(name="get-oponents-of-bot", guild_ids=LEGIT_SERVERS, description="[Admin command]: get players who played with bot")
+    @slash_command(
+        name="get-oponents-of-bot",
+        guild_ids=LEGIT_SERVERS,
+        description="[Admin command]: get players who played with bot"
+    )
     async def get_oponenets_of_bot(self, ctx, name: Option(str, "Enter a bot name")):
         if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel):
             bot_name = name.lower().strip()
@@ -192,23 +202,28 @@ class EyeGame(commands.Cog):
 
             oponenets = read_file_lines(f"./localLogs/oko/{bot_name}.txt")
 
-            if oponenets == []:
+            if not oponenets:
                 oponents_not_founded = self.translation.translate("ADMINS.NOT_FOUNDED_OPONENTS", [{"bot_name": bot_name}])
 
                 await ctx.respond(f"**Głos z Eteru:**\n{oponents_not_founded}")
             else:
-                oponents_founded = self.translation.translate("ADMINS.FOUNDED_OPONENTS", [{"bot_name": bot_name}])
+                oponents_founded = \
+                    self.translation.translate("ADMINS.FOUNDED_OPONENTS", [{"bot_name": bot_name}])
 
                 await ctx.respond(f"**Głos z Eteru:**\n{oponents_founded}\n{oponenets}")
 
-    @slash_command(name="clean-logs", guild_ids=LEGIT_SERVERS, description="[Admin command]: it cleans logs! DONT DO IT IF U'RE NOT SURE!!")
+    @slash_command(
+        name="clean-logs",
+        guild_ids=LEGIT_SERVERS,
+        description="[Admin command]: it cleans logs! DONT DO IT IF U'RE NOT SURE!!"
+    )
     async def clean_logs(self, ctx):
         if self.__id_admin_and_channel_valid(ctx.author.id, ctx.channel):
             try:
                 with open("./localLogs/oko/eye-game-logs.txt", "w"):
                     pass
             except FileNotFoundError:
-                print(f"[RESET LOGS]: lack of file eye-game-logs.txt")
+                print("[RESET LOGS]: lack of file eye-game-logs.txt")
                 return
             except IOError as e:
                 print(f"[RESET LOGS]: An unexpected error occurred: {e}")
@@ -477,9 +492,15 @@ class EyeGame(commands.Cog):
     #                         })
     #
     #                         victory_guerino_log = self.translation.translate("GAMES.EYE.GUERINO.VICTORY")
-    #                         game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Guerino"}, {"bid": self.guerino_bid}])
+    #                         game_is_done_log = \
+    #                         self.translation.translate(
+    #                           "GAMES.EYE.GAME_IS_DONE",
+    #                           [{"name": "Guerino"}, {"bid": self.guerino_bid}]
+#                             )
     #
-    #                         await ctx.respond(f"**Guerino:**\n{victory_guerino_log}\n\n**Głos z Eteru:**\n{game_is_done_log}")
+    #                         await ctx.respond(
+    #                           f"**Guerino:**\n{victory_guerino_log}\n\n**Głos z Eteru:**\n{game_is_done_log}"
+    #                         )
     #
     #                         self.__add_to_already_played_file({
     #                             "bot": "guerino",
@@ -576,9 +597,15 @@ class EyeGame(commands.Cog):
     #                         })
     #
     #                         victory_liebwin_log = self.translation.translate("GAMES.EYE.LIEBWIN.VICTORY")
-    #                         game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Liebwin"}, {"bid": self.liebwin_bid}])
+    #                         game_is_done_log = \
+    #                         self.translation.translate(
+    #                           "GAMES.EYE.GAME_IS_DONE",
+    #                           [{"name": "Liebwin"}, {"bid": self.liebwin_bid}]
+#                             )
     #
-    #                         await ctx.respond(f"**Liebwin:**\n{victory_liebwin_log}\n\n**Głos z Eteru:**\n{game_is_done_log}")
+    #                         await ctx.respond(
+    #                           f"**Liebwin:**\n{victory_liebwin_log}\n\n**Głos z Eteru:**\n{game_is_done_log}"
+    #                         )
     #
     #                         self.__add_to_already_played_file({
     #                             "bot": "liebwin",
@@ -892,7 +919,8 @@ class EyeGame(commands.Cog):
             })
 
             victory_jodokus_log = self.translation.translate("GAMES.EYE.JODOKUS.VICTORY")
-            game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Jodokus"}, {"bid": self.jodokus_bid}])
+            game_is_done_log = \
+                self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Jodokus"}, {"bid": self.jodokus_bid}])
 
             await ctx.respond(f"**Jodokus:**\n{victory_jodokus_log}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
@@ -1595,7 +1623,10 @@ class EyeGame(commands.Cog):
                 "result": results
             })
             victory_thrognik_log = self.translation.translate("GAMES.EYE.THROGNIK.VICTORY")
-            game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Thrognik"}, {"bid": self.thrognik_bid}])
+            game_is_done_log = self.translation.translate(
+                "GAMES.EYE.GAME_IS_DONE",
+                [{"name": "Thrognik"}, {"bid": self.thrognik_bid}]
+            )
 
             await ctx.respond(f"**Thrognik:**\n{victory_thrognik_log}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
@@ -1641,7 +1672,10 @@ class EyeGame(commands.Cog):
                 })
 
                 talan_reaction = self.translation.translate("GAMES.EYE.TALAN.REACTION_ON_SUCCESS_PLAYER")
-                game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": ctx.author.display_name.capitalize()}, {"bid": self.talan_bid}])
+                game_is_done_log = self.translation.translate(
+                    "GAMES.EYE.GAME_IS_DONE",
+                    [{"name": ctx.author.display_name.capitalize()}, {"bid": self.talan_bid}]
+                )
 
                 await ctx.respond(f"**🍞Talan🍞:**\n{talan_reaction}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
@@ -1830,7 +1864,11 @@ class EyeGame(commands.Cog):
             })
 
             victory_gerald_log = self.translation.translate("GAMES.EYE.GERALD.VICTORY")
-            game_is_done_log = self.translation.translate("GAMES.EYE.GAME_IS_DONE", [{"name": "Gerald"}, {"bid": self.gerald_bid}])
+            game_is_done_log = \
+                self.translation.translate(
+                    "GAMES.EYE.GAME_IS_DONE",
+                    [{"name": "Gerald"}, {"bid": self.gerald_bid}]
+                )
 
             await ctx.respond(f"**Gerald:**\n{victory_gerald_log}\n\n**Głos z Eteru:**\n{game_is_done_log}")
 
@@ -2315,7 +2353,10 @@ class EyeGame(commands.Cog):
         bot_strategy = data.get("bot_strategy", "secret")
         bid = data.get("bid", 0)
 
-        log = f"[{id}] {datetime.now()}: {bot} VS {player.name}({player.id}), bid: {bid}, initiative rolls: {bot_initiative}:{player_initiative}, strategy drawing: {bot_strategy}"
+        log = \
+            f"[{id}] {datetime.now()}: {bot} VS {player.name}({player.id}), " \
+            f"bid: {bid}, initiative rolls: {bot_initiative}:{player_initiative}, " \
+            f"strategy drawing: {bot_strategy}"
 
         write_to_game_logs('oko/eye-game-logs.txt', log)
 

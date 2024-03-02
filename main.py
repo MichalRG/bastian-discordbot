@@ -31,7 +31,7 @@ intents.message_content = True
 client = commands.Bot(command_prefix='/', intents=intents)
 
 config = Config()
-rupella_manager = None
+RUPELLA_MANAGER = None
 admins = []
 
 channels_allowed_to_use = []
@@ -39,7 +39,8 @@ admin_channel_allowed_to_use = []
 roles_allowed_to_process = []
 
 """
-This methods require to adds new legit guilds handling if such will appear it require to add variables and assignem to them proper channels
+This methods require to adds new legit guilds handling if such will appear it require to add variables 
+and assignem to them proper channels
 """
 def __get_guilds_and_text_channels(current_client_guilds):
     legit_guilds = config.get_legit_guilds()
@@ -127,16 +128,16 @@ def __setupDevCommands():
 
 
 def __setupRupellaCommands():
-    global rupella_manager
+    global RUPELLA_MANAGER
 
     client.rupella_action_initialized = True
 
     roles = config.get_config_key("actions.rupella.roles")
 
     try:
-        rupella_manager = \
+        RUPELLA_MANAGER = \
             RupellaGuard(config, None, roles, channels_allowed_to_use, admins, admin_channel_allowed_to_use)
-        client.add_cog(rupella_manager)
+        client.add_cog(RUPELLA_MANAGER)
     except Exception as error:
         print("Adding Rupella Actions has failed", error)
 
@@ -183,7 +184,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    global rupella_manager
+    global RUPELLA_MANAGER
     role_ids = [role.id for role in message.author.roles]
     approved_user = False
 
@@ -195,8 +196,8 @@ async def on_message(message):
     if message.author == client.user or not approved_user:
         return
 
-    if rupella_manager is not None:
-        await rupella_manager.rupella_actions_check(message)
+    if RUPELLA_MANAGER is not None:
+        await RUPELLA_MANAGER.rupella_actions_check(message)
 
 
 def __get_user_name_roles(message):
