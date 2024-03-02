@@ -9,9 +9,10 @@ import os
 from discord.ext import commands
 
 from games.eye import EyeGame
+from sections.Admin import AdminCommands
 from sections.DevTest import DevTestCommands
 from sections.Rupella import RupellaGuard
-from sections.Welcome import Welcome
+from sections.WelcomeCommends import WelcomeCommends
 from services.config import Config
 
 token = os.environ['bastian']
@@ -107,52 +108,77 @@ def __get_allowed_roles_for_eye():
     return config.get_config_key("games.eye.roles")
 
 
-async def keep_alive():
+async def set_latency_log():
     while True:
         logger.info(f'Current bot latency: {client.latency*1000:.2f}ms')
         await asyncio.sleep(300)  # Wait for 5 minutes before checking again
 
 
+def __setUpAdminCommends():
+    admin_roles = config.get_config_key("legit.admin_roles")
+    admin_channels = config.get_config_key("legit.admin_roles")
+
+    client.add_cog(AdminCommands(client, admin_channels, admin_roles))
+
+
+def __setupDevCommands():
+    client.devmode_initialized = True
+    client.add_cog(DevTestCommands())
+
+
+def __setupRupellaCommands():
+    global rupella_manager
+
+    client.rupella_action_initialized = True
+
+    roles = config.get_config_key("actions.rupella.roles")
+
+    try:
+        rupella_manager = \
+            RupellaGuard(config, None, roles, channels_allowed_to_use, admins, admin_channel_allowed_to_use)
+        client.add_cog(rupella_manager)
+    except Exception as error:
+        print("Adding Rupella Actions has failed", error)
+
+
+def __setupEyesCommands():
+    client.eye_game_initialized = True
+
+    roles = __get_allowed_roles_for_eye()
+
+    try:
+        client.add_cog(EyeGame(config, None, roles, channels_allowed_to_use, admins, admin_channel_allowed_to_use))
+    except Exception as error:
+        print("Adding Eye Game has failed", error)
+
+
+async def __setupWelcomeSection():
+    welcome = WelcomeCommends(config=config)
+
+    await welcome.welcome_guests(random.choice(channels_allowed_to_use))
+
+
 @client.event
 async def on_ready():
     logger.info(f'Logged in as {client.user} (ID: {client.user.id}). Ready event called.')
-    client.loop.create_task(keep_alive())
+    client.loop.create_task(set_latency_log())
 
-    global rupella_manager
     __set_allowed_channels()
     __set_admins()
 
     if config.get_process_permissions_for_section('welcome'):
-        welcome = Welcome(config=config)
-
-        await welcome.welcome_guests(random.choice(channels_allowed_to_use))
+        await __setupWelcomeSection()
 
     if config.get_process_permissions_for_section('games.eye') and not hasattr(client, 'eye_game_initialized'):
-        client.eye_game_initialized = True
+        __setupEyesCommands()
 
-        roles = __get_allowed_roles_for_eye()
-
-        try:
-            client.add_cog(EyeGame(config, None, roles, channels_allowed_to_use, admins, admin_channel_allowed_to_use))
-        except Exception as error:
-            print("Adding Eye Game has failed", error)
     if config.get_process_permissions_for_section('actions.rupella') and not hasattr(client, 'rupella_action_initialized'):
-        client.rupella_action_initialized = True
-
-        roles = config.get_config_key("actions.rupella.roles")
-
-        try:
-            rupella_manager = \
-                RupellaGuard(config, None, roles, channels_allowed_to_use, admins, admin_channel_allowed_to_use)
-            client.add_cog(rupella_manager)
-        except Exception as error:
-            print("Adding Rupella Actions has failed", error)
+        __setupRupellaCommands()
 
     if config.get_process_permissions_for_section('devmode') and not hasattr(client, 'devmode_initialized'):
-        client.devmode_initialized = True
-        client.add_cog(DevTestCommands())
+        __setupDevCommands()
 
-    await client.sync_commands(guild_ids=['1109232371666014310'])  # Sync commands
+    __setUpAdminCommends()
 
 
 @client.event
@@ -181,24 +207,4 @@ def __validate_if_eye_allowed_to_process(roles, channel):
     return config.get_process_permissions_for_section('games.eye') and bool(
         set(roles) & set(roles_allowed_to_process)) and channel in channels_allowed_to_use
 
-
-# @client.event
-# async def on_message(message):
-#     if message.author == client.user:
-#         return
-#
-#     roles = __get_user_name_roles(message)
-#
-#     if __validate_if_eye_allowed_to_process(roles, message.channel):
-#         await eye_game.process_eye_commands(message)
-
-# await client.sync_commands()  # Sync commands
-# async def main():
-#     await client.sync_commands()  # Sync commands
-#     await client.start(token)
-
 client.run(token)
-
-# if __name__ == "__main__":
-#     import asyncio
-#     asyncio.run(main())

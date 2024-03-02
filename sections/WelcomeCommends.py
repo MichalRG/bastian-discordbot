@@ -6,7 +6,7 @@ from services.config import Config
 from services.translation import Translation
 
 
-class Welcome:
+class WelcomeCommends:
     def __init__(self, config=None):
         self.config = config or Config()
         self.translate_service = Translation()
