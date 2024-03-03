@@ -2386,7 +2386,7 @@ class EyeGame(commands.Cog):
         return cleaned_list_of_players
 
     def __read_blacklist_of_rupella(self):
-        list_of_players = read_file_lines(f"./localLogs/actions/rueplla-blacklist.txt")
+        list_of_players = read_file_lines(f"./localLogs/actions/rupella-blacklist.txt")
 
         cleaned_list_of_blacklisted_players = [id.strip() for id in list_of_players]
 

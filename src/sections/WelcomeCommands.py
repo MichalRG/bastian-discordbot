@@ -6,7 +6,7 @@ from src.services.config import Config
 from src.services.translation import Translation
 
 
-class WelcomeCommends:
+class WelcomeCommands:
     def __init__(self, config=None):
         self.config = config or Config()
         self.translate_service = Translation()
@@ -31,7 +31,7 @@ class WelcomeCommends:
             file = discord.File("./imgs/KajutaHazardzistow.png", filename="KajutaHazardzistow.png")
             await channel.send(file=file, embed=embed)
 
-    async def __send_game_proposal(self, channel) -> List:
+    async def __send_game_proposal(self, channel) -> List[str]:
         if not self.config.get_process_permissions_for_section("welcome.games"):
             return
 

@@ -9,7 +9,7 @@ class AdminCommands(commands.Cog):
     def __init__(self, bot_client, channels, roles):
         self.client = bot_client
         self.allowed_channels_ids = channels
-        self.allowed_roles = roles
+        self.allowed_role_ids = roles
 
     @slash_command(name="sync-bot", guild_ids=LEGIT_SERVERS, description="[Admin commands]: Sync bot commands")
     async def sync_bot_commands(self, ctx):
