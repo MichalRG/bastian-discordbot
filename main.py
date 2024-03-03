@@ -1,7 +1,7 @@
 import asyncio
 import logging
 import random
-from typing import List
+from typing import List, Optional
 
 import discord
 import os
@@ -65,6 +65,11 @@ def __get_guilds_and_text_channels(current_client_guilds):
     return AWANTURNICY_text_channels, AWANTURNICY, TEST_text_channels, TEST, TESCIOR_2_text_channels, TESCIOR_2
 
 
+async def setup_section_if_permitted(section_name: Optional[str], setup_function: callable):
+    if config.get_process_permissions_for_section(section_name):
+        await setup_function()
+
+
 def __get_allowed_channels(text_channels_to_check, guild) -> [List, List]:
     legit_channels = config.get_legit_channels()
     admin_legit_channels = config.get_config_key("legit.admin_channels")
@@ -115,19 +120,19 @@ async def set_latency_log():
         await asyncio.sleep(300)  # Wait for 5 minutes before checking again
 
 
-def __setUpAdminCommends():
+def set_up_admin_commends():
     admin_roles = config.get_config_key("legit.admin_roles")
     admin_channels = config.get_config_key("legit.admin_roles")
 
     client.add_cog(AdminCommands(client, admin_channels, admin_roles))
 
 
-def __setupDevCommands():
+def setup_dev_commands():
     client.devmode_initialized = True
     client.add_cog(DevTestCommands())
 
 
-def __setupRupellaCommands():
+def setup_rupella_commands():
     global RUPELLA_MANAGER
 
     client.rupella_action_initialized = True
@@ -142,7 +147,7 @@ def __setupRupellaCommands():
         print("Adding Rupella Actions has failed", error)
 
 
-def __setupEyesCommands():
+def setup_eyes_commands():
     client.eye_game_initialized = True
 
     roles = __get_allowed_roles_for_eye()
@@ -153,7 +158,7 @@ def __setupEyesCommands():
         print("Adding Eye Game has failed", error)
 
 
-async def __setupWelcomeSection():
+async def setup_welcome_section():
     welcome = WelcomeCommends(config=config)
 
     await welcome.welcome_guests(random.choice(channels_allowed_to_use))
@@ -164,22 +169,17 @@ async def on_ready():
     logger.info(f'Logged in as {client.user} (ID: {client.user.id}). Ready event called.')
     client.loop.create_task(set_latency_log())
 
-    __set_allowed_channels()
-    __set_admins()
+    try:
+        __set_allowed_channels()
+        __set_admins()
 
-    if config.get_process_permissions_for_section('welcome'):
-        await __setupWelcomeSection()
-
-    if config.get_process_permissions_for_section('games.eye') and not hasattr(client, 'eye_game_initialized'):
-        __setupEyesCommands()
-
-    if config.get_process_permissions_for_section('actions.rupella') and not hasattr(client, 'rupella_action_initialized'):
-        __setupRupellaCommands()
-
-    if config.get_process_permissions_for_section('devmode') and not hasattr(client, 'devmode_initialized'):
-        __setupDevCommands()
-
-    __setUpAdminCommends()
+        await setup_section_if_permitted('welcome', setup_welcome_section)
+        await setup_section_if_permitted('games.eye', setup_eyes_commands)
+        await setup_section_if_permitted('actions.rupella', setup_rupella_commands)
+        await setup_section_if_permitted('devmode', setup_dev_commands)
+        await setup_section_if_permitted(None, set_up_admin_commends)
+    except Exception as ex:
+        print(f"Something went wrong during settingup sections: {ex}")
 
 
 @client.event

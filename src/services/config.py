@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Optional
 
 from src.services.general_utils import read_json_file, get_key_in_dict, split_by_dots
 
@@ -12,13 +12,15 @@ class Config:
 
         return get_key_in_dict(splitted_section, self.config)
 
-    def get_process_permissions_for_section(self, section: str) -> bool:
+    def get_process_permissions_for_section(self, section: Optional[str]) -> bool:
+        if not section:
+            return True
+
         splitted_section = split_by_dots(section)
 
         splitted_section.append('process')
 
         return get_key_in_dict(splitted_section, self.config)
-        # return self.config.get(section, {}).get("process")
 
     def get_permissions_access_for_guilds(self) -> Dict:
         return self.config.get('permissions', {})

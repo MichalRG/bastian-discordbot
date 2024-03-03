@@ -66,7 +66,7 @@ pylint --rcfile=./.pylintrc src
      - [x] to stop bot
 5. - [ ] expiring game when player doesnt react/ respond
 6. - [ ] refactor for players, it requires to rewrite player methods to more abstract level
-7. - [ ] get-sumuplogs returns commends
+7. - [x] get-sumuplogs returns commends
 
 ## Synhronizing bots
 1. Shared Backend or Database
