@@ -861,7 +861,7 @@ class EyeGame(commands.Cog):
             if "9" in player_jodokus_roll_result:
                 self.__save_winning_log({
                     "id_game": self.id_jodokus_game,
-                    "roller": ctx.author.display_name,
+                    "roller": ctx.author.name,
                     "bid": self.jodokus_bid,
                     "result": player_jodokus_roll_result
                 })
@@ -1044,7 +1044,7 @@ class EyeGame(commands.Cog):
             if "9" in player_aubrey_roll_result:
                 self.__save_winning_log({
                     "id_game": self.id_aubrey_game,
-                    "roller": ctx.author.display_name,
+                    "roller": ctx.author.name,
                     "bid": self.aubrey_bid,
                     "result": player_aubrey_roll_result
                 })
@@ -1266,7 +1266,7 @@ class EyeGame(commands.Cog):
             if "9" in player_hubert_roll_result:
                 self.__save_winning_log({
                     "id_game": self.id_hubert_game,
-                    "roller": ctx.author.display_name,
+                    "roller": ctx.author.name,
                     "bid": self.hubert_bid,
                     "result": player_hubert_roll_result
                 })
@@ -1449,7 +1449,7 @@ class EyeGame(commands.Cog):
             if "9" in player_kaia_roll_result:
                 self.__save_winning_log({
                     "id_game": self.id_kaia_game,
-                    "roller": ctx.author.display_name,
+                    "roller": ctx.author.name,
                     "bid": self.kaia_bid,
                     "result": player_kaia_roll_result
                 })
@@ -1568,7 +1568,7 @@ class EyeGame(commands.Cog):
     #         if "9" in player_thrognik_roll_result:
     #             self.__save_winning_log({
     #                 "id_game": self.id_thrognik_game,
-    #                 "roller": ctx.author.display_name,
+    #                 "roller": ctx.author.name,
     #                 "bid": self.thrognik_bid,
     #                 "result": player_thrognik_roll_result
     #             })
@@ -1666,7 +1666,7 @@ class EyeGame(commands.Cog):
             if "9" in player_talan_roll_result:
                 self.__save_winning_log({
                     "id_game": self.id_talan_game,
-                    "roller": ctx.author.display_name,
+                    "roller": ctx.author.name,
                     "bid": self.talan_bid,
                     "result": player_talan_roll_result
                 })
@@ -1808,7 +1808,7 @@ class EyeGame(commands.Cog):
     #         if "9" in player_gerald_roll_result:
     #             self.__save_winning_log({
     #                 "id_game": self.id_gerald_game,
-    #                 "roller": ctx.author.display_name,
+    #                 "roller": ctx.author.name,
     #                 "bid": self.gerald_bid,
     #                 "result": player_gerald_roll_result
     #             })
@@ -1927,7 +1927,7 @@ class EyeGame(commands.Cog):
     #         if "9" in player_amalberg_roll_result:
     #             self.__save_winning_log({
     #                 "id_game": self.id_amalberg_game,
-    #                 "roller": ctx.author.display_name,
+    #                 "roller": ctx.author.name,
     #                 "bid": self.amalberg_bid,
     #                 "result": player_amalberg_roll_result
     #             })
@@ -2042,7 +2042,7 @@ class EyeGame(commands.Cog):
     #         if "9" in player_liebwin_roll_result:
     #             self.__save_winning_log({
     #                 "id_game": self.id_liebwin_game,
-    #                 "roller": ctx.author.display_name,
+    #                 "roller": ctx.author.name,
     #                 "bid": self.liebwin_bid,
     #                 "result": player_liebwin_roll_result
     #             })
@@ -2157,7 +2157,7 @@ class EyeGame(commands.Cog):
     #         if "9" in player_guerino_roll_result:
     #             self.__save_winning_log({
     #                 "id_game": self.id_guerino_game,
-    #                 "roller": ctx.author.display_name,
+    #                 "roller": ctx.author.name,
     #                 "bid": self.guerino_bid,
     #                 "result": player_guerino_roll_result
     #             })
@@ -2253,10 +2253,13 @@ class EyeGame(commands.Cog):
         loser = data.get("loser", None)
 
         loser_part = f" (against {loser})" if loser else ""
+        sumup_log_player_info = \
+            f"{loser} lost. !remove-coins @{loser}" if loser else f"{roller} won. !give-coins @{roller}"
 
         log = f"[{id}] {datetime.now()}: {roller} won{loser_part}! The result winning roll: {roll_result} (bid: {bid})"
+        sumup_log = f"[{id}] {datetime.now().strftime('%d.%m.%Y %H:%M:%S')}, bid: {bid}: {sumup_log_player_info} {bid}"
         write_to_game_logs('oko/eye-game-logs.txt', log)
-        write_to_game_logs('oko/eye-game-sumup-logs.txt', log)
+        write_to_game_logs('oko/eye-game-sumup-logs.txt', sumup_log)
 
     def __save_roll_log(self, data):
         id = data.get("id_game", "dupa")
