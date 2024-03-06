@@ -9,7 +9,7 @@
     "process": true
   },
   "welcome": {
-    "process": false,
+    "process": true,
     "come_in": {
       "process": true
     },
@@ -42,48 +42,108 @@
         1193701620819710002,
         1202359826475401267
       ],
-      "players": {
-        "Talan": {
+      "players": [
+        {
+          "name": "talan",
           "process": true,
-          "many_games": false
+          "many_games": false,
+          "lower_threshold": 10,
+          "upper_threshold": 20,
+          "lower_strategy_boundary": 2,
+          "upper_strategy_boundary": 3,
+          "color": "0x47bbd6"
         },
-        "Gerald Berchtold": {
+        {
+          "name": "gerald",
           "process": false,
-          "many_games": true
+          "many_games": true,
+          "lower_threshold": 10,
+          "upper_threshold": 20,
+          "lower_strategy_boundary": 2,
+          "upper_strategy_boundary": 3,
+          "color": "0x5EE7B1"
         },
-        "Liebwin Müller": {
+        {
+          "name": "liebwin",
           "process": false,
-          "many_games": true
+          "many_games": true,
+          "lower_threshold": 10,
+          "upper_threshold": 20,
+          "lower_strategy_boundary": 2,
+          "upper_strategy_boundary": 3,
+          "color": "0x18B836"
         },
-        "Guerino Wessely": {
+        {
+          "name": "guerino",
           "process": false,
-          "many_games": true
+          "many_games": true,
+          "lower_threshold": 10,
+          "upper_threshold": 20,
+          "lower_strategy_boundary": 2,
+          "upper_strategy_boundary": 3,
+          "color": "0x520E15"
         },
-        "Amalberga Auerswald": {
+        {
+          "name": "amalberg",
           "process": false,
-          "many_games": true
+          "many_games": true,
+          "lower_threshold": 10,
+          "upper_threshold": 20,
+          "lower_strategy_boundary": 2,
+          "upper_strategy_boundary": 3,
+          "color": "0xF8DEDE"
         },
-        "Thrognik Rockson": {
+        {
+          "name": "thrognik",
           "process": false,
-          "many_games": true
+          "many_games": true,
+          "lower_threshold": 10,
+          "upper_threshold": 20,
+          "lower_strategy_boundary": 2,
+          "upper_strategy_boundary": 3,
+          "color": "0xE6A9F8"
         },
-        "Jodokus": {
+        {
+          "name": "jodokus",
           "process": true,
-          "many_games": false
+          "many_games": false,
+          "lower_threshold": 20,
+          "upper_threshold": 40,
+          "lower_strategy_boundary": 3,
+          "upper_strategy_boundary": 4,
+          "color": "0x4B4438"
         },
-        "Aubrey": {
+        {
+          "name": "aubrey",
           "process": true,
-          "many_games": false
+          "many_games": false,
+          "lower_threshold": 20,
+          "upper_threshold": 60,
+          "lower_strategy_boundary": 2,
+          "upper_strategy_boundary": 3,
+          "color": "0x47bbd6"
         },
-        "Hubert": {
+        {
+          "name": "hubert",
           "process": true,
-          "many_games": false
+          "many_games": false,
+          "lower_threshold": 20,
+          "upper_threshold": 40,
+          "lower_strategy_boundary": 1,
+          "upper_strategy_boundary": 5,
+          "color": "0x47bbd6"
         },
-        "Kaia": {
+        {
+          "name": "kaia",
           "process": true,
-          "many_games": false
+          "many_games": false,
+          "lower_threshold": 10,
+          "upper_threshold": 30,
+          "lower_strategy_boundary": 3,
+          "upper_strategy_boundary": 4,
+          "color": "0x47bbd6"
         }
-      }
+      ]
     }
   },
   "permissions": {

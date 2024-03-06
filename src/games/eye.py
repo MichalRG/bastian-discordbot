@@ -2305,10 +2305,6 @@ class EyeGame(commands.Cog):
 
         return result
 
-    async def __cannot_roll(self, ctx):
-        cannot_roll = self.translation.translate("GAMES.EYE.CANNOT_ROLL")
-        await ctx.respond(f'**Głos z Eteru:**\n{cannot_roll}')
-
     async def __cannot_draw(self, ctx):
         cannot_draw = self.translation.translate("GAMES.EYE.CANNOT_DRAW")
         await ctx.respond(f'**Głos z Eteru:**\n{cannot_draw}')

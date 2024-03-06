@@ -1,6 +1,9 @@
 import random
 from typing import List, Optional
 
+from discord import SlashCommandGroup, Option
+
+from src.games.character import Character
 from src.games.eye import EyeGame
 from src.sections.Admin import AdminCommands
 from src.sections.DevTest import DevTestCommands
@@ -17,6 +20,7 @@ class BotState:
         self.admins = []
         self.channels_allowed_to_use = []
         self.admin_channel_allowed_to_use = []
+        self.roles = self.config.get_config_key("games.eye.roles")
         self.admin_roles = []
         self.__load_config()
 
@@ -90,16 +94,20 @@ class BotState:
         self.client.eye_game_initialized = True
 
         roles = self.__get_allowed_roles_for_eye()
+        players = self.config.get_config_key("games.eye.bot_names")
+
+        players_objects = []
+
+        for player_name in players:
+            players_objects.append(Character(
+                name=player_name,
+                config=self.config,
+                roles=self.roles,
+                channels=self.channels_allowed_to_use
+            ))
 
         try:
-            self.client.add_cog(EyeGame(
-                self.config,
-                None,
-                roles,
-                self.channels_allowed_to_use,
-                self.admins,
-                self.admin_channel_allowed_to_use
-            ))
+            self.__initiate_commends(players_objects)
         except Exception as error:
             print("Adding Eye Game has failed", error)
 
@@ -154,3 +162,22 @@ class BotState:
     def __setup_admin_config(self):
         self.admins = self.config.get_config_key("ADMIN_IDS")
         self.admin_roles = self.config.get_config_key("legit.admin_roles")
+
+    def __initiate_commends(self, players_objects):
+        for player_object in players_objects:
+            char_group = SlashCommandGroup(player_object.name, f"Commands related to {player_object.name}")
+
+            @char_group.command(description=f"Wyzwij {player_object.name.capitalize()}")
+            async def challenge(ctx, number: Option(int, "Podaj kwotę zakładu")):
+                await player_object.challenge(ctx, number)
+
+            @char_group.command(description=f"Rzuć kością w grze z {player_object.name.capitalize()}")
+            async def roll(ctx):
+                # Assuming a roll method exists
+                await player_object.player_roll_dices(ctx)
+
+            @char_group.command(description=f"Dobierz kość w grze z {player_object.name.capitalize()}")
+            async def draw(ctx):
+                await player_object.player_draw_die(ctx)
+
+            self.client.add_application_command(char_group)
