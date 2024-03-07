@@ -11,7 +11,7 @@ from src.services.general_utils import read_file_lines, write_to_game_logs
 from src.services.translation import Translation
 
 
-class Character:
+class CharacterEye:
     def __init__(
             self,
             name,

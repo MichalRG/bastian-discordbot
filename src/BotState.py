@@ -3,8 +3,7 @@ from typing import List, Optional
 
 from discord import SlashCommandGroup, Option
 
-from src.games.character import Character
-from src.games.eye import EyeGame
+from src.games.CharacterEye import CharacterEye
 from src.sections.Admin import AdminCommands
 from src.sections.DevTest import DevTestCommands
 from src.sections.Rupella import RupellaGuard
@@ -98,7 +97,7 @@ class BotState:
         players_objects = []
 
         for player_name in players:
-            players_objects.append(Character(
+            players_objects.append(CharacterEye(
                 name=player_name,
                 config=self.config,
                 roles=self.roles,
