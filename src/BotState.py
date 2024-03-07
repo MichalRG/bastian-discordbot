@@ -93,7 +93,6 @@ class BotState:
     def __setup_eyes_commands(self):
         self.client.eye_game_initialized = True
 
-        roles = self.__get_allowed_roles_for_eye()
         players = self.config.get_config_key("games.eye.bot_names")
 
         players_objects = []
@@ -115,9 +114,6 @@ class BotState:
         welcome = WelcomeCommands(config=self.config)
 
         await welcome.welcome_guests(random.choice(self.channels_allowed_to_use))
-
-    def __get_allowed_roles_for_eye(self):
-        return self.config.get_config_key("games.eye.roles")
 
     """
     This methods require to adds new legit guilds handling if such will appear it require to add variables 
