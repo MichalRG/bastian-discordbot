@@ -1,9 +1,12 @@
 import random
+from functools import partial
 from typing import List, Optional
 
 from discord import SlashCommandGroup, Option
 
 from src.games.CharacterEye import CharacterEye
+from src.games.EyeAdmin import EyeAdminCommands
+from src.games.GeneralEye import GeneralEyeCommands
 from src.sections.Admin import AdminCommands
 from src.sections.DevTest import DevTestCommands
 from src.sections.Rupella import RupellaGuard
@@ -21,6 +24,7 @@ class BotState:
         self.admin_channel_allowed_to_use = []
         self.roles = self.config.get_config_key("games.eye.roles")
         self.admin_roles = []
+        self.eye_bots = {}
         self.__load_config()
 
     def __load_config(self):
@@ -63,14 +67,14 @@ class BotState:
         if self.config.get_process_permissions_for_section(section_name):
             await setup_function()
 
-    def __set_up_admin_commends(self):
+    async def __set_up_admin_commends(self):
         self.client.add_cog(AdminCommands(self.client, self.admin_channel_allowed_to_use, self.admin_roles))
 
-    def __setup_dev_commands(self):
+    async def __setup_dev_commands(self):
         self.client.devmode_initialized = True
         self.client.add_cog(DevTestCommands())
 
-    def __setup_rupella_commands(self):
+    async def __setup_rupella_commands(self):
         self.client.rupella_action_initialized = True
 
         roles = self.config.get_config_key("actions.rupella.roles")
@@ -89,23 +93,21 @@ class BotState:
         except Exception as error:
             print("Adding Rupella Actions has failed", error)
 
-    def __setup_eyes_commands(self):
+    async def __setup_eyes_commands(self):
         self.client.eye_game_initialized = True
 
         players = self.config.get_config_key("games.eye.bot_names")
 
-        players_objects = []
-
         for player_name in players:
-            players_objects.append(CharacterEye(
+            self.eye_bots[player_name] = CharacterEye(
                 name=player_name,
                 config=self.config,
                 roles=self.roles,
                 channels=self.channels_allowed_to_use
-            ))
+            )
 
         try:
-            self.__initiate_commends(players_objects)
+            self.__initiate_eye_commends()
         except Exception as error:
             print("Adding Eye Game has failed", error)
 
@@ -158,21 +160,50 @@ class BotState:
         self.admins = self.config.get_config_key("ADMIN_IDS")
         self.admin_roles = self.config.get_config_key("legit.admin_roles")
 
-    def __initiate_commends(self, players_objects):
-        for player_object in players_objects:
-            char_group = SlashCommandGroup(player_object.name, f"Commands related to {player_object.name}")
+    def __initiate_eye_commends(self):
+        eye_admin_commands = EyeAdminCommands(
+            self.config,
+            None,
+            self.roles,
+            self.channels_allowed_to_use,
+            self.admin_roles,
+            self.admin_channel_allowed_to_use
+        )
+        self.client.add_cog(eye_admin_commands)
 
-            @char_group.command(description=f"Wyzwij {player_object.name.capitalize()}")
-            async def challenge(ctx, number: Option(int, "Podaj kwotę zakładu")):
-                await player_object.challenge(ctx, number)
+        general_eye_commands = GeneralEyeCommands(None, self.roles, self.channels_allowed_to_use)
+        self.client.add_cog(general_eye_commands)
 
-            @char_group.command(description=f"Rzuć kością w grze z {player_object.name.capitalize()}")
-            async def roll(ctx):
-                # Assuming a roll method exists
-                await player_object.player_roll_dices(ctx)
+        for key, player_object in self.eye_bots.items():
+            char_group = SlashCommandGroup(player_object.name, f"Komendy związane z {player_object.name.capitalize()}")
 
-            @char_group.command(description=f"Dobierz kość w grze z {player_object.name.capitalize()}")
-            async def draw(ctx):
-                await player_object.player_draw_die(ctx)
+            challenge_command = self.make_challenge_command()
+            roll_command = self.make_roll_command()
+            draw_command = self.make_draw_command()
+
+            char_group.command(name="wyzwij", description=f"Wyzwij {player_object.name}")\
+                        (challenge_command)
+            char_group.command(name="rzuć", description=f"Rzuć kością w grze z {player_object.name}")\
+                        (roll_command)
+            char_group.command(name="dobierz", description=f"Dobierz kość w grze z {player_object.name}")\
+                        (draw_command)
 
             self.client.add_application_command(char_group)
+
+    def make_challenge_command(self):
+        async def challenge(ctx, number: Option(int, "Podaj kwotę zakładu")):
+            player_name = ctx.command.full_parent_name
+            await self.eye_bots.get(player_name).challenge(ctx, number)
+        return challenge
+
+    def make_roll_command(self):
+        async def roll(ctx):
+            player_name = ctx.command.full_parent_name
+            await self.eye_bots.get(player_name).player_roll_dices(ctx)
+        return roll
+
+    def make_draw_command(self):
+        async def draw(ctx):
+            player_name = ctx.command.full_parent_name
+            await self.eye_bots.get(player_name).player_draw_die(ctx)
+        return draw

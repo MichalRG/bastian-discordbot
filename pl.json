@@ -41,7 +41,7 @@
         "FAIL": "AH KURWA! Była 9! Widziałeś! Ja pierdolę, tak blisko... 😡"
       },
        "TALAN": {
-        "WE_PLAYED": ["Talan BUŁECZKA nie ma dla ciebie czasu! Co? Myślałeś, że nie wiem o twoich żarcikach za moimi plecami?","Graliśmy. Już. Dziś. Czego nie rozumiesz?”,“Nie mam czasu dla ciebie."],
+        "WE_PLAYED": ["Talan BUŁECZKA nie ma dla ciebie czasu! Co? Myślałeś, że nie wiem o twoich żarcikach za moimi plecami?","Graliśmy. Już. Dziś. Czego nie rozumiesz?","Nie mam czasu dla ciebie."],
         "NOT_ENOUGH": ["Sypnij więcej i gramy! Nie bądź leszcz jak Jodokus!","Dawaj więcej! Wygrzmocę cię jak Alrik Fennę!","Masz tylko tyle? Kpina! Na pewno coś tam chowasz!"],
         "TOO_MUCH": ["Wiesz ile Bańka mnie kosztowała?! Nie mam tyle! Resztę miedziaków wydałem na spłatę frajerów z ostatniej wyprawy!","Nie… A może? Nie… Nie! Nie gram o tyle! Muszę się pilnować!","Mam trochę monet, ale nie wszystkie są do PRZEJEBANIA! Grajmy o mniej!"],
         "START": "*Dosiadasz się do stolika, przy którym siedzi... gnom! Istota zwęża oczka i marszczy nos, patrząc na ciebie.* Grajmy, szkoda czasu! *- woła, po czym chwyta jedną z kości i rzuca, by ustalić kto zaczyna. Wynik Talana to:* {{bot_value}} {{player_name}}: {{player_value}}",
@@ -159,9 +159,9 @@
   "ADMINS": {
     "RESET_BOTS_SUCCESSFULLY_PASSED": "Eter wykonał pomyślnie powierzoną mu misje :wink:",
     "NOT_FOUND_BOT": "Nie wypiłeś za dużo 🍺? Nie widzę nikogo takiego w pobliżu...",
-    "FOUNDED_OPONENTS": "Oto identyfikatory przeciwników {{bot_name}}: ",
+    "FOUNDED_OPONENTS": "Oto identyfikatory przeciwników {{bot_name}}: {{values}}",
     "NOT_FOUNDED_OPONENTS": "Wyglada na to, że {{bot_name}} nie rozegrał jeszcze gry",
     "RESET_LOGS_SUCCESSFULLY_PASSED": "Eter dokonał wyczyszczenia pamięci",
-    "LOGS_FILE": "Eter ma dla Ciebie plik:"
+    "LOGS_FILE": "Eter ma dla Ciebie plik 👆"
   }
 }

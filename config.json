@@ -22,12 +22,17 @@
   },
   "actions": {
     "rupella": {
-      "process": false,
+      "process": true,
       "roles": [
         1195438414951104522,
-        1121405788150317146,
+        1109232717142446211,
+        1191405214553620570,
+        1121531276344709234,
+        1193701620819710002,
         1202359826475401267
-      ]
+      ],
+      "rupella_color": "0xBCA89F",
+      "bel_sherhorin_color": "0x708238"
     }
   },
   "games": {
@@ -46,12 +51,16 @@
         {
           "name": "talan",
           "process": true,
-          "many_games": false,
+          "many_games": true,
           "lower_threshold": 10,
           "upper_threshold": 20,
           "lower_strategy_boundary": 2,
           "upper_strategy_boundary": 3,
-          "color": "0x47bbd6"
+          "color": "0x3F3F3F",
+          "cheating_process": true,
+          "cheating": {
+            "method": "soft"
+          }
         },
         {
           "name": "gerald",
@@ -106,27 +115,27 @@
         {
           "name": "jodokus",
           "process": true,
-          "many_games": false,
+          "many_games": true,
           "lower_threshold": 20,
           "upper_threshold": 40,
           "lower_strategy_boundary": 3,
           "upper_strategy_boundary": 4,
-          "color": "0x4B4438"
+          "color": "0xAA8C21"
         },
         {
           "name": "aubrey",
           "process": true,
-          "many_games": false,
+          "many_games": true,
           "lower_threshold": 20,
           "upper_threshold": 60,
           "lower_strategy_boundary": 2,
           "upper_strategy_boundary": 3,
-          "color": "0x47bbd6"
+          "color": "0xE7E7E7"
         },
         {
           "name": "hubert",
           "process": true,
-          "many_games": false,
+          "many_games": true,
           "lower_threshold": 20,
           "upper_threshold": 40,
           "lower_strategy_boundary": 1,
@@ -136,12 +145,16 @@
         {
           "name": "kaia",
           "process": true,
-          "many_games": false,
+          "many_games": true,
           "lower_threshold": 10,
           "upper_threshold": 30,
           "lower_strategy_boundary": 3,
           "upper_strategy_boundary": 4,
-          "color": "0x47bbd6"
+          "color": "0xD21404",
+          "cheating_process": true,
+          "cheating": {
+            "method": "hard"
+          }
         }
       ]
     }
@@ -158,10 +171,9 @@
       1198002006481178805
     ],
     "channels": [
-      1192950891691647056,
-      1208843074176946227,
-      1208843666949672970,
-      1208843735094272020,
+      1208839056171995147,
+      1208839022772883486,
+      1202995582440968253,
       1209534640990457896
     ],
     "admin_channels": [

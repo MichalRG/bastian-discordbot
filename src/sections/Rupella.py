@@ -1,5 +1,6 @@
 import random
 
+import discord
 from discord import slash_command
 from discord.ext import commands
 
@@ -21,6 +22,10 @@ class RupellaGuard(commands.Cog):
         self.allowed_role_ids = roles
         self.bel_shelorin_quotes = read_json_file(WISE_QUOTES_PATH)
         self.admins_roles = admin_roles
+        self.eter_color = 0x000000
+
+        self.bel_color = int(self.config.get_config_key("actions.rupella.bel_sherhorin_color"),16)
+        self.rueplla_color = int(self.config.get_config_key("actions.rupella.rupella_color"),16)
 
     async def rupella_actions_check(self, message):
         message_content = message.content.lower().strip()
@@ -28,7 +33,13 @@ class RupellaGuard(commands.Cog):
         if message_content == "!rupella" or message_content == "/rupella":
             what_are_u_doing_here = self.translation.translate("ACTIONS.RUPELLA.SURPRISED")
 
-            await message.reply(f"**Rupella**:\n{what_are_u_doing_here}")
+            embed_message = discord.Embed(
+                title="**Rupella**",
+                description=what_are_u_doing_here,
+                color=self.rueplla_color
+            )
+
+            await message.reply(embed=embed_message)
 
             self.__write_on_rupella_blacklist(message.author.id)
 
@@ -48,7 +59,14 @@ class RupellaGuard(commands.Cog):
 
             quote = random.choice(self.bel_shelorin_quotes).get("quote", "Twoje życie staje się lepsze tylko wtedy, gdy stajesz się lepszym człowiekiem.")
 
-            await ctx.respond(f"**Głos z Eteru:**\n{description_of_elven}\n\n**Bel-Sherhorin Mądry:**\n{introduction_of_elven}\n\n***{quote}***")
+            embed_message = discord.Embed(
+                description=f"**Głos z Eteru:**\n{description_of_elven}\n\n**Bel-Sherhorin Pieśniarz Mądrości:**\n{introduction_of_elven}\n\n***{quote}***",
+                color=self.bel_color
+            )
+            embed_message.set_thumbnail(url="attachment://belSherhorinToken.png")
+            token_file = discord.File("./imgs/belSherhorinToken.png", filename="belSherhorinToken.png")
+
+            await ctx.respond(embed=embed_message, file=token_file)
 
     @slash_command(name="reset-rupella-status", guild_ids=LEGIT_SERVERS,
                    description="[Admin command]: reset status for Rupella")
@@ -64,4 +82,11 @@ class RupellaGuard(commands.Cog):
             reset_localLogs_file(LOCAL_LOGS_RUPELLA_BLACKLIST_PATH)
 
             success_translation = self.translation.translate("ADMINS.RESET_BOTS_SUCCESSFULLY_PASSED")
-            await ctx.respond(f"**Głos z Eteru**:\n{success_translation}")
+
+            embed_message = discord.Embed(
+                title="**Głos z Eteru**",
+                description=success_translation,
+                color=self.eter_color
+            )
+
+            await ctx.respond(embed=embed_message)

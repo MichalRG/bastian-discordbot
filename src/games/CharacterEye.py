@@ -39,6 +39,8 @@ class CharacterEye:
         self.allowed_channels_ids = [channel.id for channel in channels]
         self.allowed_id_roles = roles
         self.GENERAL_COMMANDS = self.translation.translate("GAMES.EYE.GENERAL_COMMANDS")
+        self.rueplla_color = int(self.config.get_config_key("actions.rupella.rupella_color"), 16)
+
 
         self.__define_bot_config_statuses(busy)
 
@@ -85,7 +87,7 @@ class CharacterEye:
 
     async def player_draw_die(self, ctx):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
-            if self.busy or (not self.busy and self.enemy_id != ctx.author.id):
+            if not self.busy or (self.busy and self.enemy_id != ctx.author.id):
                 await self.__cannot_draw(ctx)
                 return
 
@@ -105,7 +107,7 @@ class CharacterEye:
 
     async def player_roll_dices(self, ctx):
         if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
-            if self.busy or (not self.busy and self.enemy_id != ctx.author.id):
+            if not self.busy or (self.busy and self.enemy_id != ctx.author.id):
                 await self.__cannot_roll(ctx)
                 return
 
@@ -130,8 +132,9 @@ class CharacterEye:
 
                 bot_reaction_message = self.translation.translate(f"GAMES.EYE.{self.name.upper()}.REACTION_ON_FAIL_PLAYER")
                 bot_reaction = f"**{self.name.capitalize()}:**\n{bot_reaction_message}"
+                message_to_process = f"{roll_result_message}\n\n{bot_reaction}"
 
-                await self.__perform_bot_action(ctx, bot_reaction)
+                await self.__perform_bot_action(ctx, message_to_process)
 
     async def __perform_bot_action(self, ctx, message_to_send):
         if self.dice_count >= self.strategy:
@@ -189,12 +192,10 @@ class CharacterEye:
             await ctx.respond(embed=embed)
 
     def __perform_roll(self, dices: int, roller) -> (List[str], str):
-        result = [str(random.randint(1, 10)) for _ in range(dices)]
-
-        comment_to_roll_result = \
-            self.translation.translate("GAMES.EYE.ROLL_RESULT", [{"name": roller}, {"result": ", ".join(result)}])
-
-        roll_result_message = f"**Głos z Eteru:**\n{comment_to_roll_result}"
+        if roller == self.name.capitalize() and self.is_cheating:
+            result, roll_result_message = self.__cheating_method(dices)
+        else:
+            result, roll_result_message = self.__perform_fair_roll(dices, roller)
 
         return result, roll_result_message
 
@@ -248,7 +249,13 @@ class CharacterEye:
     async def __display_that_we_already_played(self, ctx):
         we_played_log = self.translation.translate(f"GAMES.EYE.{self.name.upper()}.WE_PLAYED")
 
-        await ctx.respond(f"**{self.name}:**\n{we_played_log}")
+        embed_message = discord.Embed(
+            title=f"**{self.name.capitalize()}**",
+            description=we_played_log,
+            color=self.color
+        )
+
+        await ctx.respond(embed=embed_message)
 
     def __read_blacklist_players(self):
         list_of_players = read_file_lines(f"./localLogs/oko/{self.name}.txt")
@@ -259,18 +266,36 @@ class CharacterEye:
 
     async def __display_lack_of_player(self, ctx):
         lack_of_player = self.translation.translate("GAMES.EYE.LACK_OF_PLAYER", [{"name": self.name}])
-        await ctx.respond(f"**Głos z Eteru:**\n{lack_of_player}")
+
+        embed_message = discord.Embed(
+            title="**Głos z Eteru**",
+            description=lack_of_player
+        )
+
+        await ctx.respond(embed=embed_message)
 
     async def __display_u_play_with_him(self, ctx):
         u_play_with_this_oponent = self.translation.translate("GAMES.EYE.CURRENT_IN_GAME_WITH_THIS_OPONENET",
                                                               [{"name": self.name}])
 
-        await ctx.respond(f"**Głos z Eteru:**\n{u_play_with_this_oponent}")
+        embed_message = discord.Embed(
+            title="**Głos z Eteru**",
+            description=u_play_with_this_oponent,
+        )
+
+        await ctx.respond(embed=embed_message)
 
     async def __is_rupella_in_action(self, ctx) -> bool:
         if str(ctx.author.id) in self.__read_blacklist_of_rupella():
             gtfo = self.translation.translate("GAMES.EYE.RUPELLA.GTFO")
-            await ctx.respond(f"**Rupella:**\n{gtfo}")
+
+            embed_message = discord.Embed(
+                title="**Rupella**",
+                description=gtfo,
+                color=self.rueplla_color
+            )
+
+            await ctx.respond(embed=embed_message)
             return True
 
         return False
@@ -287,15 +312,24 @@ class CharacterEye:
     """
     def __define_bot_config_statuses(self, busy: bool):
         players = self.config.get_config_key("games.eye.players")
+        self.bot = [player for player in players if player["name"] == self.name][0]
 
-        self.bot = players.get(self.name, {"process": False, "many_games": False})
-        self.busy = self.bot.get("process", busy)
+        self.busy = not self.bot.get("process", busy)
         self.is_bot_eager_for_many_games = self.bot.get("many_games")
         self.lower_bid_threshold = self.bot.get("lower_threshold")
         self.upper_bid_threshold = self.bot.get("upper_threshold")
         self.upper_strategy_boundary = self.bot.get("upper_strategy_boundary")
         self.lower_strategy_boundary = self.bot.get("lower_strategy_boundary")
-        self.color = self.bot.get("color")
+        self.color = int(self.bot.get("color"), 16)
+        self.is_cheating = self.bot.get("cheating_process", False)
+
+        if self.is_cheating:
+            cheating_method_type = self.bot.get("cheating", {}).get("method", "soft")
+
+            if cheating_method_type == "soft":
+                self.__cheating_method = self.__perform_soft_nine_force_roll
+            elif cheating_method_type == "hard":
+                self.__cheating_method = self.__perform_strong_nine_force_roll
 
     def __setup_game(self, bid, author_id):
         self.busy = True
@@ -354,11 +388,17 @@ class CharacterEye:
     async def __display_wrong_thresold_message(self, ctx, bid: int):
         if self.lower_bid_threshold > bid:
             not_enough = self.translation.translate(f"GAMES.EYE.{self.name.upper()}.NOT_ENOUGH")
-            await ctx.respond(f"**{self.name.capitalize()}:**\n{not_enough}")
+
+            embed_message = discord.Embed(title=self.name.capitalize(), description=not_enough, color=self.color)
+
+            await ctx.respond(embed=embed_message)
 
         elif self.upper_bid_threshold < bid:
             too_much = self.translation.translate(f"GAMES.EYE.{self.name.upper()}.TOO_MUCH")
-            await ctx.respond(f"**{self.name.capitalize()}:**\n{too_much}")
+
+            embed_message = discord.Embed(title=self.name.capitalize(), description=too_much, color=self.color)
+
+            await ctx.respond(embed=embed_message)
 
     async def __process_victory(self, ctx, message_to_send, results, result_roll_message, is_bot_winner):
         self.__save_winning_log({
@@ -367,6 +407,7 @@ class CharacterEye:
             "bot_victory": is_bot_winner,
             "result": results
         })
+        previous_message_to_process = f"{message_to_send}\n\n" if message_to_send else ""
 
         victory_log = self.translation.translate(f"GAMES.EYE.{self.name.upper()}.VICTORY") if is_bot_winner \
             else self.translation.translate(f"GAMES.EYE.{self.name.upper()}.REACTION_ON_SUCCESS_PLAYER")
@@ -379,7 +420,7 @@ class CharacterEye:
                 }
             ])
 
-        chosen_message = f"{message_to_send}\n\n" if message_to_send else "" \
+        chosen_message = previous_message_to_process +\
                          f"{result_roll_message}\n\n" \
                          f"**{self.name.capitalize()}:**\n{victory_log}\n\n" \
                          f"**Głos z Eteru:**\n{game_is_done_log}"
@@ -396,13 +437,78 @@ class CharacterEye:
     async def __cannot_draw(self, ctx):
         cannot_draw = self.translation.translate("GAMES.EYE.CANNOT_DRAW")
         
-        embed = discord.Embed(description=f"**Głos z Eteru:**\n{cannot_draw}", color=self.color)
+        embed = discord.Embed(description=f"**Głos z Eteru:**\n{cannot_draw}")
         
         await ctx.respond(embed=embed)
 
     async def __cannot_roll(self, ctx):
         cannot_roll = self.translation.translate("GAMES.EYE.CANNOT_ROLL")
 
-        embed = discord.Embed(description=f"**Głos z Eteru:**\n{cannot_roll}", color=self.color)
+        embed = discord.Embed(description=f"**Głos z Eteru:**\n{cannot_roll}")
 
         await ctx.respond(embed=embed)
+
+    def __perform_strong_nine_force_roll(self, dices: int) -> (List[str], str):
+        result = [random.randint(1, 14) for _ in range(dices)]
+
+        for index in range(len(result)):
+            if 7 <= result[index] <= 8:
+                result[index] = "7"
+            elif 9 <= result[index] <= 10:
+                result[index] = "8"
+            elif 11 <= result[index] <= 13:
+                result[index] = "9"
+            elif result[index] == 14:
+                result[index] = "10"
+            else:
+                result[index] = str(result[index])
+
+        comment_to_roll_result = \
+            self.translation.translate("GAMES.EYE.ROLL_RESULT", [{"name": self.name.capitalize()}, {"result": ",".join(result)}])
+
+        roll_result_message = f"**Głos z Eteru:**\n{comment_to_roll_result}"
+
+        return result, roll_result_message
+
+    def __perform_soft_nine_force_roll(self, dices: int) -> (List[str], str):
+        result = [random.randint(1, 100) for _ in range(dices)]
+
+        for index in range(len(result)):
+            if 1 <= result[index] <= 7:
+                result[index] = "1"
+            elif 8 <= result[index] <= 16:
+                result[index] = "2"
+            elif 17 <= result[index] <= 25:
+                result[index] = "3"
+            elif 26 <= result[index] <= 33:
+                result[index] = "4"
+            elif 34 <= result[index] <= 42:
+                result[index] = "5"
+            elif 42 <= result[index] <= 50:
+                result[index] = "6"
+            elif 51 <= result[index] <= 62:
+                result[index] = "7"
+            elif 63 <= result[index] <= 75:
+                result[index] = "8"
+            elif 76 <= result[index] <= 89:
+                result[index] = "9"
+            else:
+                result[index] = "10"
+
+        comment_to_roll_result = \
+            self.translation.translate("GAMES.EYE.ROLL_RESULT",
+                                       [{"name": self.name.capitalize()}, {"result": ",".join(result)}])
+
+        roll_result_message = f"**Głos z Eteru:**\n{comment_to_roll_result}"
+
+        return result, roll_result_message
+
+    def __perform_fair_roll(self, dices, roller):
+        result = [str(random.randint(1, 10)) for _ in range(dices)]
+
+        comment_to_roll_result = \
+            self.translation.translate("GAMES.EYE.ROLL_RESULT", [{"name": roller}, {"result": ", ".join(result)}])
+
+        roll_result_message = f"**Głos z Eteru:**\n{comment_to_roll_result}"
+
+        return result, roll_result_message
