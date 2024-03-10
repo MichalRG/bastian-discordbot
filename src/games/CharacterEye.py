@@ -36,12 +36,14 @@ class CharacterEye:
         self.player_dices = player_dices
         self.translation = translation
         self.config = config
-        self.allowed_channels_ids = [channel.id for channel in channels]
+        allowed_channels_ids = [channel.id for channel in channels]
+        self.allowed_eye_player_channels_ids = []
+        self.allowed_eye_tests_channels_ids = []
         self.allowed_id_roles = roles
         self.GENERAL_COMMANDS = self.translation.translate("GAMES.EYE.GENERAL_COMMANDS")
         self.rueplla_color = int(self.config.get_config_key("actions.rupella.rupella_color"), 16)
 
-
+        self.__setup_channels_for_eye(allowed_channels_ids)
         self.__define_bot_config_statuses(busy)
 
     async def challenge(self, ctx, bid: int):
@@ -156,7 +158,7 @@ class CharacterEye:
         await ctx.respond(embed=embed)
 
         self.__save_draw_log({
-            "bot": self.name.capitalize,
+            "bot": self.name.capitalize(),
             "amount": self.dice_count
         })
 
@@ -244,7 +246,7 @@ class CharacterEye:
     """
     def __role_and_channel_valid(self, rolesAuthor, channel):
         return any(discord.utils.get(rolesAuthor, id=role_id) for role_id in self.allowed_id_roles) and \
-               channel.id in self.allowed_channels_ids
+               channel.id in self.allowed_eye_player_channels_ids
 
     async def __display_that_we_already_played(self, ctx):
         we_played_log = self.translation.translate(f"GAMES.EYE.{self.name.upper()}.WE_PLAYED")
@@ -331,6 +333,20 @@ class CharacterEye:
             elif cheating_method_type == "hard":
                 self.__cheating_method = self.__perform_strong_nine_force_roll
 
+    def __setup_channels_for_eye(self, allowed_channel_ids: List[int]):
+        allowed_for_players = self.config.get_config_key("games.eye.player_channels")
+        allowed_as_test = self.config.get_config_key("games.eye.test_channels")
+
+        for channel_id in allowed_channel_ids:
+            if channel_id in allowed_for_players:
+                self.allowed_eye_player_channels_ids.append(channel_id)
+            elif channel_id in allowed_as_test:
+                self.allowed_eye_tests_channels_ids.append(channel_id)
+                self.allowed_eye_player_channels_ids.append(channel_id)
+
+    """
+    game private method section
+    """
     def __setup_game(self, bid, author_id):
         self.busy = True
         self.bid = bid
@@ -401,12 +417,13 @@ class CharacterEye:
             await ctx.respond(embed=embed_message)
 
     async def __process_victory(self, ctx, message_to_send, results, result_roll_message, is_bot_winner):
-        self.__save_winning_log({
-            "roller": self.name if is_bot_winner else ctx.author.name,
-            "loser": ctx.author.name if is_bot_winner else self.name,
-            "bot_victory": is_bot_winner,
-            "result": results
-        })
+        if ctx.channel.id not in self.allowed_eye_tests_channels_ids:
+            self.__save_winning_log({
+                "roller": self.name if is_bot_winner else ctx.author.name,
+                "loser": ctx.author.name if is_bot_winner else self.name,
+                "bot_victory": is_bot_winner,
+                "result": results
+            })
         previous_message_to_process = f"{message_to_send}\n\n" if message_to_send else ""
 
         victory_log = self.translation.translate(f"GAMES.EYE.{self.name.upper()}.VICTORY") if is_bot_winner \

@@ -26,7 +26,8 @@ By uruchomić bota zainstaluj paczki z requriements.txt (zalecana wersja pythona
 ### English
 The order in config.json for guilds has meaning!!!
 ### Polish
-Kolejnośc parametrów w config.json dla legit guilds ma znaczenie!!!
+1. Kolejnośc parametrów w config.json dla legit guilds ma znaczenie!!!
+2. Ustawiąjąc allowed_eye_player_channels_ids definiujemy na jakich kanałach można grać + będą zapisywane logi zwycięstw. Ustawiając allowed_eye_test_channels_ids na tych kanałach także można grać ale logi zwycięstw będą ignorowane.
 
 ## Limitations
 - For most actions, such as sending messages, the rate limit is around 5 requests per 5 seconds per channel.
@@ -68,7 +69,7 @@ pylint --rcfile=./.pylintrc src
 6. - [ ] refactor for players, it requires to rewrite player methods to more abstract level
 7. - [x] get-sumuplogs returns commends
 8. - [ ] oko-gracze command required to create again
-9. - [ ] test-oko shouldnt save logs
+9. - [x] test-oko shouldnt save logs **SOLUTION: It doesn't save winning logs only**
 ## Synhronizing bots
 1. Shared Backend or Database
 If both bots have access to a shared backend service or database, Bot1 can update a shared resource, which Bot2 regularly checks. For example:
