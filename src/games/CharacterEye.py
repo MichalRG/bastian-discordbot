@@ -223,7 +223,19 @@ class CharacterEye:
         write_to_game_logs('oko/eye-game-sumup-logs.txt', sumup_log)
 
     async def __valid_statuses(self, ctx) -> bool:
+        if ctx.channel.id not in self.allowed_eye_player_channels_ids:
+            return False
+
         if await self.__is_rupella_in_action(ctx):
+            gtfo = self.translation.translate("GAMES.EYE.RUPELLA.GTFO")
+
+            embed_message = discord.Embed(
+                title="**Rupella**",
+                description=gtfo,
+                color=self.rueplla_color
+            )
+
+            await ctx.respond(embed=embed_message)
             return False
 
         if self.busy and self.enemy_id == ctx.author.id:
@@ -289,15 +301,6 @@ class CharacterEye:
 
     async def __is_rupella_in_action(self, ctx) -> bool:
         if str(ctx.author.id) in self.__read_blacklist_of_rupella():
-            gtfo = self.translation.translate("GAMES.EYE.RUPELLA.GTFO")
-
-            embed_message = discord.Embed(
-                title="**Rupella**",
-                description=gtfo,
-                color=self.rueplla_color
-            )
-
-            await ctx.respond(embed=embed_message)
             return True
 
         return False

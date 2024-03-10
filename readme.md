@@ -66,7 +66,7 @@ pylint --rcfile=./.pylintrc src
      - [x] to clean log file
      - [x] to stop bot
 5. - [ ] expiring game when player doesnt react/ respond
-6. - [ ] refactor for players, it requires to rewrite player methods to more abstract level
+6. - [x] refactor for players, it requires to rewrite player methods to more abstract level
 7. - [x] get-sumuplogs returns commends
 8. - [ ] oko-gracze command required to create again
 9. - [x] test-oko shouldnt save logs **SOLUTION: It doesn't save winning logs only**
