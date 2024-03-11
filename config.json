@@ -38,7 +38,6 @@
   "games": {
     "eye": {
       "process": true,
-      "bot_names": ["talan", "jodokus", "aubrey", "hubert", "kaia"],
       "roles": [
         1195438414951104522,
         1109232717142446211,
@@ -58,6 +57,7 @@
       "test_channels": [
         1209534640990457896
       ],
+      "bot_names": ["talan", "jodokus", "aubrey", "hubert", "kaia"],
       "players": [
         {
           "name": "talan",

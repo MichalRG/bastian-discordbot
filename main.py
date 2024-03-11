@@ -8,7 +8,7 @@ import os
 from discord.ext import commands
 
 from src.BotState import BotState
-from src.services.config import Config
+from src.services.Config import Config
 
 token = os.environ['bastian']
 

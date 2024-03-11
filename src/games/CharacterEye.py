@@ -6,9 +6,10 @@ from typing import List
 import discord
 
 from src.const.paths import LOCAL_LOGS_RUPELLA_BLACKLIST_PATH
-from src.services.config import Config
+from src.services.EyeValidator import EyeValidator
+from src.services.Config import Config
 from src.services.general_utils import read_file_lines, write_to_game_logs
-from src.services.translation import Translation
+from src.services.Translation import Translation
 
 
 class CharacterEye:
@@ -25,7 +26,9 @@ class CharacterEye:
             enemy_id=None,
             player_dices=None,
             roles=[],
-            channels=[]
+            channels=[],
+            observable=None,
+            eye_validator=None
     ):
         self.name = name
         self.dice_count = dice_count
@@ -42,9 +45,12 @@ class CharacterEye:
         self.allowed_id_roles = roles
         self.GENERAL_COMMANDS = self.translation.translate("GAMES.EYE.GENERAL_COMMANDS")
         self.rueplla_color = int(self.config.get_config_key("actions.rupella.rupella_color"), 16)
+        self.observable = observable
 
         self.__setup_channels_for_eye(allowed_channels_ids)
         self.__define_bot_config_statuses(busy)
+
+        self.eye_validator = eye_validator or EyeValidator(roles, self.allowed_eye_player_channels_ids)
 
     async def challenge(self, ctx, bid: int):
         if not await self.__valid_statuses(ctx):
@@ -88,7 +94,7 @@ class CharacterEye:
             )
 
     async def player_draw_die(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
+        if self.eye_validator.role_and_channel_valid(ctx.author.roles, ctx.channel):
             if not self.busy or (self.busy and self.enemy_id != ctx.author.id):
                 await self.__cannot_draw(ctx)
                 return
@@ -108,7 +114,7 @@ class CharacterEye:
             await self.__perform_bot_action(ctx, draw_message)
 
     async def player_roll_dices(self, ctx):
-        if self.__role_and_channel_valid(ctx.author.roles, ctx.channel):
+        if self.eye_validator.role_and_channel_valid(ctx.author.roles, ctx.channel):
             if not self.busy or (self.busy and self.enemy_id != ctx.author.id):
                 await self.__cannot_roll(ctx)
                 return
@@ -223,7 +229,7 @@ class CharacterEye:
         write_to_game_logs('oko/eye-game-sumup-logs.txt', sumup_log)
 
     async def __valid_statuses(self, ctx) -> bool:
-        if ctx.channel.id not in self.allowed_eye_player_channels_ids:
+        if not self.eye_validator.role_and_channel_valid(ctx.author.roles, ctx.channel):
             return False
 
         if await self.__is_rupella_in_action(ctx):
@@ -256,10 +262,6 @@ class CharacterEye:
     """
     Validation section consider to move separate class
     """
-    def __role_and_channel_valid(self, rolesAuthor, channel):
-        return any(discord.utils.get(rolesAuthor, id=role_id) for role_id in self.allowed_id_roles) and \
-               channel.id in self.allowed_eye_player_channels_ids
-
     async def __display_that_we_already_played(self, ctx):
         we_played_log = self.translation.translate(f"GAMES.EYE.{self.name.upper()}.WE_PLAYED")
 
@@ -362,6 +364,8 @@ class CharacterEye:
             self.upper_strategy_boundary
         )
 
+        self.observable.deactivate_eye_bot(self.name)
+
     def __roll_initiative(self) -> (int, int):
         bot_initiative_roll = 0
         player_initiative_roll = 0
@@ -452,6 +456,7 @@ class CharacterEye:
         self.__add_to_already_played_file({
             "player": ctx.author.id
         })
+        self.observable.activate_eye_bot(self.name)
         self.busy = False
 
     async def __cannot_draw(self, ctx):

@@ -3,7 +3,7 @@ from discord import slash_command
 from discord.ext import commands
 
 from src.helpers.constants import LEGIT_SERVERS
-from src.services.translation import Translation
+from src.services.Translation import Translation
 
 
 class GeneralEyeCommands(commands.Cog):

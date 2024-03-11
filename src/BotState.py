@@ -7,11 +7,15 @@ from discord import SlashCommandGroup, Option
 from src.games.CharacterEye import CharacterEye
 from src.games.EyeAdmin import EyeAdminCommands
 from src.games.GeneralEye import GeneralEyeCommands
-from src.sections.Admin import AdminCommands
+from src.helpers.enums.ValidatorsEnum import ValidatorsEnum
+from src.sections.AdminCommands import AdminCommands
 from src.sections.DevTest import DevTestCommands
-from src.sections.Rupella import RupellaGuard
+from src.sections.GeneralMiddlewareCommands import GeneralMiddlewareCommands
+from src.sections.RupellaCommands import RupellaGuard
 from src.sections.WelcomeCommands import WelcomeCommands
-from src.services.config import Config
+from src.services.EyeValidator import EyeValidator
+from src.services.ObservableEyeService import ObservableEyeService
+from src.services.Config import Config
 
 
 class BotState:
@@ -25,7 +29,14 @@ class BotState:
         self.roles = self.config.get_config_key("games.eye.roles")
         self.admin_roles = []
         self.eye_bots = {}
+
+        self.__setup_observable()
         self.__load_config()
+
+        self.general_middleware_commands = GeneralMiddlewareCommands(
+            config=self.config,
+            eye_observable=self.eye_observable
+        )
 
     def __load_config(self):
         self.__setup_admin_config()
@@ -57,24 +68,28 @@ class BotState:
             exit('[Self exit]: No privileges for channels')
 
     async def setup_sections(self):
-        await self.__setup_section_if_permitted('welcome', self.__setup_and_run_welcome_section)
-        await self.__setup_section_if_permitted('games.eye', self.__setup_eyes_commands)
-        await self.__setup_section_if_permitted('actions.rupella', self.__setup_rupella_commands)
-        await self.__setup_section_if_permitted('devmode', self.__setup_dev_commands)
-        await self.__setup_section_if_permitted(None, self.__set_up_admin_commends)
+        await self.__set_up_section_if_permitted('welcome', self.__setup_and_run_welcome_section)
+        await self.__set_up_section_if_permitted(None, self.__set_up_general_commends)
+        await self.__set_up_section_if_permitted('games.eye', self.__setup_eyes_commands)
+        await self.__set_up_section_if_permitted('actions.rupella', self.__set_up_rupella_commands)
+        await self.__set_up_section_if_permitted('devmode', self.__set_up_dev_commands)
+        await self.__set_up_section_if_permitted(None, self.__set_up_admin_commends)
 
-    async def __setup_section_if_permitted(self, section_name: Optional[str], setup_function: callable):
+    async def __set_up_general_commends(self):
+        self.client.add_cog(self.general_middleware_commands)
+
+    async def __set_up_section_if_permitted(self, section_name: Optional[str], setup_function: callable):
         if self.config.get_process_permissions_for_section(section_name):
             await setup_function()
 
     async def __set_up_admin_commends(self):
         self.client.add_cog(AdminCommands(self.client, self.admin_channel_allowed_to_use, self.admin_roles))
 
-    async def __setup_dev_commands(self):
+    async def __set_up_dev_commands(self):
         self.client.devmode_initialized = True
         self.client.add_cog(DevTestCommands())
 
-    async def __setup_rupella_commands(self):
+    async def __set_up_rupella_commands(self):
         self.client.rupella_action_initialized = True
 
         roles = self.config.get_config_key("actions.rupella.roles")
@@ -97,14 +112,18 @@ class BotState:
         self.client.eye_game_initialized = True
 
         players = self.config.get_config_key("games.eye.bot_names")
+        eye_validator = self.__setup_eye_validators()
 
         for player_name in players:
             self.eye_bots[player_name] = CharacterEye(
                 name=player_name,
                 config=self.config,
                 roles=self.roles,
-                channels=self.channels_allowed_to_use
+                channels=self.channels_allowed_to_use,
+                observable=self.eye_observable,
+                eye_validator=eye_validator
             )
+            self.general_middleware_commands.add_validator(ValidatorsEnum.EYE_VALIDATOR,eye_validator)
 
         try:
             self.__initiate_eye_commends()
@@ -207,3 +226,14 @@ class BotState:
             player_name = ctx.command.full_parent_name
             await self.eye_bots.get(player_name).player_draw_die(ctx)
         return draw
+
+    def __setup_observable(self):
+        self.eye_observable = ObservableEyeService(self.config)
+
+    def __setup_eye_validators(self) -> EyeValidator:
+        allowed_for_eye_players = self.config.get_config_key("games.eye.player_channels")
+        allowed_to_test_channels = self.config.get_config_key("games.eye.test_channels")
+
+        allowed_to_process_messages = list(set(allowed_for_eye_players+allowed_to_test_channels))
+
+        return EyeValidator(self.roles, allowed_to_process_messages)

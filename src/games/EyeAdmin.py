@@ -3,9 +3,9 @@ from discord import Option, slash_command
 from discord.ext import commands
 
 from src.helpers.constants import LEGIT_SERVERS
-from src.services.config import Config
+from src.services.Config import Config
 from src.services.general_utils import reset_localLogs_file, read_file_lines
-from src.services.translation import Translation
+from src.services.Translation import Translation
 
 
 class EyeAdminCommands(commands.Cog):

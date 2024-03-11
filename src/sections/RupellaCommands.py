@@ -6,9 +6,9 @@ from discord.ext import commands
 
 from src.const.paths import LOCAL_LOGS_RUPELLA_BLACKLIST_PATH, WISE_QUOTES_PATH
 from src.helpers.constants import LEGIT_SERVERS
-from src.services.config import Config
+from src.services.Config import Config
 from src.services.general_utils import write_to_actions_logs, read_json_file, role_and_channel_valid, reset_localLogs_file
-from src.services.translation import Translation
+from src.services.Translation import Translation
 
 
 class RupellaGuard(commands.Cog):
