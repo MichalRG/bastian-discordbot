@@ -6,7 +6,7 @@ from typing import List
 import discord
 
 from src.const.paths import LOCAL_LOGS_RUPELLA_BLACKLIST_PATH
-from src.services.EyeValidator import EyeValidator
+from src.services.validators.EyeValidator import EyeValidator
 from src.services.Config import Config
 from src.services.general_utils import read_file_lines, write_to_game_logs
 from src.services.Translation import Translation
@@ -240,8 +240,10 @@ class CharacterEye:
                 description=gtfo,
                 color=self.rueplla_color
             )
+            embed_message.set_thumbnail(url="attachment://rupella.png")
+            rupella_token = discord.File('./imgs/rupellaToken.png', filename="rupella.png")
 
-            await ctx.respond(embed=embed_message)
+            await ctx.respond(embed=embed_message, file=rupella_token)
             return False
 
         if self.busy and self.enemy_id == ctx.author.id:

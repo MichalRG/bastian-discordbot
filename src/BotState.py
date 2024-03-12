@@ -1,5 +1,4 @@
 import random
-from functools import partial
 from typing import List, Optional
 
 from discord import SlashCommandGroup, Option
@@ -13,9 +12,10 @@ from src.sections.DevTest import DevTestCommands
 from src.sections.GeneralMiddlewareCommands import GeneralMiddlewareCommands
 from src.sections.RupellaCommands import RupellaGuard
 from src.sections.WelcomeCommands import WelcomeCommands
-from src.services.EyeValidator import EyeValidator
+from src.services.validators.EyeValidator import EyeValidator
 from src.services.ObservableEyeService import ObservableEyeService
 from src.services.Config import Config
+from src.services.validators.RupellaValidator import RupellaValidator
 
 
 class BotState:
@@ -93,15 +93,25 @@ class BotState:
         self.client.rupella_action_initialized = True
 
         roles = self.config.get_config_key("actions.rupella.roles")
+        allowed_for_rupella_actions_channels = self.config.get_config_key("actions.rupella.player_channels")
+        test_rupella_channels = self.config.get_config_key("actions.rupella.test_channels")
+
+        rueplla_validator = self.__setup_rupella_validators(
+            roles=roles,
+            allowed_channels=allowed_for_rupella_actions_channels,
+            test_channels=test_rupella_channels
+        )
 
         try:
             self.rupella_manager = RupellaGuard(
                     self.config,
                     None,
                     roles,
-                    self.channels_allowed_to_use,
+                    allowed_for_rupella_actions_channels,
+                    test_rupella_channels,
                     self.admin_roles,
-                    self.admin_channel_allowed_to_use
+                    self.admin_channel_allowed_to_use,
+                    rueplla_validator
                 )
 
             self.client.add_cog(self.rupella_manager)
@@ -237,3 +247,12 @@ class BotState:
         allowed_to_process_messages = list(set(allowed_for_eye_players+allowed_to_test_channels))
 
         return EyeValidator(self.roles, allowed_to_process_messages)
+
+    def __setup_rupella_validators(self, roles, allowed_channels, test_channels) -> RupellaValidator:
+        allowed_to_process_messages = list(set(allowed_channels+test_channels))
+        admin_channel_ids = []
+
+        for channel in self.admin_channel_allowed_to_use:
+            admin_channel_ids.append(channel.id)
+
+        return RupellaValidator(roles, allowed_to_process_messages, self.admin_roles, admin_channel_ids)

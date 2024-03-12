@@ -31,6 +31,17 @@
         1193701620819710002,
         1202359826475401267
       ],
+      "player_channels": [
+        1202995582440968253,
+        1208839022772883486,
+        1208839056171995147,
+        1208843074176946227,
+        1208843666949672970,
+        1208843735094272020
+      ],
+      "test_channels": [
+        1209534640990457896
+      ],
       "rupella_color": "0xBCA89F",
       "bel_sherhorin_color": "0x708238"
     }
@@ -57,7 +68,13 @@
       "test_channels": [
         1209534640990457896
       ],
-      "bot_names": ["talan", "jodokus", "aubrey", "hubert", "kaia"],
+      "bot_names": [
+        "talan",
+        "jodokus",
+        "aubrey",
+        "hubert",
+        "kaia"
+      ],
       "players": [
         {
           "name": "talan",

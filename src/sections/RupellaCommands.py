@@ -12,17 +12,28 @@ from src.services.Translation import Translation
 
 
 class RupellaGuard(commands.Cog):
-    def __init__(self, config, translation, roles, channels, admin_roles, admins_channels):
+    def __init__(
+            self,
+            config,
+            translation,
+            roles,
+            channels,
+            test_channels,
+            admin_roles,
+            admins_channels,
+            rupella_validator
+    ):
         self.config = config or Config()
         self.translation = translation or Translation()
-        self.channels = channels
         self.admin_channels = admins_channels
         self.admin_channels_ids = [channel.id for channel in admins_channels]
-        self.allowed_channels_ids = [channel.id for channel in channels]
+        self.allowed_channels_ids = channels
+        self.test_channels = test_channels
         self.allowed_role_ids = roles
         self.bel_shelorin_quotes = read_json_file(WISE_QUOTES_PATH)
         self.admins_roles = admin_roles
         self.eter_color = 0x000000
+        self.rupella_validator = rupella_validator
 
         self.bel_color = int(self.config.get_config_key("actions.rupella.bel_sherhorin_color"),16)
         self.rueplla_color = int(self.config.get_config_key("actions.rupella.rupella_color"),16)
@@ -38,8 +49,10 @@ class RupellaGuard(commands.Cog):
                 description=what_are_u_doing_here,
                 color=self.rueplla_color
             )
+            embed_message.set_thumbnail(url="attachment://rupella.png")
+            token_file = discord.File("./imgs/rupellaToken.png", filename="rupella.png")
 
-            await message.reply(embed=embed_message)
+            await message.reply(embed=embed_message, file=token_file)
 
             self.__write_on_rupella_blacklist(message.author.id)
 
@@ -48,12 +61,7 @@ class RupellaGuard(commands.Cog):
 
     @slash_command(name="cytat", guild_ids=LEGIT_SERVERS, description="Poproś o cytat")
     async def display_available_player(self, ctx):
-        if role_and_channel_valid({
-            "author_roles": ctx.author.roles,
-            "channel_source": ctx.channel.id,
-            "allowed_roles":  self.allowed_role_ids,
-            "allowed_channel_ids": self.allowed_channels_ids
-        }):
+        if self.rupella_validator.role_and_channel_valid(ctx.author.roles, ctx.channel):
             description_of_elven = self.translation.translate("ACTIONS.RUPELLA.ELVEN.DESCRIPTION")
             introduction_of_elven = self.translation.translate("ACTIONS.RUPELLA.ELVEN.INTRODUCTION")
 
@@ -71,14 +79,7 @@ class RupellaGuard(commands.Cog):
     @slash_command(name="reset-rupella-status", guild_ids=LEGIT_SERVERS,
                    description="[Admin command]: reset status for Rupella")
     async def rest_rupella_stats(self, ctx):
-        data = {
-            "author_roles": ctx.author.roles,
-            "channel_source": ctx.channel.id,
-            "allowed_roles": self.admins_roles,
-            "allowed_channel_ids": self.admin_channels_ids
-        }
-
-        if role_and_channel_valid(data):
+        if self.rupella_validator.admin_role_and_channel_valid(ctx.author.roles, ctx.channel):
             reset_localLogs_file(LOCAL_LOGS_RUPELLA_BLACKLIST_PATH)
 
             success_translation = self.translation.translate("ADMINS.RESET_BOTS_SUCCESSFULLY_PASSED")
